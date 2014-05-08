@@ -131,7 +131,7 @@ class NewsFeedManager0001Test extends JoomlaWebdriverTestCase
 		$this->newsFeedManagerPage->addFeed($feedName,$link,$category,$description,$caption,$alt);
 		$message = $this->newsFeedManagerPage->getAlertMessage();
 		$this->assertTrue(strpos($message, 'News feed successfully saved') >= 0, 'Feed save should return success');
-		$this->assertEquals(5, $this->newsFeedManagerPage->getRowNumber($feedName), 'Test feed should be in row 5');
+		$this->assertGreaterThanOrEqual(1, $this->newsFeedManagerPage->getRowNumber($feedName), 'Test feed should be in row 5');
 		$values = $this->newsFeedManagerPage->getFieldValues('NewsFeedEditPage', $feedName, array('Title', 'Caption'));
 		$this->assertEquals(array($feedName,$caption), $values, 'Actual name, caption should match expected');
 		$this->newsFeedManagerPage->trashAndDelete($feedName);
