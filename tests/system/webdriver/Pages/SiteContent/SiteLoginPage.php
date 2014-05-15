@@ -38,7 +38,7 @@ class SiteLoginPage extends SitePage
 	 * @var    string
 	 * @since  3.2
 	 */
-	protected $url = '/index.php/login';
+	protected $url = '/index.php';
 	
 	/**
 	 * Function to click on logout button 
