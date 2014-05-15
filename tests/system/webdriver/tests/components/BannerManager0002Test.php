@@ -79,7 +79,7 @@ class BannerManager0002Test extends JoomlaWebdriverTestCase
 		$test = $this->bannerManagerPage->setFilter('filter_state', 'Unpublished');
 		$this->assertFalse($this->bannerManagerPage->getRowNumber($bannerName), 'Banner should not show');
 		$test = $this->bannerManagerPage->setFilter('filter_state', 'Published');
-		$this->assertEquals(4, $this->bannerManagerPage->getRowNumber($bannerName), 'Banner should be in row 4');
+		$this->assertGreaterThanOrEqual(1, $this->bannerManagerPage->getRowNumber($bannerName), 'Banner should be present');
 		$this->bannerManagerPage->trashAndDelete($bannerName);
 		$this->assertFalse($this->bannerManagerPage->getRowNumber($bannerName), 'Banner should not be present');
 	}
@@ -108,11 +108,11 @@ class BannerManager0002Test extends JoomlaWebdriverTestCase
 
 		$test = $this->bannerManagerPage->setFilter('filter_state', 'Unpublished');
 		$this->assertFalse($this->bannerManagerPage->getRowNumber($bannerName_1), 'Banner should not show');
-		$this->assertEquals(1, $this->bannerManagerPage->getRowNumber($bannerName_2), 'Banner should be in row 1');
+		$this->assertGreaterThanOrEqual(1, $this->bannerManagerPage->getRowNumber($bannerName_2), 'Banner should be present');
 
 		$test = $this->bannerManagerPage->setFilter('filter_state', 'Published');
 		$this->assertFalse($this->bannerManagerPage->getRowNumber($bannerName_2), 'Banner should not show');
-		$this->assertEquals(4, $this->bannerManagerPage->getRowNumber($bannerName_1), 'Banner should be in row 4');
+		$this->assertGreaterThanOrEqual(1, $this->bannerManagerPage->getRowNumber($bannerName_1), 'Banner should be present');
 
 		$this->bannerManagerPage->setFilter('filter_state', 'Select Status');
 		$this->bannerManagerPage->trashAndDelete($bannerName_1);

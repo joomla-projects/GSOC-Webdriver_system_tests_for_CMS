@@ -80,7 +80,7 @@ class WeblinkManager0002Test extends JoomlaWebdriverTestCase
 		$test = $this->weblinkManagerPage->setFilter('filter_state', 'Unpublished');
 		$this->assertFalse($this->weblinkManagerPage->getRowNumber($weblinkName), 'Weblink should not show');
 		$test = $this->weblinkManagerPage->setFilter('filter_state', 'Published');
-		$this->assertEquals(10, $this->weblinkManagerPage->getRowNumber($weblinkName), 'Weblink should be in row 10');
+		$this->assertGreaterThanOrEqual(1, $this->weblinkManagerPage->getRowNumber($weblinkName), 'Weblink should be present');
 		$this->weblinkManagerPage->trashAndDelete($weblinkName);
 		$this->assertFalse($this->weblinkManagerPage->getRowNumber($weblinkName), 'Weblink should not be present');
 	}
@@ -114,7 +114,7 @@ class WeblinkManager0002Test extends JoomlaWebdriverTestCase
 
 		$test = $this->weblinkManagerPage->setFilter('filter_state', 'Published');
 		$this->assertFalse($this->weblinkManagerPage->getRowNumber($weblinkName_2), 'Weblink should not show');
-		$this->assertEquals(10, $this->weblinkManagerPage->getRowNumber($weblinkName_1), 'Weblink should be in row 10');
+		$this->assertGreaterThanOrEqual(1, $this->weblinkManagerPage->getRowNumber($weblinkName_1), 'Weblink should be present');
 
 		$this->weblinkManagerPage->setFilter('Select Status', 'Select Status');
 		$this->weblinkManagerPage->trashAndDelete($weblinkName_1);

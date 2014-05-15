@@ -79,7 +79,7 @@ class ContactManager0002Test extends JoomlaWebdriverTestCase
 		$test = $this->contactManagerPage->setFilter('filter_published', 'Unpublished');
 		$this->assertFalse($this->contactManagerPage->getRowNumber($contactName), 'Contact should not show');
 		$test = $this->contactManagerPage->setFilter('filter_published', 'Published');
-		$this->assertEquals(8, $this->contactManagerPage->getRowNumber($contactName), 'Contact should be in row 8');
+		$this->assertGreaterThanOrEqual(1, $this->contactManagerPage->getRowNumber($contactName), 'Contact should be present');
 		$this->contactManagerPage->trashAndDelete($contactName);
 		$this->assertFalse($this->contactManagerPage->getRowNumber($contactName), 'Contact should not be present');
 	}
@@ -112,7 +112,7 @@ class ContactManager0002Test extends JoomlaWebdriverTestCase
 
 		$test = $this->contactManagerPage->setFilter('filter_published', 'Published');
 		$this->assertFalse($this->contactManagerPage->getRowNumber($contactName_2), 'Contact should not show');
-		$this->assertEquals(8, $this->contactManagerPage->getRowNumber($contactName_1), 'Contact should be in row 8');
+		$this->assertGreaterThanOrEqual(1, $this->contactManagerPage->getRowNumber($contactName_1), 'Contact should be present');
 
 		$this->contactManagerPage->setFilter('Select Status', 'Select Status');
 		$this->contactManagerPage->trashAndDelete($contactName_1);

@@ -108,7 +108,7 @@ class ContactManager0001Test extends JoomlaWebdriverTestCase
 		$this->contactManagerPage->addContact($contactName, false);
 		$message = $this->contactManagerPage->getAlertMessage();
 		$this->assertTrue(strpos($message, 'Contact successfully saved') >= 0, 'Contact save should return success');
-		$this->assertEquals(5, $this->contactManagerPage->getRowNumber($contactName), 'Test Contact should be in row 5');
+		$this->assertGreaterThanOrEqual(1, $this->contactManagerPage->getRowNumber($contactName), 'Test Contact should be present');
 		$this->contactManagerPage->trashAndDelete($contactName);
 		$this->assertFalse($this->contactManagerPage->getRowNumber($contactName), 'Test Contact should not be present');
 	}
@@ -128,7 +128,7 @@ class ContactManager0001Test extends JoomlaWebdriverTestCase
 		$this->contactManagerPage->addContact($contactName, array('Country' => $country, 'Address' => $address, 'City or Suburb' => $city));
 		$message = $this->contactManagerPage->getAlertMessage();
 		$this->assertTrue(strpos($message, 'Contact successfully saved') >= 0, 'Contact save should return success');
-		$this->assertEquals(5, $this->contactManagerPage->getRowNumber($contactName), 'Test test contact should be in row 5');
+		$this->assertGreaterThanOrEqual(1, $this->contactManagerPage->getRowNumber($contactName), 'Test test contact should be present');
 		$values = $this->contactManagerPage->getFieldValues('ContactEditPage', $contactName, array('Name', 'Address', 'City or Suburb', 'Country'));
 		$this->assertEquals(array($contactName, $address, $city, $country), $values, 'Actual name, address, city and country should match expected');
 		$this->contactManagerPage->trashAndDelete($contactName);
