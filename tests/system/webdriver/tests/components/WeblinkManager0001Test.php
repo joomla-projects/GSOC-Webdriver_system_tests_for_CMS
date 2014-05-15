@@ -109,7 +109,7 @@ class WeblinkManager0001Test extends JoomlaWebdriverTestCase
 		$this->weblinkManagerPage->addWeblink($weblinkName, $url, false);
 		$message = $this->weblinkManagerPage->getAlertMessage();
 		$this->assertTrue(strpos($message, 'Weblink successfully saved') >= 0, 'Weblink save should return success');
-		$this->assertEquals(10, $this->weblinkManagerPage->getRowNumber($weblinkName), 'Test Weblink should be in row 10');
+		$this->assertGreaterThanOrEqual(1, $this->weblinkManagerPage->getRowNumber($weblinkName), 'Test Weblink should be in row 10');
 		$this->weblinkManagerPage->trashAndDelete($weblinkName);
 		$this->assertFalse($this->weblinkManagerPage->getRowNumber($weblinkName), 'Test Weblink should not be present');
 	}

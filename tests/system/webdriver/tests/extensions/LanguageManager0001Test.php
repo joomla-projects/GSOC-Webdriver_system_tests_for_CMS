@@ -114,7 +114,7 @@ class LanguageManager0001Test extends JoomlaWebdriverTestCase
 		$this->languageManagerPage->addLanguage($langName);
 		$message = $this->languageManagerPage->getAlertMessage();
 		$this->assertTrue(strpos($message, 'Content Language successfully saved') >= 0, 'Content Language save should return success');
-		$this->assertEquals(2, $this->languageManagerPage->getRowNumber($langName), 'Test lang should be in row 2');
+		$this->assertGreaterThanOrEqual(1, $this->languageManagerPage->getRowNumber($langName), 'Test lang should be in row 2');
 		$this->languageManagerPage->trashAndDelete($langName);
 		$this->assertFalse($this->languageManagerPage->getRowNumber($langName), 'Test lang should not be present');
 	}

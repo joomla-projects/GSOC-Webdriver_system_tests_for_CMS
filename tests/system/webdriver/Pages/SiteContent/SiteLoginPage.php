@@ -38,7 +38,7 @@ class SiteLoginPage extends SitePage
 	 * @var    string
 	 * @since  3.2
 	 */
-	protected $url = '/index.php/login';
+	protected $url = '/index.php';
 	
 	/**
 	 * Function to click on logout button 
@@ -64,8 +64,8 @@ class SiteLoginPage extends SitePage
 	 public function SiteLoginUser($username, $password)
 	 {
 		$d= $this->driver;
-		$d->findElement(By::xPath("//input[@id='username']"))->sendKeys($username);
-		$d->findElement(By::xPath("//input[@id='password']"))->sendKeys($password);
+		$d->findElement(By::xPath("//input[@id='modlgn-username']"))->sendKeys($username);
+		$d->findElement(By::xPath("//input[@id='modlgn-passwd']"))->sendKeys($password);
 		$d->findElement(By::xPath("//button[contains(text(), 'Log in')]"))->click();
 	 }
 }

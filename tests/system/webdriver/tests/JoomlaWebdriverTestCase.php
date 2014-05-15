@@ -117,7 +117,7 @@ class JoomlaWebdriverTestCase extends PHPUnit_Framework_TestCase
 		$password=$cfg->password;
 		$d = $this->driver;
 		$d->clearCurrentCookies();
-		$url = $this->cfg->host.$this->cfg->path.'index.php/login';
+		$url = $this->cfg->host.$this->cfg->path.'index.php';
 		$this->driver->get($url); 
 		$loginPage = $this->getPageObject('SiteLoginPage', true, $url);
 		$loginPage->SiteLoginUser($username,$password);
@@ -132,7 +132,7 @@ class JoomlaWebdriverTestCase extends PHPUnit_Framework_TestCase
 	{
 		$cfg=new SeleniumConfig();
 		$d = $this->driver;
-		$url = $this->cfg->host.$this->cfg->path.'index.php/login';	
+		$url = $this->cfg->host.$this->cfg->path.'index.php';	
 		$this->driver->get($url); 			
 		$loginPage = $this->getPageObject('SiteLoginPage');
 		$loginPage->SiteLogoutUser();
