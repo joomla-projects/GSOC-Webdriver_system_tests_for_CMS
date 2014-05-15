@@ -64,8 +64,8 @@ class SiteLoginPage extends SitePage
 	 public function SiteLoginUser($username, $password)
 	 {
 		$d= $this->driver;
-		$d->findElement(By::xPath("//input[@id='username']"))->sendKeys($username);
-		$d->findElement(By::xPath("//input[@id='password']"))->sendKeys($password);
+		$d->findElement(By::xPath("//input[@id='modlgn-username']"))->sendKeys($username);
+		$d->findElement(By::xPath("//input[@id='modlgn-passwd']"))->sendKeys($password);
 		$d->findElement(By::xPath("//button[contains(text(), 'Log in')]"))->click();
 	 }
 }
