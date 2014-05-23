@@ -115,7 +115,7 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase{
 		$MenuItemManager = 'administrator/index.php?option=com_menus&view=items';
 		$this->driver->get($cfg->host . $cfg->path . $MenuItemManager);
 		
-		$title = 'Menu_Item_testing'.$salt;
+		$title = 'Menu Item'.$salt;
 		$menuType = 'Single Article';
 		$menuLocation = 'Main Menu';
 		$this->menuItemsManagerPage->setFilter('Menu', $menuLocation);
@@ -149,6 +149,92 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase{
 		$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName), 'Test Category should not be present');
 		
 		$this->driver->get($cfg->host . $cfg->path . $MenuItemManager);
+		$this->menuItemsManagerPage->setFilter('Menu', 'Main Menu');
+		$this->menuItemsManagerPage->trashAndDelete($title);
+		$this->assertFalse($this->menuItemsManagerPage->getRowNumber($title), 'Test menu should not be present');
+
+	}
+	
+	/**
+	 * @test 
+	 */
+	public function addMenu_CategoryBlog_MenuAdded()
+	{
+		//adding test category.
+		$cfg = new SeleniumConfig();
+		$categoryManager = 'administrator/index.php?option=com_categories&extension=com_content';
+		$this->driver->get($cfg->host . $cfg->path . $categoryManager);
+
+		$salt = rand();
+		$categoryName = 'category_ABC'.$salt;
+		$this->categoryManagerPage = $this->getPageObject('CategoryManagerPage');
+		$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName), 'Test Category should not be present');
+		$this->categoryManagerPage->addCategory($categoryName);
+		$message = $this->categoryManagerPage->getAlertMessage();
+		$this->assertTrue(strpos($message, 'Category successfully saved') >= 0, 'Category save should return success');
+
+		//adding article of the test category
+		$articleManager = 'administrator/index.php?option=com_content';
+		$this->driver->get($cfg->host . $cfg->path . $articleManager);
+
+		$articleName1 = 'article_ABC_1'.$salt;
+		$articleName2 = 'article_ABC_2'.$salt;
+		$this->articleManagerPage = $this->getPageObject('ArticleManagerPage');
+		$this->assertFalse($this->articleManagerPage->getRowNumber($articleName1), 'Test Article should not be present');
+		$this->assertFalse($this->articleManagerPage->getRowNumber($articleName2), 'Test Article should not be present');
+		$this->articleManagerPage->addArticle($articleName1, $categoryName);
+		$message = $this->articleManagerPage->getAlertMessage();
+		$this->assertTrue(strpos($message, 'Article successfully saved') >= 0, 'Article save should return success');
+		$this->articleManagerPage->addArticle($articleName2, $categoryName);
+		$message = $this->articleManagerPage->getAlertMessage();
+		$this->assertTrue(strpos($message, 'Article successfully saved') >= 0, 'Article save should return success');
+
+		//create menu 
+
+		$MenuItemsManager = 'administrator/index.php?option=com_menus&view=items';
+		$this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
+		
+		$title = 'Menu Item'.$salt;
+		$menuType = 'Category Blog ';
+		$menuLocation = 'Main Menu';
+		$metaDescription = 'Test menu item for web driver test.';
+		$this->menuItemsManagerPage=$this->getPageObject('MenuItemsManagerPage');
+		$this->menuItemsManagerPage->setFilter('Menu', $menuLocation);
+		$this->assertFalse($this->menuItemsManagerPage->getRowNumber($title), 'Test menu should not be present');
+		$this->menuItemsManagerPage->addMenuItem($title, $menuType, $menuLocation, array('category' => $categoryName, 'Meta Description' => $metaDescription));
+		$message = $this->menuItemsManagerPage->getAlertMessage();
+		$this->assertContains('Menu item successfully saved', $message, 'Menu save should return success', true);
+
+
+		//check the existence of the menu in the front end.
+		$cfg = new SeleniumConfig();
+		$homePageUrl = 'index.php';
+		$d=$this->driver;
+		$d->get($cfg->host . $cfg->path . $homePageUrl);
+		$this->siteHomePage = $this->getPageObject('SiteContentFeaturedPage');
+		if($this->itemExist($title));
+		{	
+			$d->findElement(By::xPath("//a[contains(text(),'" .  $title . "')]"))->click();
+			$arrayTitles = $this->siteHomePage->getArticleTitles();
+			$this->assertTrue($this->itemExist($articleName1));
+			$this->assertTrue($this->itemExist($articleName2));
+		}	
+
+
+
+		//deleting the test items
+		$cpPage = $this->doAdminLogin();
+		$this->driver->get($cfg->host . $cfg->path . $articleManager);
+		$this->articleManagerPage->trashAndDelete($articleName1);
+		$this->assertFalse($this->articleManagerPage->getRowNumber($articleName1), 'Test article should not be present');
+		$this->articleManagerPage->trashAndDelete($articleName2);
+		$this->assertFalse($this->articleManagerPage->getRowNumber($articleName2), 'Test article should not be present');
+		
+		$this->driver->get($cfg->host . $cfg->path . $categoryManager);
+		$this->categoryManagerPage->trashAndDelete($categoryName);
+		$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName), 'Test Category should not be present');
+		
+		$this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
 		$this->menuItemsManagerPage->setFilter('Menu', 'Main Menu');
 		$this->menuItemsManagerPage->trashAndDelete($title);
 		$this->assertFalse($this->menuItemsManagerPage->getRowNumber($title), 'Test menu should not be present');
