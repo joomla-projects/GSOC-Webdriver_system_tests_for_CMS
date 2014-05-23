@@ -197,4 +197,13 @@ class JoomlaWebdriverTestCase extends PHPUnit_Framework_TestCase
 			return $fileName;
 		}
 	}
+	
+	public function itemExist($ItemName)
+	{
+		$d = $this->driver;
+		$element = $d->findElement(By::xPath("//a[contains(text(),'" .  $ItemName . "')]"));
+		if($element!=null)
+			return true;
+		return false;
+	}
 }
