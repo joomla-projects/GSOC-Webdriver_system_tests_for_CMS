@@ -48,8 +48,7 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase{
 	
 	 /**
 	 * @test
-	 *
-	*/
+       	 */
 	public function addMenuItem_FrontEndCheck_MenuAdded()
 	{
 		$cfg = new SeleniumConfig();
