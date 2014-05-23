@@ -27,4 +27,23 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase{
 	 * @var $menuItemsManagerPage
 	 * @since 3.2
 	 */
+	 public function setUp()
+	{
+		$cfg = new SeleniumConfig();
+		parent::setUp();
+		$this->driver->get($cfg->host . $cfg->path);
+		$cpPage = $this->doAdminLogin();
+	}
+
+	/**
+	 * Logout and close test.
+	 *
+	 * @since 3.0
+	 */
+	public function tearDown()
+	{
+		$this->doAdminLogout();
+		parent::tearDown();
+	}
+	
 }
