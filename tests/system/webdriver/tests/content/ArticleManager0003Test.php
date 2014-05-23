@@ -269,5 +269,69 @@ class ArticleManager0003Test extends JoomlaWebdriverTestCase
 		$this->articleManagerPage->trashAndDelete($articleName);
 		$this->assertFalse($this->articleManagerPage->getRowNumber($articleName), 'Test Article should not be present');
 	}
+	
+	/**
+	*@test
+	*/
+	public function addArticle_FeaturedArticle_ArticleAdded()
+	{
+		//adding test category.
+		$cfg = new SeleniumConfig();
+		$this->doAdminLogin();
+		$salt = rand();
+		$categoryName = 'category_ABC'.$salt;
+		
+		$categoryManager = 'administrator/index.php?option=com_categories&extension=com_content';
+		$this->driver->get($cfg->host . $cfg->path . $categoryManager);
+		$this->categoryManagerPage = $this->getPageObject('CategoryManagerPage');
+		$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName), 'Test Category should not be present');
+		$this->categoryManagerPage->addCategory($categoryName);
+		$message = $this->categoryManagerPage->getAlertMessage();
+		$this->assertTrue(strpos($message, 'Category successfully saved') >= 0, 'Category save should return success');
+
+		//adding article of the test category
+		$articleManager = 'administrator/index.php?option=com_content';
+		$this->driver->get($cfg->host . $cfg->path . $articleManager);
+		$articleName = 'article_ABC'.$salt;
+		$category = $categoryName;
+		$this->articleManagerPage = $this->getPageObject('ArticleManagerPage');
+		$this->assertFalse($this->articleManagerPage->getRowNumber($articleName), 'Test Article should not be present');
+		$this->articleManagerPage->addArticle($articleName, $category,array('Featured' => 'Yes'));
+		$message = $this->articleManagerPage->getAlertMessage();
+		$this->assertTrue(strpos($message, 'Article successfully saved') >= 0, 'Article save should return success');
+
+		//confirming if the article is present in front end
+		$cfg = new SeleniumConfig();
+		$i=0;
+		$homePageUrl = 'index.php?limitstart=';
+		$this->driver->get($cfg->host . $cfg->path . $homePageUrl.$i);
+		$this->siteHomePage = $this->getPageObject('SiteContentFeaturedPage');
+		$arrayTitles = $this->siteHomePage->getArticleTitles();
+		$d= $this->driver;
+		for($i=0;$i<=4;)
+		{
+			if(in_array($articleName, $arrayTitles))
+				break;
+			else
+			{
+				++$i;
+				$this->driver->get($cfg->host . $cfg->path . $homePageUrl.$i);
+				$this->siteHomePage = $this->getPageObject('SiteContentFeaturedPage');
+				$arrayTitles = $this->siteHomePage->getArticleTitles();
+			}	
+				
+		}
+
+		
+		//delete test articles and category
+		$cpPage = $this->doAdminLogin();
+		$this->driver->get($cfg->host . $cfg->path . $articleManager);
+		$this->articleManagerPage = $this->getPageObject('ArticleManagerPage');
+		$this->articleManagerPage->trashAndDelete($articleName);
+		$this->assertFalse($this->articleManagerPage->getRowNumber($articleName), 'Test article should not be present');
+		$this->driver->get($cfg->host . $cfg->path . $categoryManager);
+		$this->categoryManagerPage->trashAndDelete($categoryName);
+		$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName), 'Test Category should not be present');
+	}
 }
 
