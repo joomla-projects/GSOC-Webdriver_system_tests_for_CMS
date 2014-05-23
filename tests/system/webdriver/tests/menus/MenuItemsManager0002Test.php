@@ -52,17 +52,16 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase{
 	*/
 	public function addMenuItem_FrontEndCheck_MenuAdded()
 	{
+		$cfg = new SeleniumConfig();
 		$MenuItemsManager = 'administrator/index.php?option=com_menus&view=items';
-		
+		$this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
 		//create a menu item
-		$salt=rand();
-		$menuLocation = 'Main Menu';
-		$this->menuItemsManagerPage->setFilter('Menu', $menuLocation);
-		$this->assertFalse($this->menuItemsManagerPage->getRowNumber("Test Menu Item"), 'Test menu should not be present');
+		$this->menuItemsManagerPage=$this->getPageObject('MenuItemsManagerPage');
+		$this->assertFalse($this->menuItemsManagerPage->getRowNumber('Test Menu Item'), 'Test menu should not be present');
 		$this->menuItemsManagerPage->addMenuItem();
 		$message = $this->menuItemsManagerPage->getAlertMessage();
-		$this->assertContains('Menu item successfully saved', $message, 'Menu save should return success', true);
-
+		$this->assertTrue(strpos($message, 'Menu successfully saved') >= 0, 'Menu save should return success');
+		
 		//check in the front end.
 		$cfg = new SeleniumConfig();
 		$homePageUrl = 'index.php';
