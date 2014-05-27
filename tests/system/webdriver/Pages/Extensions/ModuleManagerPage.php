@@ -98,7 +98,7 @@ class ModuleManagerPage extends AdminManagerPage
 	{
 		$this->setFilter('filter_client_id', $client);
 		$this->clickButton('toolbar-new');
-		$this->driver->waitForElementUntilIsPresent(By::xPath("//a[contains(., '" . $type . "')]"))->click();
+		$this->driver->waitForElementUntilIsPresent(By::xPath("//a/strong[contains(., '" . $type . "')]"))->click();
 		$moduleEditPage = $this->test->getPageObject('ModuleEditPage');
 		$moduleEditPage->setFieldValues(array('Title' => $title));
 		if (is_array($otherFields))
