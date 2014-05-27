@@ -198,12 +198,19 @@ class JoomlaWebdriverTestCase extends PHPUnit_Framework_TestCase
 		}
 	}
 	
-	public function itemExist($ItemName)
+	/**
+	 * check whether the item is present on the site or not given the xpath variable.
+	 *  @param string $itemName   stores the name of the item to be searched
+	 *  @param string $arg	xpath variable
+	 */
+	public function itemExist($itemName,$arg)
 	{
-		$d = $this->driver;
-		$element = $d->findElement(By::xPath("//a[contains(text(),'" .  $ItemName . "')]"));
+		$driver = $this->driver;
+		$element = $d->findElement(By::xPath("//".$arg."[contains(text(),'" .  $ItemName . "')]"));
 		if($element!=null)
+		{
 			return true;
+		}
 		return false;
 	}
 }
