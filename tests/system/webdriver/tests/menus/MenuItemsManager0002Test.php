@@ -11,11 +11,11 @@ require_once 'JoomlaWebdriverTestCase.php';
 use SeleniumClient\By;
 
 /**
- * This class tests the Article: Front End and Add/Edit Screens.
+ * This class tests the Menu: Front End and Add/Edit Screens.
  *
  * @package    Joomla.Test
  * @subpackage Webdriver
- * @since      3.2
+ * @since      3.3
  */
 class MenuItemsManager0002Test extends JoomlaWebdriverTestCase{
 
@@ -47,8 +47,10 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase{
 	}
 	
 	 /**
-	 * @test
-       	 */
+	  * creates a menu item and check its existence on site page
+	  * 
+	  * @test
+       	  */
 	public function addMenuItem_FrontEndCheck_MenuAdded()
 	{
 		$cfg = new SeleniumConfig();
@@ -79,6 +81,8 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase{
 	}
 
 	/**
+	 * create menu item of type single article and verifying its existence on front end
+	 * 
 	 * @test
 	 */
 	public function  addMenu_SingleArticle_MenuAdded()
@@ -154,6 +158,8 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase{
 	}
 	
 	/**
+	 * create menu item of type category blog and verifying its existence on front end
+	 * 
 	 * @test 
 	 */
 	public function addMenu_CategoryBlog_MenuAdded()
@@ -240,6 +246,8 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase{
 	}
 	
 	/**
+	 * create menu item of type category list and verifying its existence on front end
+	 * 
 	 * @test 
 	 */
 	public function addMenu_CategoryList_MenuAdded()
