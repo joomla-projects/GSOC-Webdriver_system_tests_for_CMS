@@ -24,8 +24,6 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 	{
 		parent::setUp();
 
-		/* @var $cpPage ControlPanelPage */
-
 	}
 
 	public function tearDown()
