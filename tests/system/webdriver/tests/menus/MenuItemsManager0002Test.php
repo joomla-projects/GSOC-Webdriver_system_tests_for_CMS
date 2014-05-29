@@ -17,7 +17,8 @@ use SeleniumClient\By;
  * @subpackage Webdriver
  * @since      3.3
  */
-class MenuItemsManager0002Test extends JoomlaWebdriverTestCase{
+class MenuItemsManager0002Test extends JoomlaWebdriverTestCase
+{
 
     /**
 	 * The page class being tested.
