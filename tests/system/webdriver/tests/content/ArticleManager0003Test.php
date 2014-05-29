@@ -271,8 +271,10 @@ class ArticleManager0003Test extends JoomlaWebdriverTestCase
 	}
 	
 	/**
-	*@test
-	*/
+	 * add featured article of a given category and confirm its existence on homme page
+	 * 
+	 * @test
+	 */
 	public function addArticle_FeaturedArticle_ArticleAdded()
 	{
 		//adding test category.
