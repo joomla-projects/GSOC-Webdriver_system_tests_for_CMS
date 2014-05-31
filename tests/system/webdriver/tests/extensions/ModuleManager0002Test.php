@@ -1,17 +1,14 @@
 <?php
 
-require_once 'JoomlaWebdriverTestCase.php';
+require_once 'joomlaWebdriverTestCase.php';
 
 use SeleniumClient\By;
 
 /**
- * This class tests the  Module: Add / Edit  on front end.
+ * This class tests the Module Manager: Add / Edit Module Screen
+ * @author Mark
  *
- * @package     Joomla.Test
- * @subpackage  Webdriver
- * @since       3.0
  */
- 
 class ModuleManager0001Test extends JoomlaWebdriverTestCase
 {
 	/**
@@ -23,7 +20,9 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 	public function setUp()
 	{
 		parent::setUp();
-
+		
+		/* @var $cpPage ControlPanelPage */
+		
 	}
 
 	public function tearDown()
@@ -31,11 +30,10 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$this->doAdminLogout();
 		parent::tearDown();
 	}
+
 	/**
-	 * creating a module of type article categories and then verifying its creation on the front end.
-	 * 
-	 * @test
-	 */
+	* @test
+	*/
 	public function addModule_ArticleCategories_ModuleAdded()
 	{
 		//adding test category.
@@ -76,7 +74,7 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$client = 'Site';
 		$type = 'Articles Categories';
 		$position = 'position-3';
-		$suffix = 'mysuffix';
+		$suffix = 'mySuffix';
 		$otherFields = array('Position' => $position, 'Module Class Suffix' => $suffix, 'Parent Category'=>$categoryName);
 		//$this->$ModuleManagerPage = $this->getPageObject('moduleManagerPage');
 		$this->moduleManagerPage->setFilter('filter_client_id', $client)->searchFor($title);
@@ -96,7 +94,7 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$this->assertTrue($this->itemExist($categoryName2,'a'));
 
 		//delete test items
-		$cpPage = $this->doAdminLogin();
+		$this->doAdminLogin();
 		$this->driver->get($cfg->host . $cfg->path . $categoryManager);
 		$this->categoryManagerPage->trashAndDelete($categoryName1);
 		$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName), 'Test Category should not be present');
@@ -114,12 +112,8 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 
 
 	/**
-	 * creating a module of type article categories with the articles created of a specific category
-	 * then verifying its creation on the front end.
-	 * 
-	 * 
-	 * @test
-	 */
+	* @test
+	*/
 	public function addModule_ArticleCategories_ModuleAdded_2()
 	{
 		//adding test category.
@@ -180,7 +174,7 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$client = 'Site';
 		$type = 'Articles Categories';
 		$position = 'position-3';
-		$suffix = 'mysuffix';
+		$suffix = 'mySuffix';
 		$otherFields = array('Position' => $position, 'Module Class Suffix' => $suffix, 'Parent Category'=>$categoryName);
 		//$this->$ModuleManagerPage = $this->getPageObject('moduleManagerPage');
 		$this->moduleManagerPage->setFilter('filter_client_id', $client)->searchFor($title);
@@ -204,7 +198,7 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		//$this->assertTrue($this->itemExist($articleName2,'a'));
 
 		//delete test items
-		$cpPage = $this->doAdminLogin();
+        $this->doAdminLogin();
 		
 		$this->driver->get($cfg->host . $cfg->path . $articleManager);
 		$this->articleManagerPage->trashAndDelete($articleName1);
@@ -228,10 +222,8 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 	}	 
 	
 	/**
-	 * creating a module of type Menu and then verifying its creation on the front end.
-	 * 
-	 * @test
-	 */
+	* @test
+	*/
 	public function addModule_ModuleTypeMenu_ModuleAdded()
 	{
 		//create menu
@@ -276,7 +268,7 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$client = 'Site';
 		$type = 'Menu';
 		$position = 'position-3';
-		$suffix = 'mysuffix';
+		$suffix = 'mySuffix';
 		$otherFields = array('Position' => $position, 'Module Class Suffix' => $suffix, 'Select Menu' => $menuName);
 		//$this->$ModuleManagerPage = $this->getPageObject('moduleManagerPage');
 		$this->moduleManagerPage->setFilter('filter_client_id', $client)->searchFor($title);
@@ -297,7 +289,7 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		
 
 		//delete test items
-		$cpPage = $this->doAdminLogin();
+		$this->doAdminLogin();
 		
 		$this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
 		$this->menuItemsManagerPage->setFilter('Menu', $menuName);
@@ -308,7 +300,7 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 
 		$this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
 		$this->menuManagerPage->deleteMenu($menuName);
-		$this->assertFalse($this->menuManagerPage->getRowNumber($newMenuName), 'Test menu should not be present');
+		$this->assertFalse($this->menuManagerPage->getRowNumber($menuName), 'Test menu should not be present');
 
 		$this->driver->get($cfg->host . $cfg->path . $moduleManager);
 		$this->moduleManagerPage->setFilter('filter_client_id', $client);
@@ -319,12 +311,8 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 	}
 	
 	/**
-	 * creating a module of type menu
-	 * creating menu items of a specific menu and of type single article
-	 * and then verifying it from the front end.
-	 * 
-	 * @test
-	 */
+	* @test
+	*/
 	public function addModule_MenuItemSingleArticle_ModuleAdded()
 	{
 		$cpPage = $this->doAdminLogin();
@@ -388,7 +376,7 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$client = 'Site';
 		$type = 'Menu';
 		$position = 'position-3';
-		$suffix = 'mysuffix';
+		$suffix = 'mySuffix';
 		$otherFields = array('Position' => $position, 'Module Class Suffix' => $suffix, 'Select Menu' => $menuName);
 		//$this->$ModuleManagerPage = $this->getPageObject('moduleManagerPage');
 		$this->moduleManagerPage->setFilter('filter_client_id', $client)->searchFor($title);
@@ -413,7 +401,7 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 
 
 		//delete test items
-		$cpPage = $this->doAdminLogin();
+		$this->doAdminLogin();
 		
 		$this->driver->get($cfg->host . $cfg->path . $articleManager);
 		$this->articleManagerPage = $this->getPageObject('ArticleManagerPage');
@@ -441,16 +429,9 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$this->assertFalse($this->moduleManagerPage->getRowNumber($title), 'Test module should not be present');
 			
 	}
-
 	/**
-	 * create a module with type Menu
-	 * adding menu items of type category blog in a Menu created 
-	 * adding article in the menu items 
-	 * verifying it in the front end
-	 * 
-	 * 
-	 * @test
-	 */
+	* @test
+	*/
 	public function addModule_MenuItemsCategoryBlog_ModuleAdded()
 	{
 		$cpPage = $this->doAdminLogin();
@@ -545,7 +526,7 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$client = 'Site';
 		$type = 'Menu';
 		$position = 'position-3';
-		$suffix = 'mysuffix';
+		$suffix = 'mySuffix';
 		$otherFields = array('Position' => $position, 'Module Class Suffix' => $suffix, 'Select Menu' => $menuName);
 		//$this->$ModuleManagerPage = $this->getPageObject('moduleManagerPage');
 		$this->moduleManagerPage->setFilter('filter_client_id', $client)->searchFor($title);
@@ -571,7 +552,7 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$this->assertTrue($this->itemExist($articleName4,'a'));
 
 		//delete test items
-		$cpPage = $this->doAdminLogin();
+		$this->doAdminLogin();
 		
 		$this->driver->get($cfg->host . $cfg->path . $articleManager);
 		$this->articleManagerPage = $this->getPageObject('ArticleManagerPage');
@@ -605,5 +586,5 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$this->assertFalse($this->moduleManagerPage->getRowNumber($title), 'Test module should not be present');
 		
 	}
-
+	
 }
