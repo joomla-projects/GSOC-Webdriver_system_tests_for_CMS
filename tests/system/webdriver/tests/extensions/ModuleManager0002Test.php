@@ -32,8 +32,11 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
-	* @test
-	*/
+     * creating a category with two child categories
+     * creating a module of type Article Categories and verifying it in front end.
+     *
+	 * @test
+	 */
 	public function addModule_ArticleCategories_ModuleAdded()
 	{
 		//adding test category.
@@ -112,8 +115,11 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 
 
 	/**
-	* @test
-	*/
+     * create a category with two child categories and add articles of the child categories
+     * create module of article categories and verify from front end
+     *
+	 * @test
+	 */
 	public function addModule_ArticleCategories_ModuleAdded_2()
 	{
 		//adding test category.
@@ -220,10 +226,12 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$this->moduleManagerPage->searchFor($title);
 		$this->assertFalse($this->moduleManagerPage->getRowNumber($title), 'Test module should not be present');
 	}	 
-	
+
 	/**
-	* @test
-	*/
+     * creating a menu with two menu items in it
+     * create module of type Menu and verify from front end
+	 * @test
+	 */
 	public function addModule_ModuleTypeMenu_ModuleAdded()
 	{
 		//create menu
@@ -290,29 +298,31 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 
 		//delete test items
 		$this->doAdminLogin();
-		
-		$this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
-		$this->menuItemsManagerPage->setFilter('Menu', $menuName);
-		$this->menuItemsManagerPage->trashAndDelete($menuTitle1);
-		$this->assertFalse($this->menuItemsManagerPage->getRowNumber($menuTitle1), 'Test menu should not be present');
-		$this->menuItemsManagerPage->trashAndDelete($menuTitle2);
-		$this->assertFalse($this->menuItemsManagerPage->getRowNumber($menuTitle2), 'Test menu should not be present');
-
-		$this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
-		$this->menuManagerPage->deleteMenu($menuName);
-		$this->assertFalse($this->menuManagerPage->getRowNumber($menuName), 'Test menu should not be present');
-
 		$this->driver->get($cfg->host . $cfg->path . $moduleManager);
 		$this->moduleManagerPage->setFilter('filter_client_id', $client);
 		$this->moduleManagerPage->trashAndDelete($title);
 		$this->moduleManagerPage->searchFor($title);
 		$this->assertFalse($this->moduleManagerPage->getRowNumber($title), 'Test module should not be present');
-		
-	}
+
+        $this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
+        $this->menuItemsManagerPage->setFilter('Menu', $menuName);
+        $this->menuItemsManagerPage->trashAndDelete($menuTitle1);
+        $this->assertFalse($this->menuItemsManagerPage->getRowNumber($menuTitle1), 'Test menu should not be present');
+        $this->menuItemsManagerPage->trashAndDelete($menuTitle2);
+        $this->assertFalse($this->menuItemsManagerPage->getRowNumber($menuTitle2), 'Test menu should not be present');
+
+        $MenuManager='administrator/index.php?option=com_menus&view=menus';
+        $this->driver->get($cfg->host . $cfg->path . $MenuManager);
+        $this->menuManagerPage->deleteMenu($menuName);
+        $this->assertFalse($this->menuManagerPage->getRowNumber($menuName), 'Test menu should not be present');
+}
 	
 	/**
-	* @test
-	*/
+     * create a menu with two menu items of type singel article and adding articles in the menu item
+     * create module of type Menu and verify from front end
+     *
+	 * @test
+	 */
 	public function addModule_MenuItemSingleArticle_ModuleAdded()
 	{
 		$cpPage = $this->doAdminLogin();
@@ -410,7 +420,13 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$this->articleManagerPage->trashAndDelete($articleName2);
 		$this->assertFalse($this->articleManagerPage->getRowNumber($articleName2), 'Test article should not be present');
 
-		$this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
+        $this->driver->get($cfg->host . $cfg->path . $moduleManager);
+        $this->moduleManagerPage->setFilter('filter_client_id', $client);
+        $this->moduleManagerPage->trashAndDelete($title);
+        $this->moduleManagerPage->searchFor($title);
+        $this->assertFalse($this->moduleManagerPage->getRowNumber($title), 'Test module should not be present');
+
+        $this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
 		$this->menuItemsManagerPage->setFilter('Menu', $menuName);
 		$this->menuItemsManagerPage->trashAndDelete($menuTitle1);
 		$this->assertFalse($this->menuItemsManagerPage->getRowNumber($menuTitle1), 'Test menu should not be present');
@@ -422,16 +438,14 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$this->menuManagerPage->deleteMenu($menuName);
 		$this->assertFalse($this->menuManagerPage->getRowNumber($menuName), 'Test menu should not be present');
 
-		$this->driver->get($cfg->host . $cfg->path . $moduleManager);
-		$this->moduleManagerPage->setFilter('filter_client_id', $client);
-		$this->moduleManagerPage->trashAndDelete($title);
-		$this->moduleManagerPage->searchFor($title);
-		$this->assertFalse($this->moduleManagerPage->getRowNumber($title), 'Test module should not be present');
-			
+
 	}
 	/**
-	* @test
-	*/
+     * create a menu with two menu items of type category blog and adding two articles in each menu item
+     * create a module of type menu and verifying from the front end
+     *
+	 * @test
+	 */
 	public function addModule_MenuItemsCategoryBlog_ModuleAdded()
 	{
 		$cpPage = $this->doAdminLogin();
@@ -567,24 +581,22 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$this->categoryManagerPage->trashAndDelete($categoryName2);
 		$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName2), 'Test Category should not be present');
 		
-		$this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
-		$this->menuItemsManagerPage->setFilter('Menu', $menuName);
-		$this->menuItemsManagerPage->trashAndDelete($menuItem1);
-		$this->assertFalse($this->menuItemsManagerPage->getRowNumber($menuItem1), 'Test menu should not be present');
-		$this->menuItemsManagerPage->trashAndDelete($menuItem2);
-		$this->assertFalse($this->menuItemsManagerPage->getRowNumber($menuItem2), 'Test menu should not be present');
-
-		$MenuManager='administrator/index.php?option=com_menus&view=menus';
-		$this->driver->get($cfg->host . $cfg->path . $MenuManager);
-		$this->menuManagerPage->deleteMenu($menuName);
-		$this->assertFalse($this->menuManagerPage->getRowNumber($menuName), 'Test menu should not be present');
-
 		$this->driver->get($cfg->host . $cfg->path . $moduleManager);
 		$this->moduleManagerPage->setFilter('filter_client_id', $client);
 		$this->moduleManagerPage->trashAndDelete($title);
 		$this->moduleManagerPage->searchFor($title);
 		$this->assertFalse($this->moduleManagerPage->getRowNumber($title), 'Test module should not be present');
-		
-	}
-	
+
+        $this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
+        $this->menuItemsManagerPage->setFilter('Menu', $menuName);
+        $this->menuItemsManagerPage->trashAndDelete($menuItem1);
+        $this->assertFalse($this->menuItemsManagerPage->getRowNumber($menuItem1), 'Test menu should not be present');
+        $this->menuItemsManagerPage->trashAndDelete($menuItem2);
+        $this->assertFalse($this->menuItemsManagerPage->getRowNumber($menuItem2), 'Test menu should not be present');
+
+        $MenuManager='administrator/index.php?option=com_menus&view=menus';
+        $this->driver->get($cfg->host . $cfg->path . $MenuManager);
+        $this->menuManagerPage->deleteMenu($menuName);
+        $this->assertFalse($this->menuManagerPage->getRowNumber($menuName), 'Test menu should not be present');
+    }
 }
