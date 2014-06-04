@@ -206,7 +206,7 @@ class JoomlaWebdriverTestCase extends PHPUnit_Framework_TestCase
 	public function itemExist($itemName,$arg)
 	{
 		$driver = $this->driver;
-		$element = $driver->findElement(By::xPath("//".$arg."[contains(text(),'" .  $ItemName . "')]"));
+		$element = $driver->findElement(By::xPath("//".$arg."[contains(text(),'" .  $itemName . "')]"));
 		if($element!=null)
 		{
 			return true;
