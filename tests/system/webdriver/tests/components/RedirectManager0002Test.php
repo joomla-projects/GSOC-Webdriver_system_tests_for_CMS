@@ -119,10 +119,10 @@ class RedirectManager0002Test extends JoomlaWebdriverTestCase
 	}
 	
 	/**
-     * create archived redirects and then verify its existence.
-     *
-     * @test
-     */
+         * create archived redirects and then verify its existence.
+         *
+         * @test
+         */
     public function setFilter_TestFilters_ShouldFilterTags2()
     {
         $srcName_1 = 'administrator/index.php/dummysrc1';
