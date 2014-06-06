@@ -118,4 +118,40 @@ class CategoryManager0002Test extends JoomlaWebdriverTestCase
 		$this->categoryManagerPage->setFilter('Select Status', 'Select Status');
 		$this->categoryManagerPage->trashAndDelete('ABC_TEST');
 	}
+	
+	/**
+     * create an archived category and then verify its creation
+     *
+     * @test
+     */
+    public function setFilter_TestFilters_ShouldFilterTags2()
+    {
+        $salt = rand();
+        $categoryName_1 = 'ABC_TEST_1' . $salt;
+        $categoryName_2 = 'ABC_TEST_2' . $salt;
+
+        $this->categoryManagerPage->addCategory($categoryName_1);
+        $message = $this->categoryManagerPage->getAlertMessage();
+        $this->assertTrue(strpos($message, 'Category successfully saved') >= 0, 'Category save should return success');
+        $state = $this->categoryManagerPage->getState($categoryName_1);
+        $this->assertEquals('published', $state, 'Initial state should be published');
+        $this->categoryManagerPage->addCategory($categoryName_2);
+        $message = $this->categoryManagerPage->getAlertMessage();
+        $this->assertTrue(strpos($message, 'Category successfully saved') >= 0, 'Category save should return success');
+        $state = $this->categoryManagerPage->getState($categoryName_2);
+        $this->assertEquals('published', $state, 'Initial state should be published');
+        $this->categoryManagerPage->changeCategoryState($categoryName_2, 'Archived');
+
+        $this->categoryManagerPage->setFilter('filter_published', 'Archived');
+        $this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName_1), 'Category should not show');
+        $this->assertGreaterThanOrEqual(1, $this->categoryManagerPage->getRowNumber($categoryName_2), 'Test Category should be present');;
+
+        $this->categoryManagerPage->setFilter('filter_published', 'Published');
+        $this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName_2), 'Category should not show');
+        $this->categoryManagerPage->searchFor($categoryName_1);
+        $this->assertGreaterThanOrEqual(1, $this->categoryManagerPage->getRowNumber($categoryName_1), 'Test Category should be present');
+        $this->categoryManagerPage->setFilter('Select Status', 'Select Status');
+        $this->categoryManagerPage->trashAndDelete($categoryName_1);
+        $this->categoryManagerPage->trashAndDelete($categoryName_2);
+    }
 }
