@@ -120,10 +120,10 @@ class CategoryManager0002Test extends JoomlaWebdriverTestCase
 	}
 	
 	/**
-     * create an archived category and then verify its creation
-     *
-     * @test
-     */
+         * create an archived category and then verify its creation
+         *
+         * @test
+         */
     public function setFilter_TestFilters_ShouldFilterTags2()
     {
         $salt = rand();
