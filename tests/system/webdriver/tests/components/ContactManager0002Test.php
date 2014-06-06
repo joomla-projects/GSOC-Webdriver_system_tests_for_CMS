@@ -118,5 +118,40 @@ class ContactManager0002Test extends JoomlaWebdriverTestCase
 		$this->contactManagerPage->trashAndDelete($contactName_1);
 		$this->contactManagerPage->trashAndDelete($contactName_2);
 	}
+	
+	/**
+     * create archived banners and then verify its existence.
+     *
+     * @test
+     */
+    public function setFilter_TestFilters_ShouldFilterTags2()
+    {
+        $contactName_1 = 'Test Filter 1';
+        $contactName_2 = 'Test Filter 2';
+
+        $this->contactManagerPage->addContact($contactName_1, false);
+        $message = $this->contactManagerPage->getAlertMessage();
+        $this->assertTrue(strpos($message, 'Contact successfully saved') >= 0, 'Contact save should return success');
+        $state = $this->contactManagerPage->getState($contactName_1);
+        $this->assertEquals('published', $state, 'Initial state should be published');
+        $this->contactManagerPage->addContact($contactName_2, false);
+        $message = $this->contactManagerPage->getAlertMessage();
+        $this->assertTrue(strpos($message, 'Contact successfully saved') >= 0, 'Contact save should return success');
+        $state = $this->contactManagerPage->getState($contactName_2);
+        $this->assertEquals('published', $state, 'Initial state should be published');
+        $this->contactManagerPage->changeContactState($contactName_2, 'Archived');
+
+        $this->contactManagerPage->setFilter('filter_published', 'Archived');
+        $this->assertFalse($this->contactManagerPage->getRowNumber($contactName_1), 'Contact should not show');
+        $this->assertGreaterThanOrEqual(1, $this->contactManagerPage->getRowNumber($contactName_2), 'Test Contact should be present');;
+
+        $this->contactManagerPage->setFilter('filter_published', 'Published');
+        $this->assertFalse($this->contactManagerPage->getRowNumber($contactName_2), 'Contact should not show');
+        $this->assertGreaterThanOrEqual(1, $this->contactManagerPage->getRowNumber($contactName_1), 'Test Contact should be present');
+        $this->contactManagerPage->setFilter('Select Status', 'Select Status');
+        $this->contactManagerPage->trashAndDelete($contactName_1);
+        $this->contactManagerPage->trashAndDelete($contactName_2);
+    }
+
 
 }
