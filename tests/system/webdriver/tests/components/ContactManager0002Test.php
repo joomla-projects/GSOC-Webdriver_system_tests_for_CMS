@@ -120,10 +120,10 @@ class ContactManager0002Test extends JoomlaWebdriverTestCase
 	}
 	
 	/**
-     * create archived contacts and then verify its existence.
-     *
-     * @test
-     */
+         * create archived contacts and then verify its existence.
+         *
+         * @test
+         */
     public function setFilter_TestFilters_ShouldFilterTags2()
     {
         $contactName_1 = 'Test Filter 1';
