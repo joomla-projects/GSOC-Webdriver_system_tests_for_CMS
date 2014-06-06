@@ -118,5 +118,39 @@ class BannerManager0002Test extends JoomlaWebdriverTestCase
 		$this->bannerManagerPage->trashAndDelete($bannerName_1);
 		$this->bannerManagerPage->trashAndDelete($bannerName_2);
 	}
+	
+	/**
+     * create archived banners and then verify its existence.
+     *
+     * @test
+     */
+    public function setFilter_TestFilters_ShouldFilterTags2()
+    {
+        $bannerName_1 = 'Test Filter 1';
+        $bannerName_2 = 'Test Filter 2';
+
+        $this->bannerManagerPage->addBanner($bannerName_1, false);
+        $message = $this->bannerManagerPage->getAlertMessage();
+        $this->assertTrue(strpos($message, 'Banner successfully saved') >= 0, 'Banner save should return success');
+        $state = $this->bannerManagerPage->getState($bannerName_1);
+        $this->assertEquals('published', $state, 'Initial state should be published');
+        $this->bannerManagerPage->addBanner($bannerName_2, false);
+        $message = $this->bannerManagerPage->getAlertMessage();
+        $this->assertTrue(strpos($message, 'Banner successfully saved') >= 0, 'Banner save should return success');
+        $state = $this->bannerManagerPage->getState($bannerName_2);
+        $this->assertEquals('published', $state, 'Initial state should be published');
+        $this->bannerManagerPage->changeBannerState($bannerName_2, 'Archived');
+
+        $this->bannerManagerPage->setFilter('filter_state', 'Archived');
+        $this->assertFalse($this->bannerManagerPage->getRowNumber($bannerName_1), 'banner should not show');
+        $this->assertGreaterThanOrEqual(1, $this->bannerManagerPage->getRowNumber($bannerName_2), 'Test banner should be present');;
+
+        $this->bannerManagerPage->setFilter('filter_state', 'Published');
+        $this->assertFalse($this->bannerManagerPage->getRowNumber($bannerName_2), 'Banner should not show');
+        $this->assertGreaterThanOrEqual(1, $this->bannerManagerPage->getRowNumber($bannerName_1), 'Test banner should be present');
+        $this->bannerManagerPage->setFilter('Select Status', 'Select Status');
+        $this->bannerManagerPage->trashAndDelete($bannerName_1);
+        $this->bannerManagerPage->trashAndDelete($bannerName_2);
+    }
 
 }
