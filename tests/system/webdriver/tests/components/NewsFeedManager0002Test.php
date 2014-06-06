@@ -119,10 +119,10 @@ class NewsFeedManager0002Test extends JoomlaWebdriverTestCase
 	}
 	
 	/**
-     * create archived NewsFeed and then verify its existence.
-     *
-     * @test
-     */
+         * create archived NewsFeed and then verify its existence.
+         *
+         * @test
+         */
     public function setFilter_TestFilters_ShouldFilterTags2()
     {
         $feedName_1 = 'Test Filter 1';
