@@ -120,10 +120,10 @@ class BannerManager0002Test extends JoomlaWebdriverTestCase
 	}
 	
 	/**
-     * create archived banners and then verify its existence.
-     *
-     * @test
-     */
+         * create archived banners and then verify its existence.
+         *
+         * @test
+         */
     public function setFilter_TestFilters_ShouldFilterTags2()
     {
         $bannerName_1 = 'Test Filter 1';
