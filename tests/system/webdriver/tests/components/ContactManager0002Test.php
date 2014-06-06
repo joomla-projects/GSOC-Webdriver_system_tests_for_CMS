@@ -120,7 +120,7 @@ class ContactManager0002Test extends JoomlaWebdriverTestCase
 	}
 	
 	/**
-     * create archived banners and then verify its existence.
+     * create archived contacts and then verify its existence.
      *
      * @test
      */
