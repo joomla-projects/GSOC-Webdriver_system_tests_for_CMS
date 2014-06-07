@@ -137,11 +137,11 @@ class TagManager0002Test extends JoomlaWebdriverTestCase
 		$this->assertEquals('published', $state, 'Initial state should be published');
 		$this->tagManagerPage->changeTagState($tagName_2, 'Archived');
 
-		$test = $this->tagManagerPage->setFilter('filter_published', 'Archived');
+		$this->tagManagerPage->setFilter('filter_published', 'Archived');
 		$this->assertFalse($this->tagManagerPage->getRowNumber($tagName_1), 'Tag should not show');
 		$this->assertGreaterThanOrEqual(1, $this->tagManagerPage->getRowNumber($tagName_2), 'Test test tag should be present');;
 
-		$test = $this->tagManagerPage->setFilter('filter_published', 'Published');
+		$this->tagManagerPage->setFilter('filter_published', 'Published');
 		$this->assertFalse($this->tagManagerPage->getRowNumber($tagName_2), 'Tag should not show');
 		$this->assertGreaterThanOrEqual(1, $this->tagManagerPage->getRowNumber($tagName_1), 'Test test tag should be present');
 		$this->tagManagerPage->setFilter('Select Status', 'Select Status');

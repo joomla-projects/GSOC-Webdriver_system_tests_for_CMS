@@ -118,5 +118,38 @@ class RedirectManager0002Test extends JoomlaWebdriverTestCase
 		$this->redirectManagerPage->trashAndDelete($srcName_2);
 	}
 	
-	
+	/**
+         * create archived redirects and then verify its existence.
+         *
+         * @test
+         */
+    public function setFilter_TestFilters_ShouldFilterTags2()
+    {
+        $srcName_1 = 'administrator/index.php/dummysrc1';
+        $srcName_2 = 'administrator/index.php/dummysrc2';
+
+        $this->redirectManagerPage->addRedirect($srcName_1);
+        $message = $this->redirectManagerPage->getAlertMessage();
+        $this->assertTrue(strpos($message, 'Redirect successfully saved') >= 0, 'Redirect save should return success');
+        $state = $this->redirectManagerPage->getState($srcName_1);
+        $this->assertEquals('published', $state, 'Initial state should be published');
+        $this->redirectManagerPage->addRedirect($srcName_2);
+        $message = $this->redirectManagerPage->getAlertMessage();
+        $this->assertTrue(strpos($message, 'Redirect successfully saved') >= 0, 'Redirect save should return success');
+        $state = $this->redirectManagerPage->getState($srcName_1);
+        $this->assertEquals('published', $state, 'Initial state should be published');
+        $this->redirectManagerPage->changeRedirectState($srcName_2, 'Archived');
+
+        $this->redirectManagerPage->setFilter('filter_state', 'Archived');
+        $this->assertFalse($this->redirectManagerPage->getRowNumber($srcName_1), 'Redirect should not show');
+        $this->assertGreaterThanOrEqual(1, $this->redirectManagerPage->getRowNumber($srcName_2), 'Test Redirect should be present');;
+
+        $this->redirectManagerPage->setFilter('filter_state', 'Enabled');
+        $this->assertFalse($this->redirectManagerPage->getRowNumber($srcName_2), 'Redirect should not show');
+        $this->assertGreaterThanOrEqual(1, $this->redirectManagerPage->getRowNumber($srcName_1), 'Test Redirect should be present');
+        $this->redirectManagerPage->setFilter('Select Status', 'Select Status');
+        $this->redirectManagerPage->trashAndDelete($srcName_1);
+        $this->redirectManagerPage->trashAndDelete($srcName_2);
+    }
+
 }
