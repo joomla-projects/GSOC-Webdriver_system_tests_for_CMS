@@ -6,7 +6,7 @@ use SeleniumClient\By;
 
 /**
  * This class tests the Module Manager: Add / Edit Module Screen
- * @author Mark
+ * 
  *
  */
 class ModuleManager0001Test extends JoomlaWebdriverTestCase
