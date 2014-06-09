@@ -73,6 +73,14 @@ class ModuleEditPage extends AdminEditPage
 			array('label' => 'Header Tag', 'id' => 'jform_params_header_tag', 'type' => 'select', 'tab' => 'attrib-advanced'),
 			array('label' => 'Header Class', 'id' => 'jform_params_header_class', 'type' => 'input', 'tab' => 'attrib-advanced'),
 			array('label' => 'Module Style', 'id' => 'jform_params_style', 'type' => 'select', 'tab' => 'attrib-advanced'),
+			array('label' => 'Select Menu', 'id' => 'jform_params_menutype', 'type' => 'select', 'tab' => 'general'),
+			array('label' => 'Base Item', 'id' => 'jform_params_base', 'type' => 'select', 'tab' => 'general'),
+			array('label' => 'Start Level', 'id' => 'jform_params_startLevel', 'type' => 'select', 'tab' => 'general'),
+			array('label' => 'End Level', 'id' => 'jform_params_endLevel', 'type' => 'select', 'tab' => 'general'),
+			array('label' => 'Show Sub-menu Items', 'id' => 'jform_params_showAllChildren', 'type' => 'fieldset', 'tab' => 'general'),
+			array('label' => 'Menu Tag ID', 'id' => 'jform_params_tag_id', 'type' => 'input', 'tab' => 'attrib-advanced'),
+			array('label' => 'Menu Class Suffix', 'id' => 'jform_params_class_sfx', 'type' => 'input', 'tab' => 'attrib-advanced'),
+			array('label' => 'Target Position', 'id' => 'jform_params_window_open', 'type' => 'input', 'tab' => 'attrib-advanced'),
 			);
 
 	/**
