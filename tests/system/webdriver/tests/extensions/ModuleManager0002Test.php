@@ -60,10 +60,10 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$categoryManager = 'administrator/index.php?option=com_categories&extension=com_content';
 		$this->driver->get($cfg->host . $cfg->path . $categoryManager);
 
-		$salt                      = rand();
-		$categoryName              = 'category_ABC' . $salt;
-		$categoryName1             = 'category_ABC1_' . $salt;
-		$categoryName2             = 'category_ABC2_' . $salt;
+		$salt = rand();
+		$categoryName = 'category_ABC' . $salt;
+		$categoryName1 = 'category_ABC1_' . $salt;
+		$categoryName2 = 'category_ABC2_' . $salt;
 		$this->categoryManagerPage = $this->getPageObject('CategoryManagerPage');
 		$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName), 'Test Category should not be present');
 		$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName1), 'Test Category should not be present');
@@ -74,7 +74,7 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$this->assertTrue(strpos($message, 'Category successfully saved') >= 0, 'Category save should return success');
 
 		$parentCategory = '- category_ABC' . $salt;
-		$desc           = "child test category";
+		$desc = "child test category";
 		$this->categoryManagerPage->addCategory($categoryName1, $desc, array('Parent' => $parentCategory));
 		$message = $this->categoryManagerPage->getAlertMessage();
 		$this->assertTrue(strpos($message, 'Category successfully saved') >= 0, 'Category save should return success');
@@ -87,11 +87,11 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$moduleManager           = 'administrator/index.php?option=com_modules&view=modules';
 		$this->driver->get($cfg->host . $cfg->path . $moduleManager);
 
-		$title       = 'Module test ' . $salt;
-		$client      = 'Site';
-		$type        = 'Articles Categories';
-		$position    = 'position-3';
-		$suffix      = 'mySuffix';
+		$title = 'Module test ' . $salt;
+		$client = 'Site';
+		$type = 'Articles Categories';
+		$position = 'position-3';
+		$suffix = 'mySuffix';
 		$otherFields = array('Position' => $position, 'Module Class Suffix' => $suffix, 'Parent Category' => $categoryName);
 
 		$this->moduleManagerPage->setFilter('filter_client_id', $client)->searchFor($title);
@@ -102,7 +102,7 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 
 		$cfg = new SeleniumConfig;
 		$homePageUrl = 'index.php';
-		$d           = $this->driver;
+		$d = $this->driver;
 		$d->get($cfg->host . $cfg->path . $homePageUrl);
 		$this->siteHomePage = $this->getPageObject('SiteContentFeaturedPage');
 		$this->assertTrue($this->itemExist($title, 'h3'));
@@ -154,7 +154,7 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$this->assertTrue(strpos($message, 'Category successfully saved') >= 0, 'Category save should return success');
 
 		$parentCategory = '- category_ABC' . $salt;
-		$desc           = "child test category";
+		$desc = "child test category";
 		$this->categoryManagerPage->addCategory($categoryName1, $desc, array('Parent' => $parentCategory));
 		$message = $this->categoryManagerPage->getAlertMessage();
 		$this->assertTrue(strpos($message, 'Category successfully saved') >= 0, 'Category save should return success');
@@ -166,8 +166,8 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$articleManager = 'administrator/index.php?option=com_content';
 		$this->driver->get($cfg->host . $cfg->path . $articleManager);
 
-		$articleName1             = 'article_ABC_1' . $salt;
-		$articleName2             = 'article_ABC_2' . $salt;
+		$articleName1 = 'article_ABC_1' . $salt;
+		$articleName2 = 'article_ABC_2' . $salt;
 		$this->articleManagerPage = $this->getPageObject('ArticleManagerPage');
 		$this->assertFalse($this->articleManagerPage->getRowNumber($articleName1), 'Test Article should not be present');
 		$this->assertFalse($this->articleManagerPage->getRowNumber($articleName2), 'Test Article should not be present');
@@ -386,9 +386,9 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$message = $this->moduleManagerPage->getAlertMessage();
 		$this->assertTrue(strpos($message, 'Module successfully saved') >= 0, 'Module save should return success');
 
-		$cfg         = new SeleniumConfig;
+		$cfg = new SeleniumConfig;
 		$homePageUrl = 'index.php';
-		$d           = $this->driver;
+		$d = $this->driver;
 		$d->get($cfg->host . $cfg->path . $homePageUrl);
 		$this->siteHomePage = $this->getPageObject('SiteContentFeaturedPage');
 		$this->assertTrue($this->itemExist($title, 'h3'));
@@ -486,8 +486,8 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$this->assertTrue(strpos($message, 'Article successfully saved') >= 0, 'Article save should return success');
 
 		$this->menuManagerPage = $cpPage->clickMenu('Menu Manager', 'MenuManagerPage');
-		$menuName    = 'Menu' . $salt;
-		$type        = 'menu' . $salt;
+		$menuName = 'Menu' . $salt;
+		$type = 'menu' . $salt;
 		$description = 'test menu ' . $salt;
 		$this->assertFalse($this->menuManagerPage->getRowNumber($menuName), 'Test menu should not be present');
 		$this->menuManagerPage->addMenu($menuName, $type, $description);
