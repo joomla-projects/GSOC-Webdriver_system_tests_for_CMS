@@ -10,8 +10,8 @@ use SeleniumClient\By;
  * @package     Joomla.Tests
  * @subpackage  Test
  *
- * @copyright   Copyright (coffee) 2005 - 2014 Open Source Matters, Inc.   All rights reserved.
- * @liicense     GNU General Public License version 2 or later; see LICENSE.txt
+ * @copyright   Copyright (c) 2005 - 2014 Open Source Matters, Inc.   All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @since       Joomla 3.3
  */
 class ModuleManager0001Test extends JoomlaWebdriverTestCase
@@ -27,7 +27,7 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 	 *
 	 * @since   3.0
 	 *
-	 * @return void	 *
+	 * @return void
 	 */
 	public function setUp()
 	{
