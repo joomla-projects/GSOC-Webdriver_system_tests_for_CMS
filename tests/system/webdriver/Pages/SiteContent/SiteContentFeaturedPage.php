@@ -158,6 +158,6 @@ class SiteContentFeaturedPage extends SitePage
 	public function itemClick($itemName)
 	{
 		$driver = $this->driver;
-		$driver->findElement(By::xPath("//a[contains(text(),'" . $title . "')]"))->click();
+		$driver->findElement(By::xPath("//a[contains(text(),'" . $itemName . "')]"))->click();
 	}
 }
