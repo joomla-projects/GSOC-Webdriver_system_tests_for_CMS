@@ -72,6 +72,7 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase
 
 		$this->doAdminLogin();
 		$this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
+		$this->menuItemsManagerPage = $this->getPageObject('MenuItemsManagerPage');
 		$this->menuItemsManagerPage->setFilter('Menu', 'Main Menu');
 		$this->menuItemsManagerPage->trashAndDelete('Test Menu Item');
 		$this->assertFalse($this->menuItemsManagerPage->getRowNumber('Test Menu Item'), 'Test menu should not be present');
@@ -133,13 +134,17 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase
 
 		$this->doAdminLogin();
 		$this->driver->get($cfg->host . $cfg->path . $articleManager);
+		$this->articleManagerPage = $this->getPageObject('ArticleManagerPage');
 		$this->articleManagerPage->trashAndDelete($articleName);
 		$this->assertFalse($this->articleManagerPage->getRowNumber($articleName), 'Test article should not be present');
+		
 		$this->driver->get($cfg->host . $cfg->path . $categoryManager);
+		$this->categoryManagerPage = $this->getPageObject('CategoryManagerPage');
 		$this->categoryManagerPage->trashAndDelete($categoryName);
 		$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName), 'Test Category should not be present');
 
 		$this->driver->get($cfg->host . $cfg->path . $MenuItemManager);
+		$this->menuItemsManagerPage = $this->getPageObject('MenuItemsManagerPage');
 		$this->menuItemsManagerPage->setFilter('Menu', 'Main Menu');
 		$this->menuItemsManagerPage->trashAndDelete($title);
 		$this->assertFalse($this->menuItemsManagerPage->getRowNumber($title), 'Test menu should not be present');
@@ -207,15 +212,19 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase
 
 		$this->doAdminLogin();
 		$this->driver->get($cfg->host . $cfg->path . $articleManager);
+		$this->articleManagerPage = $this->getPageObject('ArticleManagerPage');
 		$this->articleManagerPage->trashAndDelete($articleName1);
 		$this->assertFalse($this->articleManagerPage->getRowNumber($articleName1), 'Test article should not be present');
 		$this->articleManagerPage->trashAndDelete($articleName2);
 		$this->assertFalse($this->articleManagerPage->getRowNumber($articleName2), 'Test article should not be present');
 
 		$this->driver->get($cfg->host . $cfg->path . $categoryManager);
+		$this->categoryManagerPage = $this->getPageObject('CategoryManagerPage');
 		$this->categoryManagerPage->trashAndDelete($categoryName);
 		$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName), 'Test Category should not be present');
+
 		$this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
+		$this->menuItemsManagerPage = $this->getPageObject('MenuItemsManagerPage');
 		$this->menuItemsManagerPage->setFilter('Menu', 'Main Menu');
 		$this->menuItemsManagerPage->trashAndDelete($title);
 		$this->assertFalse($this->menuItemsManagerPage->getRowNumber($title), 'Test menu should not be present');
@@ -314,6 +323,7 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase
 
 		$this->doAdminLogin();
 		$this->driver->get($cfg->host . $cfg->path . $articleManager);
+		$this->articleManagerPage = $this->getPageObject('ArticleManagerPage');
 		$this->articleManagerPage->trashAndDelete($articleName1);
 		$this->assertFalse($this->articleManagerPage->getRowNumber($articleName1), 'Test article should not be present');
 		$this->articleManagerPage->trashAndDelete($articleName2);
@@ -324,12 +334,14 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase
 		$this->assertFalse($this->articleManagerPage->getRowNumber($articleName4), 'Test article should not be present');
 
 		$this->driver->get($cfg->host . $cfg->path . $categoryManager);
+		$this->categoryManagerPage = $this->getPageObject('CategoryManagerPage');
 		$this->categoryManagerPage->trashAndDelete($categoryName1);
 		$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName1), 'Test Category should not be present');
 		$this->categoryManagerPage->trashAndDelete($categoryName2);
 		$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName2), 'Test Category should not be present');
 
 		$this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
+		$this->menuItemsManagerPage = $this->getPageObject('MenuItemsManagerPage');
 		$this->menuItemsManagerPage->setFilter('Menu', 'Main Menu');
 		$this->menuItemsManagerPage->trashAndDelete($title);
 		$this->assertFalse($this->menuItemsManagerPage->getRowNumber($title), 'Test menu should not be present');
