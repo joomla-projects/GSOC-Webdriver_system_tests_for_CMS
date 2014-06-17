@@ -60,8 +60,6 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$categoryManager = 'administrator/index.php?option=com_categories&extension=com_content';
 		$this->driver->get($cfg->host . $cfg->path . $categoryManager);
 
-		/*add article*/
-
 		$salt = rand();
 		$categoryName = 'category_ABC' . $salt;
 		$categoryName1 = 'category_ABC1_' . $salt;
@@ -110,6 +108,7 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 
 		$this->doAdminLogin();
 		$this->driver->get($cfg->host . $cfg->path . $categoryManager);
+		$this->categoryManagerPage = $this->getPageObject('CategoryManagerPage');
 		$this->categoryManagerPage->trashAndDelete($categoryName1);
 		$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName), 'Test Category should not be present');
 		$this->categoryManagerPage->trashAndDelete($categoryName2);
@@ -203,15 +202,17 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$this->assertTrue($this->siteHomePage->itemExist($articleName1, 'a'));
 		$this->siteHomePage->itemClick($categoryName2);
 		$this->assertTrue($this->siteHomePage->itemExist($articleName2, 'a'));
+		
 		$this->doAdminLogin();
-
 		$this->driver->get($cfg->host . $cfg->path . $articleManager);
+		$this->articleManagerPage = $this->getPageObject('ArticleManagerPage');
 		$this->articleManagerPage->trashAndDelete($articleName1);
 		$this->assertFalse($this->articleManagerPage->getRowNumber($articleName1), 'Test article should not be present');
 		$this->articleManagerPage->trashAndDelete($articleName2);
 		$this->assertFalse($this->articleManagerPage->getRowNumber($articleName2), 'Test article should not be present');
 
 		$this->driver->get($cfg->host . $cfg->path . $categoryManager);
+		$this->categoryManagerPage = $this->getPageObject('CategoryManagerPage');
 		$this->categoryManagerPage->trashAndDelete($categoryName1);
 		$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName), 'Test Category should not be present');
 		$this->categoryManagerPage->trashAndDelete($categoryName2);
@@ -281,7 +282,6 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$message = $this->moduleManagerPage->getAlertMessage();
 		$this->assertTrue(strpos($message, 'Module successfully saved') >= 0, 'Module save should return success');
 
-		$cfg = new SeleniumConfig;
 		$homePageUrl = 'index.php';
 		$d = $this->driver;
 		$d->get($cfg->host . $cfg->path . $homePageUrl);
@@ -291,13 +291,8 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$this->assertTrue($this->siteHomePage->itemExist($menuTitle2, 'a'));
 
 		$this->doAdminLogin();
-		$this->driver->get($cfg->host . $cfg->path . $moduleManager);
-		$this->moduleManagerPage->setFilter('filter_client_id', $client);
-		$this->moduleManagerPage->trashAndDelete($title);
-		$this->moduleManagerPage->searchFor($title);
-		$this->assertFalse($this->moduleManagerPage->getRowNumber($title), 'Test module should not be present');
-
 		$this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
+		$this->menuItemsManagerPage = $this->getPageObject('MenuItemsManagerPage');
 		$this->menuItemsManagerPage->setFilter('Menu', $menuName);
 		$this->menuItemsManagerPage->trashAndDelete($menuTitle1);
 		$this->assertFalse($this->menuItemsManagerPage->getRowNumber($menuTitle1), 'Test menu should not be present');
@@ -308,6 +303,13 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$this->driver->get($cfg->host . $cfg->path . $MenuManager);
 		$this->menuManagerPage->deleteMenu($menuName);
 		$this->assertFalse($this->menuManagerPage->getRowNumber($menuName), 'Test menu should not be present');
+		
+		$this->driver->get($cfg->host . $cfg->path . $moduleManager);
+		$this->moduleManagerPage->setFilter('filter_client_id', $client);
+		$this->moduleManagerPage->trashAndDelete($title);
+		$this->moduleManagerPage->searchFor($title);
+		$this->assertFalse($this->moduleManagerPage->getRowNumber($title), 'Test module should not be present');
+
 	}
 
 	/**
@@ -516,7 +518,6 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$message = $this->moduleManagerPage->getAlertMessage();
 		$this->assertTrue(strpos($message, 'Module successfully saved') >= 0, 'Module save should return success');
 
-		$cfg = new SeleniumConfig;
 		$homePageUrl = 'index.php';
 		$d = $this->driver;
 		$d->get($cfg->host . $cfg->path . $homePageUrl);
