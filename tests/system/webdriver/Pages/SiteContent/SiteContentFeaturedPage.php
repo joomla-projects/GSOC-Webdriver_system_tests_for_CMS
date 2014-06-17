@@ -134,12 +134,14 @@ class SiteContentFeaturedPage extends SitePage
 	 * @param   string $arg       xpath variable
 	 *
 	 * @return boolean
+	 * 
 	 */
 	public function itemExist($itemName,$arg)
 	{
 		$driver = $this->driver;
 		$element = $driver->findElement(By::xPath("//" . $arg . "[contains(text(),'" . $itemName . "')]"));
-		if($element != null)
+		
+		if ($element != null)
 		{
 			return true;
 		}
@@ -158,6 +160,6 @@ class SiteContentFeaturedPage extends SitePage
 	public function itemClick($itemName)
 	{
 		$driver = $this->driver;
-		$driver->findElement(By::xPath("//a[contains(text(),'" . $itemName . "')]"))->click();
+		$driver->findElement(By::xPath("//a[text() = '"$itemName "']"))->click();
 	}
 }
