@@ -126,4 +126,40 @@ class SiteContentFeaturedPage extends SitePage
 			return false;
 		}
 	}
+	
+	/**
+	 * check whether the item is present on the site or not given the xpath variable.
+	 *
+	 * @param   string $itemName  stores the name of the item to be searched
+	 * @param   string $arg       xpath variable
+	 *
+	 * @return boolean
+	 * 
+	 */
+	public function itemExist($itemName,$arg)
+	{
+		$driver = $this->driver;
+		$element = $driver->findElement(By::xPath("//" . $arg . "[contains(text(),'" . $itemName . "')]"));
+		
+		if ($element != null)
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * function to click an item
+	 *
+	 * @param   string  $itemName  stores the item name to be clicked
+	 *
+	 * @return void
+	 *
+	 */
+	public function itemClick($itemName)
+	{
+		$driver = $this->driver;
+		$driver->findElement(By::xPath("//a[text() = '"$itemName "']"))->click();
+	}
 }
