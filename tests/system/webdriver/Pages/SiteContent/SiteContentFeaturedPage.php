@@ -136,7 +136,7 @@ class SiteContentFeaturedPage extends SitePage
 	 * @return boolean
 	 * 
 	 */
-	public function itemExist($itemName,$arg)
+	public function itemExist($itemName, $arg)
 	{
 		$driver = $this->driver;
 		$element = $driver->findElement(By::xPath("//" . $arg . "[contains(text(),'" . $itemName . "')]"));
