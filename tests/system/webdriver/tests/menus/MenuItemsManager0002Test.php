@@ -380,8 +380,7 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase
 		$this->siteHomePage->itemClick($title);
 		$this->assertTrue($this->siteHomePage->itemExist($article, 'a'), 'Article Must be present');
 
-		/* testing begins from here */
-		/*test 1*/
+		/* test 1 */
 		$this->doAdminLogin();
 		$MenuItemsManager = 'administrator/index.php?option=com_menus&view=items';
 		$this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
