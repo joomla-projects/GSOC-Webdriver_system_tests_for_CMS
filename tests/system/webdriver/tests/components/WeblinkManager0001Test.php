@@ -33,7 +33,9 @@ class WeblinkManager0001Test extends JoomlaWebdriverTestCase
 	protected $weblinkManagerPage = null;
 
 	/**
-	 * Login to back end and navigate to menu Weblinks.
+	 * Login to back end and navigate to menu Weblinks.'
+	 *
+	 * @return void
 	 *
 	 * @since   3.2
 	 */
@@ -47,6 +49,8 @@ class WeblinkManager0001Test extends JoomlaWebdriverTestCase
 	/**
 	 * Logout and close test.
 	 *
+	 * @return void
+	 *
 	 * @since   3.2
 	 */
 	public function tearDown()
@@ -56,13 +60,17 @@ class WeblinkManager0001Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
+	 * check input fields
+	 *
+	 * @return void
+	 *
 	 * @test
 	 */
 	public function getAllInputFields_ScreenDisplayed_EqualExpected()
 	{
 		$this->weblinkManagerPage->clickButton('toolbar-new');
 		$weblinkEditPage = $this->getPageObject('WeblinkEditPage');
-		// Option to print actual element array
+		/* Option to print actual element array */
 		/* @var $weblinkEditPage WeblinkEditPage */
 // 	 	$weblinkEditPage->printFieldArray($weblinkEditPage->getAllInputFields($weblinkEditPage->tabs));
 
@@ -74,6 +82,10 @@ class WeblinkManager0001Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
+	 * check weblinks edit page
+	 *
+	 * @return void
+	 *
 	 * @test
 	 */
 	public function constructor_OpenEditScreen_WeblinkEditOpened()
@@ -85,6 +97,10 @@ class WeblinkManager0001Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
+	 * check tab IDs
+	 *
+	 * @return void
+	 *
 	 * @test
 	 */
 	public function getTabIds_ScreenDisplayed_EqualExpected()
@@ -98,6 +114,10 @@ class WeblinkManager0001Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
+	 * add weblink with default values
+	 *
+	 * @return void
+	 *
 	 * @test
 	 */
 	public function addWeblink_WithFieldDefaults_WeblinkAdded()
@@ -115,6 +135,10 @@ class WeblinkManager0001Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
+	 * add weblink with given values
+	 *
+	 * @return void
+	 *
 	 * @test
 	 */
 	public function addWeblink_WithGivenFields_WeblinkAdded()
@@ -145,6 +169,10 @@ class WeblinkManager0001Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
+	 * edit weblink and change the values of the field
+	 *
+	 * @return void
+	 *
 	 * @test
 	 */
 	public function editWeblink_ChangeFields_FieldsChanged()
@@ -160,6 +188,10 @@ class WeblinkManager0001Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
+	 * change state of the weblink
+	 *
+	 * @return void
+	 *
 	 * @test
 	 */
 	public function changeWeblinkState_ChangeEnabledUsingToolbar_EnabledChanged()
