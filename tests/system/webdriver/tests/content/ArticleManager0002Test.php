@@ -138,7 +138,7 @@ class ArticleManager0002Test extends JoomlaWebdriverTestCase
      * create an archived article and then verify its creation
      *
      * @return void
-     * 
+     *
      * @test
      */
     public function setFilter_TestFilters_ShouldFilterTags2()
