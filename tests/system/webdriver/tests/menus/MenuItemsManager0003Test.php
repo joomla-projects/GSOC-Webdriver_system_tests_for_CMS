@@ -58,6 +58,8 @@ class MenuItemsManager0003Test extends JoomlaWebdriverTestCase
 		$categoryManager = 'administrator/index.php?option=com_categories&extension=com_contact';
 		$this->driver->get($cfg->host . $cfg->path . $categoryManager);
 
+		/*Add category*/
+
 		$salt = rand();
 		$categoryName = 'category_ABC' . $salt;
 		$this->categoryManagerPage = $this->getPageObject('CategoryManagerPage');
@@ -65,6 +67,8 @@ class MenuItemsManager0003Test extends JoomlaWebdriverTestCase
 		$this->categoryManagerPage->addCategory($categoryName);
 		$message = $this->categoryManagerPage->getAlertMessage();
 		$this->assertTrue(strpos($message, 'Category successfully saved') >= 0, 'Category save should return success');
+
+		/*add contact*/
 
 		$contactManager = 'administrator/index.php?option=com_contact';
 		$this->driver->get($cfg->host . $cfg->path . $contactManager);
@@ -80,6 +84,8 @@ class MenuItemsManager0003Test extends JoomlaWebdriverTestCase
 		$this->assertTrue(strpos($message, 'Contact successfully saved') >= 0, 'Contact save should return success');
 		$MenuItemManager = 'administrator/index.php?option=com_menus&view=items';
 
+		/* add menu item of type single contact */
+
 		$this->driver->get($cfg->host . $cfg->path . $MenuItemManager);
 		$title = 'Menu Item' . $salt;
 		$menuType = 'Single Contact';
@@ -91,6 +97,8 @@ class MenuItemsManager0003Test extends JoomlaWebdriverTestCase
 		$message = $this->menuItemsManagerPage->getAlertMessage();
 		$this->assertContains('Menu item successfully saved', $message, 'Menu save should return success', true);
 
+		/*verify from front end*/
+
 		$homePageUrl = 'index.php';
 		$d = $this->driver;
 		$d->get($cfg->host . $cfg->path . $homePageUrl);
@@ -99,6 +107,7 @@ class MenuItemsManager0003Test extends JoomlaWebdriverTestCase
 		$this->siteHomePage->itemClick($title);
 		$this->siteHomePage->itemExist($contactName, 'h2');
 
+		/*delete the test elements*/
 		$this->doAdminLogin();
 		$this->driver->get($cfg->host . $cfg->path . $contactManager);
 		$this->contactManagerPage->trashAndDelete($contactName);
@@ -129,6 +138,8 @@ class MenuItemsManager0003Test extends JoomlaWebdriverTestCase
 		$contactManager = 'administrator/index.php?option=com_contact';
 		$this->driver->get($cfg->host . $cfg->path . $contactManager);
 
+		/* add featured contact */
+
 		$contactName1 = 'Contact_1' . $salt;
 		$contactName2 = 'Contact_2' . $salt;
 		$address = '11 Downing Street';
@@ -148,6 +159,8 @@ class MenuItemsManager0003Test extends JoomlaWebdriverTestCase
 		$MenuItemManager = 'administrator/index.php?option=com_menus&view=items';
 		$this->driver->get($cfg->host . $cfg->path . $MenuItemManager);
 
+		/*add menu item of type featured contact*/
+
 		$title = 'Menu Item' . $salt;
 		$menuType = 'Featured Contact';
 		$menuLocation = 'Main Menu';
@@ -157,6 +170,8 @@ class MenuItemsManager0003Test extends JoomlaWebdriverTestCase
 		$this->menuItemsManagerPage->addMenuItem($title, $menuType, $menuLocation);
 		$message = $this->menuItemsManagerPage->getAlertMessage();
 		$this->assertContains('Menu item successfully saved', $message, 'Menu save should return success', true);
+
+		/*verify from the front end*/
 
 		$homePageUrl = 'index.php';
 		$d = $this->driver;
@@ -168,6 +183,7 @@ class MenuItemsManager0003Test extends JoomlaWebdriverTestCase
 		$this->assertTrue(in_array($contactName1, $arrayTitles), 'Contact Must be present');
 		$this->assertTrue(in_array($contactName2, $arrayTitles), 'Contact Must be present');
 
+		/*delete the test elements*/
 		$this->doAdminLogin();
 		$this->driver->get($cfg->host . $cfg->path . $contactManager);
 		$this->contactManagerPage->trashAndDelete($contactName1);
@@ -195,6 +211,8 @@ class MenuItemsManager0003Test extends JoomlaWebdriverTestCase
 		$categoryManager = 'administrator/index.php?option=com_categories&extension=com_contact';
 		$this->driver->get($cfg->host . $cfg->path . $categoryManager);
 
+		/*add category */
+
 		$salt = rand();
 		$categoryName = 'category' . $salt;
 		$categoryName1 = 'category_ABC1' . $salt;
@@ -218,6 +236,8 @@ class MenuItemsManager0003Test extends JoomlaWebdriverTestCase
 		$message = $this->categoryManagerPage->getAlertMessage();
 		$this->assertTrue(strpos($message, 'Category successfully saved') >= 0, 'Category save should return success');
 
+		/*add contact*/
+
 		$contactManager = 'administrator/index.php?option=com_contact';
 		$this->driver->get($cfg->host . $cfg->path . $contactManager);
 		$this->contactManagerPage = $this->getPageObject('ContactManagerPage');
@@ -235,6 +255,8 @@ class MenuItemsManager0003Test extends JoomlaWebdriverTestCase
 		$message = $this->contactManagerPage->getAlertMessage();
 		$this->assertTrue(strpos($message, 'Contact successfully saved') >= 0, 'Contact save should return success');
 
+		/*add menuitem of type List All Contact Categories */
+
 		$MenuItemsManager = 'administrator/index.php?option=com_menus&view=items';
 		$this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
 
@@ -249,6 +271,7 @@ class MenuItemsManager0003Test extends JoomlaWebdriverTestCase
 		$message = $this->menuItemsManagerPage->getAlertMessage();
 		$this->assertContains('Menu item successfully saved', $message, 'Menu save should return success', true);
 
+		/*front end verification*/
 		$homePageUrl = 'index.php';
 		$d = $this->driver;
 		$d->get($cfg->host . $cfg->path . $homePageUrl);
@@ -261,6 +284,8 @@ class MenuItemsManager0003Test extends JoomlaWebdriverTestCase
 		$this->driver->back();
 		$this->siteHomePage->itemClick($categoryName2);
 		$this->assertTrue($this->siteHomePage->itemExist($contactName2, 'h2'));
+
+		/*delete all the test elements*/
 
 		$this->doAdminLogin();
 		$this->driver->get($cfg->host . $cfg->path . $contactManager);
@@ -296,6 +321,9 @@ class MenuItemsManager0003Test extends JoomlaWebdriverTestCase
 		$cfg = new SeleniumConfig;
 		$categoryManager = 'administrator/index.php?option=com_categories&extension=com_contact';
 		$this->driver->get($cfg->host . $cfg->path . $categoryManager);
+
+		/*add test category*/
+
 		$salt = rand();
 		$categoryName1 = 'category_ABC1' . $salt;
 		$categoryName2 = 'category_ABC2' . $salt;
@@ -309,6 +337,8 @@ class MenuItemsManager0003Test extends JoomlaWebdriverTestCase
 		$message = $this->categoryManagerPage->getAlertMessage();
 		$this->assertTrue(strpos($message, 'Category successfully saved') >= 0, 'Category save should return success');
 
+		/*add menu item of type List Contacts in a Category */
+
 		$MenuItemsManager = 'administrator/index.php?option=com_menus&view=items';
 		$this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
 		$title = 'Menu_Item_testing' . $salt;
@@ -320,6 +350,8 @@ class MenuItemsManager0003Test extends JoomlaWebdriverTestCase
 		$this->menuItemsManagerPage->addMenuItem($title, $menuType, $menuLocation, array('category' => $categoryName1));
 		$message = $this->menuItemsManagerPage->getAlertMessage();
 		$this->assertContains('Menu item successfully saved', $message, 'Menu save should return success', true);
+
+		/*create test contacts*/
 
 		$contactManager = 'administrator/index.php?option=com_contact';
 		$this->driver->get($cfg->host . $cfg->path . $contactManager);
@@ -347,6 +379,8 @@ class MenuItemsManager0003Test extends JoomlaWebdriverTestCase
 		$message = $this->contactManagerPage->getAlertMessage();
 		$this->assertTrue(strpos($message, 'contact successfully saved') >= 0, 'contact save should return success');
 
+		/*verify from the front end */
+
 		$homePageUrl = 'index.php';
 		$d = $this->driver;
 		$d->get($cfg->host . $cfg->path . $homePageUrl);
@@ -356,6 +390,8 @@ class MenuItemsManager0003Test extends JoomlaWebdriverTestCase
 		$this->assertTrue($this->siteHomePage->itemExist($contactName1, 'a'));
 		$this->assertTrue($this->siteHomePage->itemExist($contactName2, 'a'));
 
+		/*edit menu item and set category to category 2*/
+
 		$this->doAdminLogin();
 		$MenuItemsManager = 'administrator/index.php?option=com_menus&view=items';
 		$this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
@@ -364,6 +400,9 @@ class MenuItemsManager0003Test extends JoomlaWebdriverTestCase
 		$this->menuItemsManagerPage = $this->getPageObject('MenuItemsManagerPage');
 		$this->menuItemsManagerPage->setFilter('Menu', $menuLocation);
 		$this->menuItemsManagerPage->editMenuItem($title, array('category' => $categoryName2));
+
+		/*front end verification*/
+
 		$cfg = new SeleniumConfig;
 		$homePageUrl = 'index.php';
 		$d = $this->driver;
@@ -373,6 +412,8 @@ class MenuItemsManager0003Test extends JoomlaWebdriverTestCase
 		$this->siteHomePage->itemClick($title);
 		$this->assertTrue($this->siteHomePage->itemExist($contactName3, 'a'));
 		$this->assertTrue($this->siteHomePage->itemExist($contactName4, 'a'));
+
+		/*delete the test elements*/
 
 		$this->doAdminLogin();
 		$this->driver->get($cfg->host . $cfg->path . $contactManager);
