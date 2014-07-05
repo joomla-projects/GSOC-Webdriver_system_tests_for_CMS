@@ -24,7 +24,6 @@ use SeleniumClient\DesiredCapabilities;
  */
 class WeblinkManager0002Test extends JoomlaWebdriverTestCase
 {
-
 	/**
 	 * The page class being tested.
 	 *
@@ -35,6 +34,8 @@ class WeblinkManager0002Test extends JoomlaWebdriverTestCase
 
 	/**
 	 * Login to back end and navigate to menu Weblinks.
+	 *
+	 * @return void
 	 *
 	 * @since   3.2
 	 */
@@ -48,6 +49,8 @@ class WeblinkManager0002Test extends JoomlaWebdriverTestCase
 	/**
 	 * Logout and close test.
 	 *
+	 * @return void
+	 *
 	 * @since   3.2
 	 */
 	public function tearDown()
@@ -57,6 +60,10 @@ class WeblinkManager0002Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
+	 * get list of filters and match it with expected IDs
+	 *
+	 * @return void
+	 *
 	 * @test
 	 */
 	public function getFilters_GetListOfFilters_ShouldMatchExpected()
@@ -67,6 +74,10 @@ class WeblinkManager0002Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
+	 * checking the working of published and unpublished filters
+	 *
+	 * @return void
+	 *
 	 * @test
 	 */
 	public function setFilter_SetFilterValues_ShouldExecuteFilter()
@@ -86,6 +97,10 @@ class WeblinkManager0002Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
+	 * creating two tags one published and one unpublished and the verifying its existence
+	 *
+	 * @return void
+	 *
 	 * @test
 	 */
 	public function setFilter_TestFilters_ShouldFilterWeblinks()
@@ -99,7 +114,6 @@ class WeblinkManager0002Test extends JoomlaWebdriverTestCase
 		$this->assertTrue(strpos($message, 'Weblink successfully saved') >= 0, 'Weblink save should return success');
 		$state = $this->weblinkManagerPage->getState($weblinkName_1);
 		$this->assertEquals('published', $state, 'Initial state should be published');
-
 
 		$this->weblinkManagerPage->addWeblink($weblinkName_2, $url, false);
 		$message = $this->weblinkManagerPage->getAlertMessage();
@@ -120,5 +134,4 @@ class WeblinkManager0002Test extends JoomlaWebdriverTestCase
 		$this->weblinkManagerPage->trashAndDelete($weblinkName_1);
 		$this->weblinkManagerPage->trashAndDelete($weblinkName_2);
 	}
-
 }
