@@ -36,6 +36,8 @@ class CategoryManager0002Test extends JoomlaWebdriverTestCase
 	 * Login to back end and navigate to menu Tags.
 	 *
 	 * @since   3.0
+	 *
+	 * @return void
 	 */
 	public function setUp()
 	{
@@ -48,6 +50,8 @@ class CategoryManager0002Test extends JoomlaWebdriverTestCase
 	 * Logout and close test.
 	 *
 	 * @since   3.0
+	 *
+	 * @return void
 	 */
 	public function tearDown()
 	{
@@ -56,6 +60,10 @@ class CategoryManager0002Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
+	 * check availability of filters
+	 *
+	 * @return void
+	 *
 	 * @test
 	 */
 	public function getFilters_GetListOfFilters_ShouldMatchExpected()
@@ -66,6 +74,10 @@ class CategoryManager0002Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
+	 * check value of filters
+	 *
+	 * @return void
+	 *
 	 * @test
 	 */
 	public function setFilter_SetFilterValues_ShouldExecuteFilter()
@@ -83,6 +95,10 @@ class CategoryManager0002Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
+	 * creating two articles one published and one unpublished and the verifying its existence
+	 *
+	 * @return void
+	 *
 	 * @test
 	 */
 	public function setFilter_TestFilters_ShouldFilterTags()
@@ -118,12 +134,14 @@ class CategoryManager0002Test extends JoomlaWebdriverTestCase
 		$this->categoryManagerPage->setFilter('Select Status', 'Select Status');
 		$this->categoryManagerPage->trashAndDelete('ABC_TEST');
 	}
-	
-	/**
-         * create an archived category and then verify its creation
-         *
-         * @test
-         */
+
+    /**
+     * create an archived category and then verify its creation
+     *
+     * @return void
+     * 
+     * @test
+     */
     public function setFilter_TestFilters_ShouldFilterTags2()
     {
         $salt = rand();
