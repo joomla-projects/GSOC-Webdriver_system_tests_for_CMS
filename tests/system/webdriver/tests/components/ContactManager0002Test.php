@@ -152,6 +152,39 @@ class ContactManager0002Test extends JoomlaWebdriverTestCase
         $this->contactManagerPage->trashAndDelete($contactName_1);
         $this->contactManagerPage->trashAndDelete($contactName_2);
     }
+    
+    	/**
+	 * check and verify the creation of the featured contact
+	 *
+	 * @return void
+	 *
+	 * @test
+	 */
+	public function addContact_FeaturedContact_ContactAdded()
+	{
+		$cfg = new SeleniumConfig;
+		/*adding contact of the test contact*/
+		$contactManager = 'administrator/index.php?option=com_contact';
+		$this->driver->get($cfg->host . $cfg->path . $contactManager);
+		$salt = rand();
+		$contactName = 'contact_ABC' . $salt;
+		$this->contactManagerPage = $this->getPageObject('ContactManagerPage');
+		$this->assertFalse($this->contactManagerPage->getRowNumber($contactName), 'Test contact should not be present');
+		$this->contactManagerPage->addContact($contactName, array('Featured' => 'Yes'));
+		$message = $this->contactManagerPage->getAlertMessage();
+		$this->assertTrue(strpos($message, 'Contact successfully saved') >= 0, 'contact save should return success');
 
+		/*confirming if the contact is present in front end*/
+		$PageUrl = 'index.php/using-joomla/extensions/components/contact-component/featured-contacts';
+		$this->driver->get($cfg->host . $cfg->path . $PageUrl);
+		$this->siteHomePage = $this->getPageObject('SiteContentFeaturedPage');
+		$this->assertTrue($this->siteHomePage->itemExist($contactName, 'a'), 'contact should be present');
 
+		/*delete test contact*/
+		$cpPage = $this->doAdminLogin();
+		$this->driver->get($cfg->host . $cfg->path . $contactManager);
+		$this->contactManagerPage = $this->getPageObject('ContactManagerPage');
+		$this->contactManagerPage->trashAndDelete($contactName);
+		$this->assertFalse($this->contactManagerPage->getRowNumber($contactName), 'Test article should not be present');
+	}
 }
