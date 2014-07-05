@@ -35,6 +35,8 @@ class ContactManager0001Test extends JoomlaWebdriverTestCase
 	/**
 	 * Login to back end and navigate to menu Contacts.
 	 *
+	 * @return void
+	 *
 	 * @since   3.2
 	 */
 	public function setUp()
@@ -47,6 +49,8 @@ class ContactManager0001Test extends JoomlaWebdriverTestCase
 	/**
 	 * Logout and close test.
 	 *
+	 * @return void
+	 *
 	 * @since   3.2
 	 */
 	public function tearDown()
@@ -56,13 +60,17 @@ class ContactManager0001Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
+	 * check all input fields
+	 *
+	 * @return void
+	 *
 	 * @test
 	 */
 	public function getAllInputFields_ScreenDisplayed_EqualExpected()
 	{
 		$this->contactManagerPage->clickButton('toolbar-new');
 		$contactEditPage = $this->getPageObject('ContactEditPage');
-		// Option to print actual element array
+		/* Option to print actual element array */
 		/* @var $contactEditPage ContactEditPage */
 // 	 	$contactEditPage->printFieldArray($contactEditPage->getAllInputFields($contactEditPage->tabs));
 
@@ -74,6 +82,10 @@ class ContactManager0001Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
+	 * check contact edit page
+	 *
+	 * @return void
+	 *
 	 * @test
 	 */
 	public function constructor_OpenEditScreen_ContactEditOpened()
@@ -85,6 +97,10 @@ class ContactManager0001Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
+	 * check all tab IDs
+	 *
+	 * @return void
+	 *
 	 * @test
 	 */
 	public function getTabIds_ScreenDisplayed_EqualExpected()
@@ -98,6 +114,10 @@ class ContactManager0001Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
+	 * add contact with default values
+	 *
+	 * @return void
+	 *
 	 * @test
 	 */
 	public function addContact_WithFieldDefaults_ContactAdded()
@@ -114,6 +134,10 @@ class ContactManager0001Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
+	 * add contact with given values
+	 *
+	 * @return void
+	 *
 	 * @test
 	 */
 	public function addContact_WithGivenFields_ContactAdded()
@@ -136,6 +160,10 @@ class ContactManager0001Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
+	 * edit contact and change the value of the input fields
+	 *
+	 * @return void
+	 *
 	 * @test
 	 */
 	public function editContact_ChangeFields_FieldsChanged()
@@ -150,6 +178,10 @@ class ContactManager0001Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
+	 * change state of the contact
+	 *
+	 * @return void
+	 *
 	 * @test
 	 */
 	public function changeContactState_ChangeEnabledUsingToolbar_EnabledChanged()
