@@ -54,64 +54,64 @@ class MenuItemsManager0003Test extends JoomlaWebdriverTestCase
 	 */
 	public function  addMenu_SingleContact_MenuAdded()
 	{
-	$cfg = new SeleniumConfig;
-	$categoryManager = 'administrator/index.php?option=com_categories&extension=com_contact';
-	$this->driver->get($cfg->host . $cfg->path . $categoryManager);
+		$cfg = new SeleniumConfig;
+		$categoryManager = 'administrator/index.php?option=com_categories&extension=com_contact';
+		$this->driver->get($cfg->host . $cfg->path . $categoryManager);
 
-	$salt = rand();
-	$categoryName = 'category_ABC' . $salt;
-	$this->categoryManagerPage = $this->getPageObject('CategoryManagerPage');
-	$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName), 'Test Category should not be present');
-	$this->categoryManagerPage->addCategory($categoryName);
-	$message = $this->categoryManagerPage->getAlertMessage();
-	$this->assertTrue(strpos($message, 'Category successfully saved') >= 0, 'Category save should return success');
+		$salt = rand();
+		$categoryName = 'category_ABC' . $salt;
+		$this->categoryManagerPage = $this->getPageObject('CategoryManagerPage');
+		$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName), 'Test Category should not be present');
+		$this->categoryManagerPage->addCategory($categoryName);
+		$message = $this->categoryManagerPage->getAlertMessage();
+		$this->assertTrue(strpos($message, 'Category successfully saved') >= 0, 'Category save should return success');
 
-	$contactManager = 'administrator/index.php?option=com_contact';
-	$this->driver->get($cfg->host . $cfg->path . $contactManager);
+		$contactManager = 'administrator/index.php?option=com_contact';
+		$this->driver->get($cfg->host . $cfg->path . $contactManager);
 
-	$contactName = 'Contact' . $salt;
-	$address = '10 Downing Street';
-	$city = 'London';
-	$country = 'England';
-	$this->contactManagerPage = $this->getPageObject('ContactManagerPage');
-	$this->assertFalse($this->contactManagerPage->getRowNumber($contactName), 'Test contact should not be present');
-	$this->contactManagerPage->addContact($contactName, array('Category' => $categoryName, 'Country' => $country, 'Address' => $address, 'City or Suburb' => $city));
-	$message = $this->contactManagerPage->getAlertMessage();
-	$this->assertTrue(strpos($message, 'Contact successfully saved') >= 0, 'Contact save should return success');
-	$MenuItemManager = 'administrator/index.php?option=com_menus&view=items';
+		$contactName = 'Contact' . $salt;
+		$address = '10 Downing Street';
+		$city = 'London';
+		$country = 'England';
+		$this->contactManagerPage = $this->getPageObject('ContactManagerPage');
+		$this->assertFalse($this->contactManagerPage->getRowNumber($contactName), 'Test contact should not be present');
+		$this->contactManagerPage->addContact($contactName, array('Category' => $categoryName, 'Country' => $country, 'Address' => $address, 'City or Suburb' => $city));
+		$message = $this->contactManagerPage->getAlertMessage();
+		$this->assertTrue(strpos($message, 'Contact successfully saved') >= 0, 'Contact save should return success');
+		$MenuItemManager = 'administrator/index.php?option=com_menus&view=items';
 
-	$this->driver->get($cfg->host . $cfg->path . $MenuItemManager);
-	$title = 'Menu Item' . $salt;
-	$menuType = 'Single Contact';
-	$menuLocation = 'Main Menu';
-	$this->menuItemsManagerPage = $this->getPageObject('MenuItemsManagerPage');
-	$this->menuItemsManagerPage->setFilter('Menu', $menuLocation);
-	$this->assertFalse($this->menuItemsManagerPage->getRowNumber($title), 'Test menu should not be present');
-	$this->menuItemsManagerPage->addMenuItem($title, $menuType, $menuLocation, array('Contact' => $contactName));
-	$message = $this->menuItemsManagerPage->getAlertMessage();
-	$this->assertContains('Menu item successfully saved', $message, 'Menu save should return success', true);
+		$this->driver->get($cfg->host . $cfg->path . $MenuItemManager);
+		$title = 'Menu Item' . $salt;
+		$menuType = 'Single Contact';
+		$menuLocation = 'Main Menu';
+		$this->menuItemsManagerPage = $this->getPageObject('MenuItemsManagerPage');
+		$this->menuItemsManagerPage->setFilter('Menu', $menuLocation);
+		$this->assertFalse($this->menuItemsManagerPage->getRowNumber($title), 'Test menu should not be present');
+		$this->menuItemsManagerPage->addMenuItem($title, $menuType, $menuLocation, array('Contact' => $contactName));
+		$message = $this->menuItemsManagerPage->getAlertMessage();
+		$this->assertContains('Menu item successfully saved', $message, 'Menu save should return success', true);
 
-	$homePageUrl = 'index.php';
-	$d = $this->driver;
-	$d->get($cfg->host . $cfg->path . $homePageUrl);
-	$this->siteHomePage = $this->getPageObject('SiteContentFeaturedPage');
+		$homePageUrl = 'index.php';
+		$d = $this->driver;
+		$d->get($cfg->host . $cfg->path . $homePageUrl);
+		$this->siteHomePage = $this->getPageObject('SiteContentFeaturedPage');
 
-	$this->siteHomePage->itemClick($title);
-	$this->siteHomePage->itemExist($contactName, 'h2');
+		$this->siteHomePage->itemClick($title);
+		$this->siteHomePage->itemExist($contactName, 'h2');
 
-	$this->doAdminLogin();
-	$this->driver->get($cfg->host . $cfg->path . $contactManager);
-	$this->contactManagerPage->trashAndDelete($contactName);
-	$this->assertFalse($this->contactManagerPage->getRowNumber($contactName), 'Test contact should not be present');
+		$this->doAdminLogin();
+		$this->driver->get($cfg->host . $cfg->path . $contactManager);
+		$this->contactManagerPage->trashAndDelete($contactName);
+		$this->assertFalse($this->contactManagerPage->getRowNumber($contactName), 'Test contact should not be present');
 
-	$this->driver->get($cfg->host . $cfg->path . $categoryManager);
-	$this->categoryManagerPage->trashAndDelete($categoryName);
-	$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName), 'Test Category should not be present');
+		$this->driver->get($cfg->host . $cfg->path . $categoryManager);
+		$this->categoryManagerPage->trashAndDelete($categoryName);
+		$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName), 'Test Category should not be present');
 
-	$this->driver->get($cfg->host . $cfg->path . $MenuItemManager);
-	$this->menuItemsManagerPage->setFilter('Menu', 'Main Menu');
-	$this->menuItemsManagerPage->trashAndDelete($title);
-	$this->assertFalse($this->menuItemsManagerPage->getRowNumber($title), 'Test menu should not be present');
+		$this->driver->get($cfg->host . $cfg->path . $MenuItemManager);
+		$this->menuItemsManagerPage->setFilter('Menu', 'Main Menu');
+		$this->menuItemsManagerPage->trashAndDelete($title);
+		$this->assertFalse($this->menuItemsManagerPage->getRowNumber($title), 'Test menu should not be present');
 	}
 
 	/**
@@ -293,107 +293,107 @@ class MenuItemsManager0003Test extends JoomlaWebdriverTestCase
 	 */
 	public function addMenu_ListContactInCategory_MenuAdded()
 	{
-	$cfg = new SeleniumConfig;
-	$categoryManager = 'administrator/index.php?option=com_categories&extension=com_contact';
-	$this->driver->get($cfg->host . $cfg->path . $categoryManager);
-	$salt = rand();
-	$categoryName1 = 'category_ABC1' . $salt;
-	$categoryName2 = 'category_ABC2' . $salt;
-	$this->categoryManagerPage = $this->getPageObject('CategoryManagerPage');
-	$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName1), 'Test Category should not be present');
-	$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName2), 'Test Category should not be present');
-	$this->categoryManagerPage->addCategory($categoryName1);
-	$message = $this->categoryManagerPage->getAlertMessage();
-	$this->assertTrue(strpos($message, 'Category successfully saved') >= 0, 'Category save should return success');
-	$this->categoryManagerPage->addCategory($categoryName2);
-	$message = $this->categoryManagerPage->getAlertMessage();
-	$this->assertTrue(strpos($message, 'Category successfully saved') >= 0, 'Category save should return success');
+		$cfg = new SeleniumConfig;
+		$categoryManager = 'administrator/index.php?option=com_categories&extension=com_contact';
+		$this->driver->get($cfg->host . $cfg->path . $categoryManager);
+		$salt = rand();
+		$categoryName1 = 'category_ABC1' . $salt;
+		$categoryName2 = 'category_ABC2' . $salt;
+		$this->categoryManagerPage = $this->getPageObject('CategoryManagerPage');
+		$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName1), 'Test Category should not be present');
+		$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName2), 'Test Category should not be present');
+		$this->categoryManagerPage->addCategory($categoryName1);
+		$message = $this->categoryManagerPage->getAlertMessage();
+		$this->assertTrue(strpos($message, 'Category successfully saved') >= 0, 'Category save should return success');
+		$this->categoryManagerPage->addCategory($categoryName2);
+		$message = $this->categoryManagerPage->getAlertMessage();
+		$this->assertTrue(strpos($message, 'Category successfully saved') >= 0, 'Category save should return success');
 
-	$MenuItemsManager = 'administrator/index.php?option=com_menus&view=items';
-	$this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
-	$title = 'Menu_Item_testing' . $salt;
-	$menuLocation = 'Main Menu';
-	$menuType = 'List Contacts in a Category ';
-	$this->menuItemsManagerPage = $this->getPageObject('MenuItemsManagerPage');
-	$this->menuItemsManagerPage->setFilter('Menu', $menuLocation);
-	$this->assertFalse($this->menuItemsManagerPage->getRowNumber($title), 'Test menu should not be present');
-	$this->menuItemsManagerPage->addMenuItem($title, $menuType, $menuLocation, array('category' => $categoryName1));
-	$message = $this->menuItemsManagerPage->getAlertMessage();
-	$this->assertContains('Menu item successfully saved', $message, 'Menu save should return success', true);
+		$MenuItemsManager = 'administrator/index.php?option=com_menus&view=items';
+		$this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
+		$title = 'Menu_Item_testing' . $salt;
+		$menuLocation = 'Main Menu';
+		$menuType = 'List Contacts in a Category ';
+		$this->menuItemsManagerPage = $this->getPageObject('MenuItemsManagerPage');
+		$this->menuItemsManagerPage->setFilter('Menu', $menuLocation);
+		$this->assertFalse($this->menuItemsManagerPage->getRowNumber($title), 'Test menu should not be present');
+		$this->menuItemsManagerPage->addMenuItem($title, $menuType, $menuLocation, array('category' => $categoryName1));
+		$message = $this->menuItemsManagerPage->getAlertMessage();
+		$this->assertContains('Menu item successfully saved', $message, 'Menu save should return success', true);
 
-	$contactManager = 'administrator/index.php?option=com_contact';
-	$this->driver->get($cfg->host . $cfg->path . $contactManager);
-	$contactName1 = 'contact_ABC_1' . $salt;
-	$contactName2 = 'contact_ABC_2' . $salt;
-	$this->contactManagerPage = $this->getPageObject('ContactManagerPage');
-	$this->assertFalse($this->contactManagerPage->getRowNumber($contactName1), 'Test contact should not be present');
-	$this->assertFalse($this->contactManagerPage->getRowNumber($contactName2), 'Test contact should not be present');
-	$this->contactManagerPage->addContact($contactName1, array('Category' => $categoryName1));
-	$message = $this->contactManagerPage->getAlertMessage();
-	$this->assertTrue(strpos($message, 'contact successfully saved') >= 0, 'contact save should return success');
-	$this->contactManagerPage->addContact($contactName2, array('Category' => $categoryName1));
-	$message = $this->contactManagerPage->getAlertMessage();
-	$this->assertTrue(strpos($message, 'contact successfully saved') >= 0, 'contact save should return success');
+		$contactManager = 'administrator/index.php?option=com_contact';
+		$this->driver->get($cfg->host . $cfg->path . $contactManager);
+		$contactName1 = 'contact_ABC_1' . $salt;
+		$contactName2 = 'contact_ABC_2' . $salt;
+		$this->contactManagerPage = $this->getPageObject('ContactManagerPage');
+		$this->assertFalse($this->contactManagerPage->getRowNumber($contactName1), 'Test contact should not be present');
+		$this->assertFalse($this->contactManagerPage->getRowNumber($contactName2), 'Test contact should not be present');
+		$this->contactManagerPage->addContact($contactName1, array('Category' => $categoryName1));
+		$message = $this->contactManagerPage->getAlertMessage();
+		$this->assertTrue(strpos($message, 'contact successfully saved') >= 0, 'contact save should return success');
+		$this->contactManagerPage->addContact($contactName2, array('Category' => $categoryName1));
+		$message = $this->contactManagerPage->getAlertMessage();
+		$this->assertTrue(strpos($message, 'contact successfully saved') >= 0, 'contact save should return success');
 
-	$contactName3 = 'contact_ABC_3' . $salt;
-	$contactName4 = 'contact_ABC_4' . $salt;
-	$this->contactManagerPage = $this->getPageObject('contactManagerPage');
-	$this->assertFalse($this->contactManagerPage->getRowNumber($contactName3), 'Test contact should not be present');
-	$this->assertFalse($this->contactManagerPage->getRowNumber($contactName4), 'Test contact should not be present');
-	$this->contactManagerPage->addContact($contactName3, array('Category' => $categoryName2));
-	$message = $this->contactManagerPage->getAlertMessage();
-	$this->assertTrue(strpos($message, 'contact successfully saved') >= 0, 'contact save should return success');
-	$this->contactManagerPage->addContact($contactName4, array('Category' => $categoryName2));
-	$message = $this->contactManagerPage->getAlertMessage();
-	$this->assertTrue(strpos($message, 'contact successfully saved') >= 0, 'contact save should return success');
+		$contactName3 = 'contact_ABC_3' . $salt;
+		$contactName4 = 'contact_ABC_4' . $salt;
+		$this->contactManagerPage = $this->getPageObject('contactManagerPage');
+		$this->assertFalse($this->contactManagerPage->getRowNumber($contactName3), 'Test contact should not be present');
+		$this->assertFalse($this->contactManagerPage->getRowNumber($contactName4), 'Test contact should not be present');
+		$this->contactManagerPage->addContact($contactName3, array('Category' => $categoryName2));
+		$message = $this->contactManagerPage->getAlertMessage();
+		$this->assertTrue(strpos($message, 'contact successfully saved') >= 0, 'contact save should return success');
+		$this->contactManagerPage->addContact($contactName4, array('Category' => $categoryName2));
+		$message = $this->contactManagerPage->getAlertMessage();
+		$this->assertTrue(strpos($message, 'contact successfully saved') >= 0, 'contact save should return success');
 
-	$homePageUrl = 'index.php';
-	$d = $this->driver;
-	$d->get($cfg->host . $cfg->path . $homePageUrl);
-	$this->siteHomePage = $this->getPageObject('SiteContentFeaturedPage');
+		$homePageUrl = 'index.php';
+		$d = $this->driver;
+		$d->get($cfg->host . $cfg->path . $homePageUrl);
+		$this->siteHomePage = $this->getPageObject('SiteContentFeaturedPage');
 
-	$this->siteHomePage->itemClick($title);
-	$this->assertTrue($this->siteHomePage->itemExist($contactName1, 'a'));
-	$this->assertTrue($this->siteHomePage->itemExist($contactName2, 'a'));
+		$this->siteHomePage->itemClick($title);
+		$this->assertTrue($this->siteHomePage->itemExist($contactName1, 'a'));
+		$this->assertTrue($this->siteHomePage->itemExist($contactName2, 'a'));
 
-	$this->doAdminLogin();
-	$MenuItemsManager = 'administrator/index.php?option=com_menus&view=items';
-	$this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
-	$title = 'Menu_Item_testing' . $salt;
-	$menuLocation = 'Main Menu';
-	$this->menuItemsManagerPage = $this->getPageObject('MenuItemsManagerPage');
-	$this->menuItemsManagerPage->setFilter('Menu', $menuLocation);
-	$this->menuItemsManagerPage->editMenuItem($title, array('category' => $categoryName2));
-	$cfg = new SeleniumConfig;
-	$homePageUrl = 'index.php';
-	$d = $this->driver;
-	$d->get($cfg->host . $cfg->path . $homePageUrl);
-	$this->siteHomePage = $this->getPageObject('SiteContentFeaturedPage');
+		$this->doAdminLogin();
+		$MenuItemsManager = 'administrator/index.php?option=com_menus&view=items';
+		$this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
+		$title = 'Menu_Item_testing' . $salt;
+		$menuLocation = 'Main Menu';
+		$this->menuItemsManagerPage = $this->getPageObject('MenuItemsManagerPage');
+		$this->menuItemsManagerPage->setFilter('Menu', $menuLocation);
+		$this->menuItemsManagerPage->editMenuItem($title, array('category' => $categoryName2));
+		$cfg = new SeleniumConfig;
+		$homePageUrl = 'index.php';
+		$d = $this->driver;
+		$d->get($cfg->host . $cfg->path . $homePageUrl);
+		$this->siteHomePage = $this->getPageObject('SiteContentFeaturedPage');
 
-	$this->siteHomePage->itemClick($title);
-	$this->assertTrue($this->siteHomePage->itemExist($contactName3, 'a'));
-	$this->assertTrue($this->siteHomePage->itemExist($contactName4, 'a'));
+		$this->siteHomePage->itemClick($title);
+		$this->assertTrue($this->siteHomePage->itemExist($contactName3, 'a'));
+		$this->assertTrue($this->siteHomePage->itemExist($contactName4, 'a'));
 
-	$this->doAdminLogin();
-	$this->driver->get($cfg->host . $cfg->path . $contactManager);
-	$this->contactManagerPage->trashAndDelete($contactName1);
-	$this->assertFalse($this->contactManagerPage->getRowNumber($contactName1), 'Test contact should not be present');
-	$this->contactManagerPage->trashAndDelete($contactName2);
-	$this->assertFalse($this->contactManagerPage->getRowNumber($contactName2), 'Test contact should not be present');
-	$this->contactManagerPage->trashAndDelete($contactName3);
-	$this->assertFalse($this->contactManagerPage->getRowNumber($contactName3), 'Test contact should not be present');
-	$this->contactManagerPage->trashAndDelete($contactName4);
-	$this->assertFalse($this->contactManagerPage->getRowNumber($contactName4), 'Test contact should not be present');
+		$this->doAdminLogin();
+		$this->driver->get($cfg->host . $cfg->path . $contactManager);
+		$this->contactManagerPage->trashAndDelete($contactName1);
+		$this->assertFalse($this->contactManagerPage->getRowNumber($contactName1), 'Test contact should not be present');
+		$this->contactManagerPage->trashAndDelete($contactName2);
+		$this->assertFalse($this->contactManagerPage->getRowNumber($contactName2), 'Test contact should not be present');
+		$this->contactManagerPage->trashAndDelete($contactName3);
+		$this->assertFalse($this->contactManagerPage->getRowNumber($contactName3), 'Test contact should not be present');
+		$this->contactManagerPage->trashAndDelete($contactName4);
+		$this->assertFalse($this->contactManagerPage->getRowNumber($contactName4), 'Test contact should not be present');
 
-	$this->driver->get($cfg->host . $cfg->path . $categoryManager);
-	$this->categoryManagerPage->trashAndDelete($categoryName1);
-	$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName1), 'Test Category should not be present');
-	$this->categoryManagerPage->trashAndDelete($categoryName2);
-	$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName2), 'Test Category should not be present');
+		$this->driver->get($cfg->host . $cfg->path . $categoryManager);
+		$this->categoryManagerPage->trashAndDelete($categoryName1);
+		$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName1), 'Test Category should not be present');
+		$this->categoryManagerPage->trashAndDelete($categoryName2);
+		$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName2), 'Test Category should not be present');
 
-	$this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
-	$this->menuItemsManagerPage->setFilter('Menu', 'Main Menu');
-	$this->menuItemsManagerPage->trashAndDelete($title);
-	$this->assertFalse($this->menuItemsManagerPage->getRowNumber($title), 'Test menu should not be present');
+		$this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
+		$this->menuItemsManagerPage->setFilter('Menu', 'Main Menu');
+		$this->menuItemsManagerPage->trashAndDelete($title);
+		$this->assertFalse($this->menuItemsManagerPage->getRowNumber($title), 'Test menu should not be present');
 	}
 }
