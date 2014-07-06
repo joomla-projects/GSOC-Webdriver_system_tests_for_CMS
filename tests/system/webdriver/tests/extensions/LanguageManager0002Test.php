@@ -35,6 +35,8 @@ class LanguageManager0002Test extends JoomlaWebdriverTestCase
 	/**
 	 * Login to back end and navigate to menu Language Manager.
 	 *
+	 * @return void
+	 *
 	 * @since   3.0
 	 */
 	public function setUp()
@@ -48,6 +50,8 @@ class LanguageManager0002Test extends JoomlaWebdriverTestCase
 	/**
 	 * Logout and close test.
 	 *
+	 * @return void
+	 *
 	 * @since   3.0
 	 */
 	public function tearDown()
@@ -57,6 +61,10 @@ class LanguageManager0002Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
+	 * get list of filters and match it with expected IDs
+	 *
+	 * @return void
+	 *
 	 * @test
 	 */
 	public function getFilters_GetListOfFilters_ShouldMatchExpected()
@@ -68,6 +76,10 @@ class LanguageManager0002Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
+	 * checking the working of published and unpublished filters
+	 *
+	 * @return void
+	 *
 	 * @test
 	 */
 	public function setFilter_SetFilterValues_ShouldExecuteFilter()
@@ -87,16 +99,21 @@ class LanguageManager0002Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
+	 * creating two language one published and one unpublished and the verifying its existence
+	 *
+	 * @return void
+	 *
 	 * @test
 	 */
 	public function setFilter_TestFilters_ShouldFilterTags()
 	{
+		$salt = rand();
+		/*Other than the Default Value */
 		$langName_1 = 'Test Filter 1';
 		$langName_2 = 'Test Filter 2';
-		$salt = rand();
 		$lang_title_native = 'Sample2' . $salt;
 		$url_code = 'Sample2' . $salt;
-		$image_prefix = 'af'; //Other than the Default Value
+		$image_prefix = 'af';
 		$language_tag = 'Sample2';
 
 		$this->languageManagerPage = $this->getPageObject('LanguageManagerPage');
@@ -126,5 +143,4 @@ class LanguageManager0002Test extends JoomlaWebdriverTestCase
 		$this->languageManagerPage->trashAndDelete($langName_1);
 		$this->languageManagerPage->trashAndDelete($langName_2);
 	}
-
 }
