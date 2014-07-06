@@ -1,7 +1,6 @@
 language: php
 
 php:
-  - 5.3
   - 5.4
 
 env:
@@ -20,4 +19,5 @@ before_script:
   - phpenv rehash
 
 script:
+  - composer install
   - vendor/bin/paratest -p 2 -f --phpunit=vendor/bin/phpunit tests/system/saucelabs/WebDriverDemo.php
