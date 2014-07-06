@@ -4,6 +4,14 @@ php:
   - 5.3
   - 5.4
 
+env:
+  global:
+  - secure: fYpFV4xbOKWJ014ILpTbMl1j5PrrDPtiZ+3k1qZJCpz5UUQ0UGIHB8UjNAIAKdQ9aUKU8iG/wNiPrw95Ks57qwwyYyeJUtRe+74pcwZA5IB/BZy/0kFvotnx2udJjUQN4XgteLHodxpOSHEWfr6w7Y5xHXYUSdqqg8jq1fZFbUo=
+  - secure: jMKyA20GQoNiOaOXkFDeVFsGKMByebIzEbW6UOXOhHwex2ZQqqDqE7FLokYX4Hz2xN2A/17SENdYdZ9A2dEiV9GWWYYhEyjQPGDYK2LtUGomu877jobBkrNqd2lSbZiIoOddw8XahcNVOFtsKLEvvTk1m9DpRtzK5p56s1i+3H8=
+
+addons:
+  sauce_connect: true
+
 before_script:
   - composer self-update
   - pyrus channel-discover pear.phpunit.de
@@ -29,4 +37,3 @@ notifications:
     on_success: change  # options: [always|never|change] default: always
     on_failure: always  # options: [always|never|change] default: always
     on_start: false     # default: false
-
