@@ -5,6 +5,7 @@ Build Status
 ---------------------
 Travis-CI: [![Build Status](https://travis-ci.org/joomla/joomla-cms.png)](https://travis-ci.org/joomla/joomla-cms)
 Jenkins: [![Build Status](http://build.joomla.org/job/cms/badge/icon)](http://build.joomla.org/job/cms/)
+SauceLabs branch: [![Build Status](https://travis-ci.org/joomla-projects/GSOC-Webdriver_system_tests_for_CMS.svg?branch=sauce)](https://travis-ci.org/joomla-projects/GSOC-Webdriver_system_tests_for_CMS)
 
 What is this?
 ---------------------
