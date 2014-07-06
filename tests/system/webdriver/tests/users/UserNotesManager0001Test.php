@@ -1,4 +1,11 @@
 <?php
+/**
+ * @package     Joomla.Test
+ * @subpackage  Webdriver
+ *
+ * @copyright   Copyright (C) 2005 - 2014 Open Source Matters, Inc. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE
+ */
 
 require_once 'JoomlaWebdriverTestCase.php';
 
@@ -10,8 +17,10 @@ use SeleniumClient\DesiredCapabilities;
 
 /**
  * This class tests the  Manager: Add / Edit  Screen
- * @author Mark
  *
+ * @package     Joomla.Test
+ * @subpackage  Webdriver
+ * @since       3.0
  */
 class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 {
@@ -19,8 +28,15 @@ class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 	 *
 	 * @var UserNotesManagerPage
 	 */
-	protected $userNotesManagerPage = null; // Global configuration page
+	protected $userNotesManagerPage = null; /* Global configuration page*/
 
+	/**
+	 * Login to back end and navigate to menu Language Manager.
+	 *
+	 * @return void
+	 *
+	 * @since   3.0
+	 */
 	public function setUp()
 	{
 		parent::setUp();
@@ -28,6 +44,13 @@ class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 		$this->userNotesManagerPage = $cpPage->clickMenu('User Notes', 'UserNotesManagerPage');
 	}
 
+	/**
+	 * Logout and close test.
+	 *
+	 * @return void
+	 *
+	 * @since   3.0
+	 */
 	public function tearDown()
 	{
 		$this->doAdminLogout();
@@ -35,6 +58,10 @@ class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
+	 * check usernotes edit page
+	 *
+	 * @return void
+	 *
 	 * @test
 	 */
 	public function constructor_OpenEditScreen_UserNotesEditOpened()
@@ -46,6 +73,10 @@ class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
+	 * check all input fields
+	 *
+	 * @return void
+	 *
 	 * @test
 	 */
 	public function getAllInputFields_ScreenDisplayed_EqualExpected()
@@ -55,9 +86,9 @@ class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 		$testElements = $userNotesEditPage->getAllInputFields();
 		$actualFields = $this->getActualFieldsFromElements($testElements);
 
-		// Option to print actual element array
-		/* @var $userNotesEditPage UserNotesEditPage */
-		// 	 	$userNotesEditPage->printFieldArray($userNotesEditPage->getAllInputFields($$userNotesEditPage->tabs));
+		/* Option to print actual element array
+		 @var $userNotesEditPage UserNotesEditPage */
+		/* 	$userNotesEditPage->printFieldArray($userNotesEditPage->getAllInputFields($$userNotesEditPage->tabs));*/
 
 
 		$this->assertEquals($userNotesEditPage->inputFields, $actualFields);
@@ -66,7 +97,10 @@ class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
-	 * TODO: Add User Notes Category to methods
+	 * Add User Notes Category to methods
+	 *
+	 * @return void
+	 *
 	 * @test
 	 */
 	public function add_WithFieldDefaults_Added()
@@ -81,6 +115,10 @@ class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
+	 * add usernotes with given values
+	 *
+	 * @return void
+	 *
 	 * @test
 	 */
 	public function addUserNotes_WithGivenFields_UserNotesAdded()
@@ -116,7 +154,10 @@ class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
-	 * TODO: Finish this test
+	 * edit the values of the input fields
+	 *
+	 * @return void
+	 *
 	 * @test
 	 */
 	public function editUserNotes_ChangeFields_FieldsChanged()
@@ -168,7 +209,12 @@ class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 		$userManagerPage = $this->userNotesManagerPage->clickMenu('User Manager', 'UserManagerPage');
 		$userManagerPage->delete($newUserName);
 	}
+
 	/**
+	 * check the filters
+	 *
+	 * @return void
+	 *
 	 * @test
 	 */
 	public function setFilter_TestOrdering_ShouldOrderNotes()
