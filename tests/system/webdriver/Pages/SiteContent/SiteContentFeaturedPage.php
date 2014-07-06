@@ -183,4 +183,22 @@ class SiteContentFeaturedPage extends SitePage
 		$driver = $this->driver;
 		$driver->findElement(By::xPath("//a[contains(text(),'" . $itemName . "')]"))->click();
 	}
+	
+	/**
+	 * check if the voting option is available on the front end
+	 *
+	 * @return boolean
+	 */
+	public function checkVote()
+	{
+		$driver = $this->driver;
+		$element = $driver->findElement(By::xPath("//input[@name='submit_vote']"));
+
+		if ($element != null)
+		{
+			return true;
+		}
+
+		return false;
+	}
 }
