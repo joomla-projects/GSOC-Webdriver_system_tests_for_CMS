@@ -16,10 +16,12 @@ use SeleniumClient\WebElement;
 /**
  * Class for the back-end control panel screen.
  *
+ * @since  Joomla 3
  */
 class MenuEditPage extends AdminEditPage
 {
 	protected $waitForXpath = "//form[@id='item-form']";
+
 	protected $url = 'administrator/index.php?option=com_menus&view=menu&layout=edit';
 
 	/**
