@@ -30,7 +30,7 @@ class WeblinkManagerPage extends AdminManagerPage
 	 * @var    string
 	 * @since  3.2
 	 */
-	protected $waitForXpath =  "//ul/li/a[@href='index.php?option=com_weblinks']";
+	protected $waitForXpath = "//ul/li/a[@href='index.php?option=com_weblinks']";
 
 	/**
 	 * URL used to uniquely identify this page
@@ -82,15 +82,17 @@ class WeblinkManagerPage extends AdminManagerPage
 	 *
 	 * @return  WeblinkManagerPage
 	 */
-	public function addWeblink($name='Test Weblink', $url, $fields)
+	public function addWeblink($name = 'Test Weblink', $url, $fields)
 	{
 		$this->clickButton('toolbar-new');
 		$contactEditPage = $this->test->getPageObject('WeblinkEditPage');
 		$contactEditPage->setFieldValues(array('Title' => $name, 'URL' => $url));
+
 		if ($fields)
 		{
 			$contactEditPage->setFieldValues($fields);
 		}
+
 		$contactEditPage->clickButton('toolbar-save');
 		$this->test->getPageObject('WeblinkManagerPage');
 	}
@@ -125,14 +127,17 @@ class WeblinkManagerPage extends AdminManagerPage
 		$result = false;
 		$row = $this->getRowNumber($name);
 		$text = $this->driver->findElement(By::xPath("//tbody/tr[" . $row . "]/td[3]//a"))->getAttribute(@onclick);
+
 		if (strpos($text, 'weblinks.unpublish') > 0)
 		{
 			$result = 'published';
 		}
+
 		if (strpos($text, 'weblinks.publish') > 0)
 		{
 			$result = 'unpublished';
 		}
+
 		return $result;
 	}
 
@@ -148,6 +153,7 @@ class WeblinkManagerPage extends AdminManagerPage
 	{
 		$this->searchFor($name);
 		$this->checkAll();
+
 		if (strtolower($state) == 'published')
 		{
 			$this->clickButton('toolbar-publish');
@@ -158,6 +164,7 @@ class WeblinkManagerPage extends AdminManagerPage
 			$this->clickButton('toolbar-unpublish');
 			$this->driver->waitForElementUntilIsPresent(By::xPath($this->waitForXpath));
 		}
+
 		$this->searchFor();
 	}
 }
