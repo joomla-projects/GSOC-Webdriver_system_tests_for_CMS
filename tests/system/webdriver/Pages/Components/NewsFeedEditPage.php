@@ -24,13 +24,13 @@ use SeleniumClient\WebElement;
  */
 class NewsFeedEditPage extends AdminEditPage
 {
-  /**
+	/**
 	 * XPath string used to uniquely identify this page
 	 *
 	 * @var    string
 	 * @since  3.0
 	 */
-	protected $waitForXpath =  "//form[@id='newsfeed-form']";
+	protected $waitForXpath = "//form[@id='newsfeed-form']";
 
 	/**
 	 * URL used to uniquely identify this page
@@ -91,6 +91,4 @@ class NewsFeedEditPage extends AdminEditPage
 		array('label' => 'Cache Time', 'id' => 'jform_cache_time', 'type' => 'input', 'tab' => 'attrib-jbasic'),
 		array('label' => 'Language Direction', 'id' => 'jform_rtl', 'type' => 'select', 'tab' => 'attrib-jbasic'),
 	);
-
-
 }
