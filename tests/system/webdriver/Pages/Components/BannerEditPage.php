@@ -28,7 +28,7 @@ class BannerEditPage extends AdminEditPage
 	 * @var    string
 	 * @since  3.2
 	 */
-	protected $waitForXpath =  "//form[@id='banner-form']";
+	protected $waitForXpath = "//form[@id='banner-form']";
 
 	/**
 	 * URL used to uniquely identify this page
@@ -86,7 +86,7 @@ class BannerEditPage extends AdminEditPage
 			array('label' => 'Meta Keywords', 'id' => 'jform_metakey', 'type' => 'textarea', 'tab' => 'publishing'),
 			array('label' => 'Use Own Prefix', 'id' => 'jform_own_prefix', 'type' => 'fieldset', 'tab' => 'publishing'),
 			array('label' => 'Meta Keyword Prefix', 'id' => 'jform_metakey_prefix', 'type' => 'input', 'tab' => 'publishing'),
-		);
-
+	);
 }
+
 
