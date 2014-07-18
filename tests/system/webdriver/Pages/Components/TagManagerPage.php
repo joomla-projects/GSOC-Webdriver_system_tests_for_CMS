@@ -30,7 +30,7 @@ class TagManagerPage extends AdminManagerPage
 	 * @var    string
 	 * @since  3.0
 	 */
-	protected $waitForXpath =  "//ul/li/a[@href='index.php?option=com_tags']";
+	protected $waitForXpath = "//ul/li/a[@href='index.php?option=com_tags']";
 
 	/**
 	 * URL used to uniquely identify this page
@@ -75,13 +75,13 @@ class TagManagerPage extends AdminManagerPage
 	/**
 	 * Add a new Tag item in the Tag Manager: Component screen.
 	 *
-	 * @param string   $name          Test Tag Name
+	 * @param   string  $name      Test  Tag Name
 	 *
-	 * @param string   $caption 	  Caption of the test Image
+	 * @param   string  $caption   Caption of the test Image
 	 *
-	 * @param string   $alt			  Alternative Caption for the Image
+	 * @param   string  $alt       Alternative Caption for the Image
 	 *
-	 * @param string   $float		  Position of the Image of the tag
+	 * @param   string  $float     Position of the Image of the tag
 	 *
 	 * @return  TagManagerPage
 	 */
@@ -91,7 +91,7 @@ class TagManagerPage extends AdminManagerPage
 		$login = "testing";
 		$this->clickButton('toolbar-new');
 		$tagEditPage = $this->test->getPageObject('TagEditPage');
-		$tagEditPage->setFieldValues(array('Title' => $name, 'Caption' => $caption, 'Alt'=>$alt,'Float'=>$float));
+		$tagEditPage->setFieldValues(array('Title' => $name, 'Caption' => $caption, 'Alt' => $alt, 'Float' => $float));
 		$tagEditPage->clickButton('toolbar-save');
 		$this->test->getPageObject('TagManagerPage');
 	}
@@ -99,8 +99,8 @@ class TagManagerPage extends AdminManagerPage
 	/**
 	 * Edit a Tag item in the Tag Manager: Tag Items screen.
 	 *
-	 * @param string   $name	   Tag Title field
-	 * @param array    $fields     associative array of fields in the form label => value.
+	 * @param   string   $name     Tag Title field
+	 * @param   array    $fields   associative array of fields in the form label => value.
 	 *
 	 * @return  void
 	 */
@@ -117,7 +117,7 @@ class TagManagerPage extends AdminManagerPage
 	/**
 	 * Get state  of a Tag item in the Tag Manager: Tag Items screen.
 	 *
-	 * @param string   $name	   Tag Title field
+	 * @param   string   $name   Tag  Title field
 	 *
 	 * @return  State of the Tag //Published or Unpublished
 	 */
@@ -126,22 +126,25 @@ class TagManagerPage extends AdminManagerPage
 		$result = false;
 		$row = $this->getRowNumber($name);
 		$text = $this->driver->findElement(By::xPath("//tbody/tr[" . $row . "]/td[3]//a"))->getAttribute(@onclick);
+
 		if (strpos($text, 'tags.unpublish') > 0)
 		{
 			$result = 'published';
 		}
+
 		if (strpos($text, 'tags.publish') > 0)
 		{
 			$result = 'unpublished';
 		}
+
 		return $result;
 	}
 
 	/**
 	 * Change state of a Tag item in the Tag Manager: Tag Items screen.
 	 *
-	 * @param string   $name	   Tag Title field
-	 * @param string   $state      State of the Tag
+	 * @param   string  $name  Tag Title field
+	 * @param   string  $state State of the Tag
 	 *
 	 * @return  void
 	 */
@@ -149,6 +152,7 @@ class TagManagerPage extends AdminManagerPage
 	{
 		$this->searchFor($name);
 		$this->checkAll();
+
 		if (strtolower($state) == 'published')
 		{
 			$this->clickButton('toolbar-publish');
@@ -164,7 +168,7 @@ class TagManagerPage extends AdminManagerPage
 			$this->clickButton('toolbar-archive');
 			$this->driver->waitForElementUntilIsPresent(By::xPath($this->waitForXpath));
 		}
+
 		$this->searchFor();
 	}
-
 }
