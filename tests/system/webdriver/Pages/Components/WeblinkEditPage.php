@@ -30,7 +30,7 @@ class WeblinkEditPage extends AdminEditPage
 	 * @var    string
 	 * @since  3.2
 	 */
-	protected $waitForXpath =  "//form[@id='weblink-form']";
+	protected $waitForXpath = "//form[@id='weblink-form']";
 
 	/**
 	 * URL used to uniquely identify this page
@@ -91,7 +91,6 @@ class WeblinkEditPage extends AdminEditPage
 		array('label' => 'Target', 'id' => 'jform_params_target', 'type' => 'select', 'tab' => 'attrib-jbasic'),
 		array('label' => 'Width', 'id' => 'jform_params_width', 'type' => 'input', 'tab' => 'attrib-jbasic'),
 		array('label' => 'Height', 'id' => 'jform_params_height', 'type' => 'input', 'tab' => 'attrib-jbasic'),
-		array('label' => 'Count Clicks', 'id' => 'jform_params_count_clicks', 'type' => 'select', 'tab' => 'attrib-jbasic'),			);
-
+		array('label' => 'Count Clicks', 'id' => 'jform_params_count_clicks', 'type' => 'select', 'tab' => 'attrib-jbasic'),
+	);
 }
-
