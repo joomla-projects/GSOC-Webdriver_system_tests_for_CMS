@@ -30,7 +30,7 @@ class ContactManagerPage extends AdminManagerPage
 	 * @var    string
 	 * @since  3.2
 	 */
-	protected $waitForXpath =  "//ul/li/a[@href='index.php?option=com_contact']";
+	protected $waitForXpath = "//ul/li/a[@href='index.php?option=com_contact']";
 
 	/**
 	 * URL used to uniquely identify this page
@@ -82,17 +82,19 @@ class ContactManagerPage extends AdminManagerPage
 	 *
 	 * @return  ContactManagerPage
 	 */
-	public function addContact($name='Test Contact', $fields)
+	public function addContact($name = 'Test Contact', $fields)
 	{
 		$new_name = $name;
 		$login = "testing";
 		$this->clickButton('toolbar-new');
 		$contactEditPage = $this->test->getPageObject('ContactEditPage');
 		$contactEditPage->setFieldValues(array('Name' => $name));
+
 		if ($fields)
 		{
 			$contactEditPage->setFieldValues($fields);
 		}
+
 		$contactEditPage->clickButton('toolbar-save');
 		$this->test->getPageObject('ContactManagerPage');
 	}
@@ -127,14 +129,17 @@ class ContactManagerPage extends AdminManagerPage
 		$result = false;
 		$row = $this->getRowNumber($name);
 		$text = $this->driver->findElement(By::xPath("//tbody/tr[" . $row . "]/td[3]//a"))->getAttribute(@onclick);
+
 		if (strpos($text, 'contacts.unpublish') > 0)
 		{
 			$result = 'published';
 		}
+
 		if (strpos($text, 'contacts.publish') > 0)
 		{
 			$result = 'unpublished';
 		}
+
 		return $result;
 	}
 
@@ -150,6 +155,7 @@ class ContactManagerPage extends AdminManagerPage
 	{
 		$this->searchFor($name);
 		$this->checkAll();
+
 		if (strtolower($state) == 'published')
 		{
 			$this->clickButton('toolbar-publish');
@@ -160,6 +166,12 @@ class ContactManagerPage extends AdminManagerPage
 			$this->clickButton('toolbar-unpublish');
 			$this->driver->waitForElementUntilIsPresent(By::xPath($this->waitForXpath));
 		}
+		elseif (strtolower($state) == 'archived')
+		{
+			$this->clickButton('toolbar-archive');
+			$this->driver->waitForElementUntilIsPresent(By::xPath($this->waitForXpath));
+		}
+
 		$this->searchFor();
 	}
 }
