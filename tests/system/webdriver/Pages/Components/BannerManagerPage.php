@@ -30,7 +30,7 @@ class BannerManagerPage extends AdminManagerPage
 	 * @var    string
 	 * @since  3.2
 	 */
-	protected $waitForXpath =  "//ul/li/a[@href='index.php?option=com_banners']";
+	protected $waitForXpath = "//ul/li/a[@href='index.php?option=com_banners']";
 
 	/**
 	 * URL used to uniquely identify this page
@@ -78,7 +78,7 @@ class BannerManagerPage extends AdminManagerPage
 	/**
 	 * Add a new Banner item in the Banner Manager: Component screen.
 	 *
-	 * @param string   $name          Test Banner Name
+	 * @param string   $name          Test  Banner Name
 	 * @param array    $fields		  associative array of fields in the form label => value.
 	 *
 	 * @return  BannerManagerPage
@@ -88,10 +88,12 @@ class BannerManagerPage extends AdminManagerPage
 		$this->clickButton('toolbar-new');
 		$bannerEditPage = $this->test->getPageObject('BannerEditPage');
 		$bannerEditPage->setFieldValues(array('Name' => $name));
+
 		if ($fields)
 		{
 			$bannerEditPage->setFieldValues($fields);
 		}
+
 		$bannerEditPage->clickButton('toolbar-save');
 		$this->test->getPageObject('BannerManagerPage');
 	}
@@ -126,14 +128,17 @@ class BannerManagerPage extends AdminManagerPage
 		$result = false;
 		$row = $this->getRowNumber($name);
 		$text = $this->driver->findElement(By::xPath("//tbody/tr[" . $row . "]/td[3]//a"))->getAttribute(@onclick);
+
 		if (strpos($text, 'banners.unpublish') > 0)
 		{
 			$result = 'published';
 		}
+
 		if (strpos($text, 'banners.publish') > 0)
 		{
 			$result = 'unpublished';
 		}
+
 		return $result;
 	}
 
@@ -149,6 +154,7 @@ class BannerManagerPage extends AdminManagerPage
 	{
 		$this->searchFor($name);
 		$this->checkAll();
+
 		if (strtolower($state) == 'published')
 		{
 			$this->clickButton('toolbar-publish');
@@ -159,6 +165,12 @@ class BannerManagerPage extends AdminManagerPage
 			$this->clickButton('toolbar-unpublish');
 			$this->driver->waitForElementUntilIsPresent(By::xPath($this->waitForXpath));
 		}
+		elseif (strtolower($state) == 'archived')
+		{
+			$this->clickButton('toolbar-archive');
+			$this->driver->waitForElementUntilIsPresent(By::xPath($this->waitForXpath));
+		}
+
 		$this->searchFor();
 	}
 }
