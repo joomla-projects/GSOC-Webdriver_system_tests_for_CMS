@@ -16,10 +16,12 @@ use SeleniumClient\WebElement;
 /**
  * Class for the back-end control panel screen.
  *
+ * @since  joomla 3
  */
 class MenuItemEditPage extends AdminEditPage
 {
 	protected $waitForXpath = "//form[@id='item-form']";
+
 	protected $url = 'administrator/index.php?option=com_menus&view=item&layout=edit';
 
 	/**
@@ -28,7 +30,7 @@ class MenuItemEditPage extends AdminEditPage
 	 * @var    array
 	 * @since  3.2
 	 */
-	public $tabs = array('details', 'attrib-menu-options', 'attrib-page-options', 'attrib-metadata', 'modules');
+	public $tabs = array('details', 'attrib-menu-options', 'attrib-page-options', 'attrib-metadata', 'modules','attrib-basic');
 
 	/**
 	 * Array of tab labels for this page
@@ -103,7 +105,6 @@ class MenuItemEditPage extends AdminEditPage
 			array('label' => 'Show Hits', 'id' => 'jform_params_show_hits', 'type' => 'fieldset', 'tab' => 'attrib-basic'),
 			array('label' => 'Show Unauthorised Links', 'id' => 'jform_params_show_noauth', 'type' => 'fieldset', 'tab' => 'attrib-basic'),
 			array('label' => 'Positioning of the Links', 'id' => 'jform_params_urls_position', 'type' => 'fieldset', 'tab' => 'attrib-basic'),
-			
 			);
 
 			public $menuItemTypes = array(
@@ -144,10 +145,17 @@ class MenuItemEditPage extends AdminEditPage
 					array('group' => 'Wrapper', 'type' => 'Iframe Wrapper ' ),
 			);
 
-
+	/**
+	 * function to get field value
+	 *
+	 * @param   string  $label   stores label
+	 *
+	 * @return bool|String
+	 */
 	public function getFieldValue($label)
 	{
 		$result = false;
+
 		if (strtolower($label) === 'menu item type')
 		{
 			$result = $this->getMenuItemType($label);
@@ -164,9 +172,17 @@ class MenuItemEditPage extends AdminEditPage
 		{
 			$result = parent::getFieldValue($label);
 		}
+
 		return $result;
 	}
 
+	/**
+	 * function to get the group name
+	 *
+	 * @param   string  $value   stores value
+	 *
+	 * @return bool
+	 */
 	protected function getGroupName($value)
 	{
 		foreach ($this->menuItemTypes as $array)
@@ -174,14 +190,25 @@ class MenuItemEditPage extends AdminEditPage
 			if (strpos($array['type'], $value) !== false)
 				return $array['group'];
 		}
+
 		return false;
 	}
 
+	/**
+	 * function to get menu type
+	 *
+	 * @return String
+	 */
 	public function getMenuItemType()
 	{
 		return $this->driver->findElement(By::xPath("//label[@id='jform_type-lbl']/../..//input"))->getAttribute('value');
 	}
 
+	/**
+	 * function to get all menu types
+	 *
+	 * @return array
+	 */
 	public function getMenuItemTypes()
 	{
 		$result = array();
@@ -190,6 +217,7 @@ class MenuItemEditPage extends AdminEditPage
 		$el = $d->waitForElementUntilIsPresent(By::xPath("//iframe[contains(@src, 'option=com_menus&view=menutypes')]"));
 		$el = $d->switchTo()->getFrameByWebElement($el);
 		$groups = $d->findElements(By::className('accordion-group'));
+
 		foreach ($groups as $group)
 		{
 			$toggle = $group->findElement(By::className('accordion-toggle'));
@@ -197,6 +225,7 @@ class MenuItemEditPage extends AdminEditPage
 			$toggle->click();
 			$d->waitForElementUntilIsPresent(By::xPath("//div[contains(@class, 'accordion-body in')]/div/ul/li/a"));
 			$menuTypes = $el->findElements(By::xPath("//div[contains(@class, 'accordion-body in')]/div/ul/li/a"));
+
 			foreach ($menuTypes as $menuType)
 			{
 				$allText = $menuType->getText();
@@ -204,16 +233,29 @@ class MenuItemEditPage extends AdminEditPage
 				$menuTypeText = substr($allText, 0, (strlen($allText) - $subTextLength));
 				$result[] = array ('group' => $toggleName, 'type' => $menuTypeText);
 			}
-
 		}
+
 		return $result;
 	}
 
+	/**
+	 * function to get request variable
+	 *
+	 * @return String
+	 */
 	public function getRequestVariable()
 	{
 		return $this->driver->findElement(By::id('jform_request_id_name'))->getAttribute('value');
 	}
 
+	/**
+	 * function to set value
+	 *
+	 * @param   string  $label   stores value of label
+	 * @param   string  $value   stores value
+	 *
+	 * @return $this|void
+	 */
 	public function setFieldValue($label, $value)
 	{
 		if (strtolower($label) === 'menu item type')
@@ -232,9 +274,17 @@ class MenuItemEditPage extends AdminEditPage
 		{
 			parent::setFieldValue($label, $value);
 		}
+
 		return $this;
 	}
 
+	/**
+	 * function to set menu type
+	 *
+	 * @param   string   $value  stores value
+	 *
+	 * @return $this
+	 */
 	public function setMenuItemType($value)
 	{
 		$group = $this->getGroupName($value);
@@ -243,15 +293,24 @@ class MenuItemEditPage extends AdminEditPage
 		$d->findElement(By::xPath("//a[contains(@onclick, 'option=com_menus&view=menutypes')]"))->click();
 		$el = $d->waitForElementUntilIsPresent(By::xPath("//iframe[contains(@src, 'option=com_menus&view=menutypes')]"));
 		$el = $d->switchTo()->getFrameByWebElement($el);
+		$d->waitForElementUntilIsPresent(By::xPath("//a[contains(@class, 'accordion-toggle')][contains(., '" . $group . "')]"), 10);
 		$el->findElement(By::xPath("//a[contains(@class, 'accordion-toggle')][contains(., '" . $group . "')]"))->click();
 		$d->waitForElementUntilIsPresent(By::xPath("//div[contains(@class, 'accordion-body in')]/div/ul/li/a"));
 		$el->findElement(By::xPath("//div[contains(@class, 'accordion-body in')]//a[contains(text(), '" . $value . "')]"))->click();
 		$d->waitForElementUntilIsNotPresent(By::xPath("//iframe[contains(@src, 'option=com_menus&view=menutypes')]"));
 		$d->waitForElementUntilIsPresent(By::id('jform_title'));
 		$d->switchTo()->getDefaultFrame();
+
 		return $this;
 	}
 
+	/**
+	 * function to set request variable
+	 *
+	 * @param   string   $value stores  value
+	 *
+	 * @return void
+	 */
 	public function setRequestVariable($value)
 	{
 		$this->selectTab('Details');
@@ -268,5 +327,4 @@ class MenuItemEditPage extends AdminEditPage
 		$d->waitForElementUntilIsNotPresent(By::xPath("//iframe[contains(@src, 'layout=modal')]"));
 		$d->switchTo()->getDefaultFrame();
 	}
-
 }
