@@ -1,6 +1,6 @@
 <?php
 
-require_once 'joomlaWebdriverTestCase.php';
+require_once ' JoomlaWebdriverTestCase';
 
 use SeleniumClient\By;
 
