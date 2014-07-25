@@ -14,7 +14,7 @@ use SeleniumClient\By;
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @since       Joomla 3.3
  */
-class ModuleManager0001Test extends JoomlaWebdriverTestCase
+class ModuleManager0002Test extends JoomlaWebdriverTestCase
 {
 	/**
 	 *
