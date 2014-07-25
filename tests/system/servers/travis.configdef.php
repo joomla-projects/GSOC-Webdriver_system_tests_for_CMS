@@ -87,3 +87,4 @@ class SeleniumConfig
     public function __construct() {
         $this->baseURI = $this->folder . $this->path;
     }
+}
