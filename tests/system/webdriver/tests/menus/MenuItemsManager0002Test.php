@@ -45,7 +45,7 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
-	 * creates a menu item and check its existence on site page
+	 * Creates a menu item and check its existence on site page
 	 *
 	 * @return void
 	 *
@@ -75,7 +75,7 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
-	 * create menu item of type single article and verifying its existence on front end
+	 * Create menu item of type single article and verifying its existence on front end
 	 *
 	 * @return void
 	 *
@@ -143,7 +143,7 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
-	 * create menu item of type category blog and verifying its existence on front end
+	 * Create menu item of type category blog and verifying its existence on front end
 	 *
 	 * @return void
 	 *
@@ -218,7 +218,7 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
-	 * create menu item of type category list and verifying its existence on front end
+	 * Create menu item of type category list and verifying its existence on front end
 	 *
 	 * @return void
 	 *
