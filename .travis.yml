@@ -14,6 +14,7 @@ before_script:
   - mysql joomla_ut < tests/unit/suites/database/stubs/mysql.sql
   - psql -c 'create database joomla_ut;' -U postgres
   - psql -d joomla_ut -a -f tests/unit/suites/database/stubs/postgresql.sql
+  - curl -sS https://getcomposer.org/installer | php
   - composer install
 
   # Install Apache
