@@ -58,7 +58,6 @@ class InstallTest extends JoomlaWebdriverTestCase
 	 * it deletes the configuration file
 	 *
 	 * @return void
-	 *
 	 */
 	protected function deleteConfigurationFile()
 	{
