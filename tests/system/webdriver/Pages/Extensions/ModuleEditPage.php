@@ -16,10 +16,12 @@ use SeleniumClient\WebElement;
 /**
  * Class for the back-end control panel screen.
  *
+ * @since  joomla 3
  */
 class ModuleEditPage extends AdminEditPage
 {
-	protected $waitForXpath =  "//form[@id='module-form']";
+	protected $waitForXpath = "//form[@id='module-form']";
+
 	protected $url = 'administrator/index.php?option=com_users&view=module&layout=edit';
 
 	/**
@@ -101,9 +103,15 @@ class ModuleEditPage extends AdminEditPage
 		}
 	}
 
+	/**
+	 * function to get module type
+	 *
+	 * @return bool
+	 */
 	protected function getModuleType()
 	{
 		$elements = $this->driver->findElements(By::xPath("//span[@class = 'label']"));
+
 		if (count($elements >= 2))
 		{
 			return $elements[1]->getText();
@@ -114,15 +122,21 @@ class ModuleEditPage extends AdminEditPage
 		}
 	}
 
+	/**
+	 * function to get tab IDs
+	 *
+	 * @return array
+	 */
 	public function getTabIds()
 	{
 		$tabs = $this->driver->findElements(By::xPath("//div[@class='tab-content'][@id='myTabContent']/div"));
 		$return = array();
+
 		foreach ($tabs as $tab)
 		{
 			$return[] = $tab->getAttribute('id');
 		}
+
 		return $return;
 	}
-
 }
