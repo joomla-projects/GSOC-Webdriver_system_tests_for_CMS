@@ -29,7 +29,7 @@ class MessagingEditPage extends AdminEditPage
 	 * @var    string
 	 * @since  3.2
 	 */
-	protected $waitForXpath =  "//form[@id='message-form']";
+	protected $waitForXpath = "//form[@id='message-form']";
 
 	/**
 	 * URL used to uniquely identify this page
@@ -58,6 +58,4 @@ class MessagingEditPage extends AdminEditPage
 		array('label' => 'Subject', 'id' => 'jform_subject', 'type' => 'input', 'tab' => ''),
 		array('label' => 'Description', 'id' => 'jform_message_ifr', 'type' => 'textarea', 'tab' => ''),
 		);
-
 }
-

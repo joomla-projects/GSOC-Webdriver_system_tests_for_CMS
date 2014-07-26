@@ -24,13 +24,13 @@ use SeleniumClient\WebElement;
  */
 class NewsFeedManagerPage extends AdminManagerPage
 {
-  /**
+	/**
 	 * XPath string used to uniquely identify this page
 	 *
 	 * @var    string
 	 * @since  3.0
 	 */
-	protected $waitForXpath =  "//ul/li/a[@href='index.php?option=com_newsfeeds']";
+	protected $waitForXpath = "//ul/li/a[@href='index.php?option=com_newsfeeds']";
 
 	/**
 	 * URL used to uniquely identify this page
@@ -91,12 +91,12 @@ class NewsFeedManagerPage extends AdminManagerPage
 	 *
 	 * @return  NewsFeedManagerPage
 	 */
-	public function addFeed($name='Test Tag', $link='administrator/index.php/dummysrc', $category= 'Sample Data-Newsfeeds', $description='Sample', $caption='',$alt='')
+	public function addFeed($name = 'Test Tag', $link = 'administrator/index.php/dummysrc', $category = 'Sample Data-Newsfeeds', $description = 'Sample', $caption = '',$alt = '')
 	{
 		$new_name = $name;
 		$this->clickButton('toolbar-new');
 		$newsFeedEditPage = $this->test->getPageObject('NewsFeedEditPage');
-		$newsFeedEditPage->setFieldValues(array('Title' => $name, 'Link'=> $link, 'Category'=>$category, 'Description'=>$description, 'Caption'=>$caption, 'Alt text'=>$alt));
+		$newsFeedEditPage->setFieldValues(array('Title' => $name, 'Link' => $link, 'Category' => $category, 'Description' => $description, 'Caption' => $caption, 'Alt text' => $alt));
 		$newsFeedEditPage->clickButton('toolbar-save');
 		$this->test->getPageObject('NewsFeedManagerPage');
 	}
@@ -131,14 +131,17 @@ class NewsFeedManagerPage extends AdminManagerPage
 		$result = false;
 		$row = $this->getRowNumber($name);
 		$text = $this->driver->findElement(By::xPath("//tbody/tr[" . $row . "]/td[3]//a"))->getAttribute(@onclick);
+
 		if (strpos($text, 'newsfeeds.unpublish') > 0)
 		{
 			$result = 'published';
 		}
+
 		if (strpos($text, 'newsfeeds.publish') > 0)
 		{
 			$result = 'unpublished';
 		}
+
 		return $result;
 	}
 
@@ -154,6 +157,7 @@ class NewsFeedManagerPage extends AdminManagerPage
 	{
 		$this->searchFor($name);
 		$this->checkAll();
+
 		if (strtolower($state) == 'published')
 		{
 			$this->clickButton('toolbar-publish');
@@ -164,7 +168,12 @@ class NewsFeedManagerPage extends AdminManagerPage
 			$this->clickButton('toolbar-unpublish');
 			$this->driver->waitForElementUntilIsPresent(By::xPath($this->waitForXpath));
 		}
+		elseif (strtolower($state) == 'archived')
+		{
+			$this->clickButton('toolbar-archive');
+			$this->driver->waitForElementUntilIsPresent(By::xPath($this->waitForXpath));
+		}
+
 		$this->searchFor();
 	}
-
 }

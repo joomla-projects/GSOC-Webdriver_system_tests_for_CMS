@@ -24,13 +24,13 @@ use SeleniumClient\WebElement;
  */
 class CategoryManagerPage extends AdminManagerPage
 {
-  /**
+	/**
 	 * XPath string used to uniquely identify this page
 	 *
 	 * @var    string
 	 * @since  3.0
 	 */
-	protected $waitForXpath =  "//ul/li/a[@href='index.php?option=com_categories&extension=com_content']";
+	protected $waitForXpath = "//ul/li/a[@href='index.php?option=com_categories&extension=com_content']";
 
 	/**
 	 * URL used to uniquely identify this page
@@ -93,7 +93,7 @@ class CategoryManagerPage extends AdminManagerPage
 		$new_name = $name;
 		$this->clickButton('toolbar-new');
 		$categoryEditPage = $this->test->getPageObject('CategoryEditPage');
-		$categoryEditPage->setFieldValues(array('Title' => $name, 'Description'=>$desc));
+		$categoryEditPage->setFieldValues(array('Title' => $name, 'Description' => $desc));
 		$categoryEditPage->setFieldValues($fields);
 		$categoryEditPage->clickButton('toolbar-save');
 		$this->test->getPageObject('CategoryManagerPage');
@@ -130,14 +130,17 @@ class CategoryManagerPage extends AdminManagerPage
 		$this->searchFor($name);
 		$row = $this->getRowNumber($name);
 		$text = $this->driver->findElement(By::xPath("//tbody/tr[" . $row . "]/td[3]/a"))->getAttribute(@onclick);
+
 		if (strpos($text, 'categories.unpublish') > 0)
 		{
 			$result = 'published';
 		}
+
 		if (strpos($text, 'categories.publish') > 0)
 		{
 			$result = 'unpublished';
 		}
+
 		return $result;
 	}
 
@@ -153,6 +156,7 @@ class CategoryManagerPage extends AdminManagerPage
 	{
 		$this->searchFor($name);
 		$this->checkAll();
+
 		if (strtolower($state) == 'published')
 		{
 			$this->clickButton('toolbar-publish');
@@ -168,7 +172,7 @@ class CategoryManagerPage extends AdminManagerPage
 			$this->clickButton('toolbar-archive');
 			$this->driver->waitForElementUntilIsPresent(By::xPath($this->waitForXpath));
 		}
+
 		$this->searchFor();
 	}
-
 }

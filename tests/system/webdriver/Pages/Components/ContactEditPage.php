@@ -30,7 +30,7 @@ class ContactEditPage extends AdminEditPage
 	 * @var    string
 	 * @since  3.2
 	 */
-	protected $waitForXpath =  "//form[@id='contact-form']";
+	protected $waitForXpath = "//form[@id='contact-form']";
 
 	/**
 	 * URL used to uniquely identify this page
@@ -136,7 +136,5 @@ class ContactEditPage extends AdminEditPage
 			array('label' => 'Session Check', 'id' => 'jform_params_validate_session', 'type' => 'select', 'tab' => 'attrib-email'),
 			array('label' => 'Custom Reply', 'id' => 'jform_params_custom_reply', 'type' => 'select', 'tab' => 'attrib-email'),
 			array('label' => 'Contact Redirect', 'id' => 'jform_params_redirect', 'type' => 'input', 'tab' => 'attrib-email'),
-			);
-
+	);
 }
-

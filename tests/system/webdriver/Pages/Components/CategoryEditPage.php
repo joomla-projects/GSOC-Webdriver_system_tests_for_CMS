@@ -24,13 +24,13 @@ use SeleniumClient\WebElement;
  */
 class CategoryEditPage extends AdminEditPage
 {
-  /**
+	/**
 	 * XPath string used to uniquely identify this page
 	 *
 	 * @var    string
 	 * @since  3.0
 	 */
-	protected $waitForXpath =  "//form[@id='item-form']";
+	protected $waitForXpath = "//form[@id='item-form']";
 
 	/**
 	 * URL used to uniquely identify this page
@@ -85,7 +85,5 @@ class CategoryEditPage extends AdminEditPage
 			array('label' => 'Robots', 'id' => 'jform_metadata_robots', 'type' => 'select', 'tab' => 'publishing'),
 			array('label' => 'Alternative Layout', 'id' => 'jform_params_category_layout', 'type' => 'select', 'tab' => 'attrib-basic'),
 			array('label' => 'Image', 'id' => 'jform_params_image', 'type' => 'input', 'tab' => 'attrib-basic'),
-			);
-
-
+	);
 }

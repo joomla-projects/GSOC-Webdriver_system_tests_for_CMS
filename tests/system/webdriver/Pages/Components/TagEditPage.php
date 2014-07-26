@@ -30,7 +30,7 @@ class TagEditPage extends AdminEditPage
 	 * @var    string
 	 * @since  3.0
 	 */
-	protected $waitForXpath =  "//form[@id='item-form']";
+	protected $waitForXpath = "//form[@id='item-form']";
 
 	/**
 	 * URL used to uniquely identify this page
@@ -85,7 +85,5 @@ class TagEditPage extends AdminEditPage
 			array('label' => 'Float', 'id' => 'jform_params_float_fulltext', 'type' => 'select', 'tab' => 'attrib-images'),
 			array('label' => 'Alt', 'id' => 'jform_params_image_fulltext_alt', 'type' => 'input', 'tab' => 'attrib-images'),
 			array('label' => 'Caption', 'id' => 'jform_params_image_fulltext_caption', 'type' => 'input', 'tab' => 'attrib-images'),
-			);
-
+	);
 }
-
