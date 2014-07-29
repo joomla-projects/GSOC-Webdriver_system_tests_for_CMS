@@ -38,8 +38,6 @@ class UserManager0001Test extends JoomlaWebdriverTestCase
 	 * Login to back end and navigate to menu Language Manager.
 	 *
 	 * @return void
-	 *
-	 * @test
 	 */
 	public function setUp()
 	{
