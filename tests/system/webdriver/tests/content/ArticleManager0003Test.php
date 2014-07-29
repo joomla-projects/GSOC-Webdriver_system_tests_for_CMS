@@ -42,7 +42,6 @@ class ArticleManager0003Test extends JoomlaWebdriverTestCase
 	{
 		$cfg = new SeleniumConfig;
 		parent::setUp();
-		$this->driver->get($cfg->host . $cfg->path);
 	}
 
 	/**
@@ -308,7 +307,7 @@ class ArticleManager0003Test extends JoomlaWebdriverTestCase
 	{
 		/*adding test category.*/
 		$cfg = new SeleniumConfig;
-
+		$this->doAdminLogin();
 		$categoryManager = 'administrator/index.php?option=com_categories&extension=com_content';
 		$this->driver->get($cfg->host . $cfg->path . $categoryManager);
 
