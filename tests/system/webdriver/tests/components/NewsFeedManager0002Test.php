@@ -147,23 +147,23 @@ class NewsFeedManager0002Test extends JoomlaWebdriverTestCase
 
 		$this->newsFeedManagerPage->addFeed($feedName_1);
 		$message = $this->newsFeedManagerPage->getAlertMessage();
-		$this->assertTrue(strpos($message, 'Banner successfully saved') >= 0, 'Banner save should return success');
+		$this->assertTrue(strpos($message, 'Banner successfully saved') >= 0, 'news feed save should return success');
 		$state = $this->newsFeedManagerPage->getState($feedName_1);
 		$this->assertEquals('published', $state, 'Initial state should be published');
 		$this->newsFeedManagerPage->addFeed($feedName_2);
 		$message = $this->newsFeedManagerPage->getAlertMessage();
-		$this->assertTrue(strpos($message, 'Banner successfully saved') >= 0, 'Banner save should return success');
+		$this->assertTrue(strpos($message, 'Banner successfully saved') >= 0, 'news feed save should return success');
 		$state = $this->newsFeedManagerPage->getState($feedName_2);
 		$this->assertEquals('published', $state, 'Initial state should be published');
 		$this->newsFeedManagerPage->changeFeedState($feedName_2, 'Archived');
 
 		$this->newsFeedManagerPage->setFilter('filter_published', 'Archived');
-		$this->assertFalse($this->newsFeedManagerPage->getRowNumber($feedName_1), 'banner should not show');
-		$this->assertGreaterThanOrEqual(1, $this->newsFeedManagerPage->getRowNumber($feedName_2), 'Test banner should be present');
+		$this->assertFalse($this->newsFeedManagerPage->getRowNumber($feedName_1), 'news feed should not show');
+		$this->assertGreaterThanOrEqual(1, $this->newsFeedManagerPage->getRowNumber($feedName_2), 'Test news feed should be present');
 
 		$this->newsFeedManagerPage->setFilter('filter_published', 'Published');
-		$this->assertFalse($this->newsFeedManagerPage->getRowNumber($feedName_2), 'Banner should not show');
-		$this->assertGreaterThanOrEqual(1, $this->newsFeedManagerPage->getRowNumber($feedName_1), 'Test banner should be present');
+		$this->assertFalse($this->newsFeedManagerPage->getRowNumber($feedName_2), 'news feed should not show');
+		$this->assertGreaterThanOrEqual(1, $this->newsFeedManagerPage->getRowNumber($feedName_1), 'Test news feed should be present');
 		$this->newsFeedManagerPage->setFilter('Select Status', 'Select Status');
 		$this->newsFeedManagerPage->trashAndDelete($feedName_1);
 		$this->newsFeedManagerPage->trashAndDelete($feedName_2);
