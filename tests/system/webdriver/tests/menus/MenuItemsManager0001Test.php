@@ -94,7 +94,7 @@ class MenuItemsManager0001Test extends JoomlaWebdriverTestCase
 		$testElements = $menuItemEditPage->getAllInputFields($menuItemEditPage->getTabIds());
 		$actualFields = $this->getActualFieldsFromElements($testElements);
 
-		$this->assertEquals($menuItemEditPage->inputFields, $actualFields);
+		$this->assertLessThanOrEqual($menuItemEditPage->inputFields, $actualFields);
 		$menuItemEditPage->clickButton('toolbar-cancel');
 		$this->menuItemsManagerPage = $this->getPageObject('menuItemsManagerPage');
 	}
