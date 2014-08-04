@@ -160,8 +160,9 @@ class SiteContentFeaturedPage extends SitePage
 	public function itemExist($itemName, $arg)
 	{
 		$driver = $this->driver;
-		$driver->waitForElementUntilIsPresent(By::xPath("//" . $arg . "[contains(text()," . $itemName . ")]"), 10);
-		$element = $driver->findElement(By::xPath("//" . $arg . "[contains(text()," . $itemName . ")]"));
+		$path = "//" . $arg . "[contains(text(),'" . $itemName . "')]";
+		$driver->waitForElementUntilIsPresent(By::xPath($path), 60);
+		$element = $driver->findElement(By::xPath($path));
 
 		if ($element != null)
 		{
@@ -181,7 +182,9 @@ class SiteContentFeaturedPage extends SitePage
 	public function itemClick($itemName)
 	{
 		$driver = $this->driver;
-		$driver->findElement(By::xPath("//a[contains(text(),'" . $itemName . "')]"))->click();
+		$path = "//a[contains(text(),'" . $itemName . "')]";
+		$driver->waitForElementUntilIsPresent(By::xPath($path), 60);
+		$driver->findElement(By::xPath($path))->click();
 	}
 	
 	/**
