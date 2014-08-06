@@ -43,7 +43,6 @@ class SiteArchivedArticlesPage extends SitePage
 	/**
 	 * Function which returns Title array of Articles on the Home page of Front End
 	 *
-	 *
 	 * @return  Array of Article Titles Visible
 	 */
 	public function getArticleTitles()
