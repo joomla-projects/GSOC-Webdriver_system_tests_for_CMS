@@ -16,10 +16,12 @@ use SeleniumClient\WebElement;
 /**
  * Class for the back-end control panel screen.
  *
+ * @since Joomla 3.0
  */
 class UserNotesEditPage extends AdminEditPage
 {
 	protected $waitForXpath = "//form[@id='note-form']";
+
 	protected $url = 'administrator/index.php?option=com_users&view=note&layout=edit';
 
 	/**
@@ -37,21 +39,30 @@ class UserNotesEditPage extends AdminEditPage
 			array('label' => 'Note', 'id' => 'jform_body', 'type' => 'textarea', 'tab' => 'header'),
 	);
 
+	/**
+	 * function to get all input fields
+	 *
+	 * @param   array  $tabIds  array to store all the tab IDs
+	 *
+	 * @return array
+	 */
 	public function getAllInputFields($tabIds = array())
 	{
 		$return = array();
 		$labels = $this->driver->findElements(By::xPath("//fieldset/div[@class='control-group']/div/label"));
 		$tabId = 'header';
+
 		foreach ($labels as $label)
 		{
 			$labelText = $label->getText();
+
 			if (($inputField = $this->getInputField($tabId, $label)) !== false)
 			{
 				$return[] = $inputField;
 			}
 			elseif ($labelText == 'ID *')
 			{
-				$object = new stdClass();
+				$object = new stdClass;
 				$object->tab = $tabId;
 				$object->tag = 'input';
 				$object->labelText = 'ID';
@@ -62,9 +73,17 @@ class UserNotesEditPage extends AdminEditPage
 				$return[] = $object;
 			}
 		}
+
 		return $return;
 	}
 
+	/**
+	 * function to set the field values of user
+	 *
+	 * @param   string  $userName  title of the user
+	 *
+	 * @return void
+	 */
 	public function setUser($userName)
 	{
 		$linkXpath = "//a[contains(@href, 'view=users&layout=modal')]";
@@ -84,6 +103,13 @@ class UserNotesEditPage extends AdminEditPage
 		$this->driver->executeScript("window.scrollTo(0,0)");
 	}
 
+	/**
+	 * function to set the field values
+	 *
+	 * @param   array  $fields  stores values of the input fields
+	 *
+	 * @return $this|void
+	 */
 	public function setFieldValues(array $fields)
 	{
 		foreach ($fields as $label => $value)
@@ -99,9 +125,17 @@ class UserNotesEditPage extends AdminEditPage
 		}
 	}
 
+	/**
+	 * function to get input field values
+	 *
+	 * @param   string  $label  stores label
+	 *
+	 * @return bool|String
+	 */
 	public function getFieldValue($label)
 	{
 		$result = false;
+
 		if ($label == 'ID')
 		{
 			$result = $this->driver->findElement(By::id('jform_user_id'))->getAttribute('value');
@@ -110,6 +144,7 @@ class UserNotesEditPage extends AdminEditPage
 		{
 			$result = parent::getFieldValue($label);
 		}
+
 		return $result;
 	}
 }
