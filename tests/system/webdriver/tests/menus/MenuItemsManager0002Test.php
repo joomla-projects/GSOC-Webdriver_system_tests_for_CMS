@@ -49,7 +49,6 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase
 	 *
 	 * @return void
 	 *
-	 *
 	 * @test
 	 */
 	public function addMenuItem_FrontEndCheck_MenuAdded()
@@ -78,7 +77,6 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase
 	 * Create menu item of type single article and verifying its existence on front end
 	 *
 	 * @return void
-	 *
 	 *
 	 * @test
 	 */
@@ -338,7 +336,6 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase
 	 * @return void
 	 *
 	 * @test
-	 *
 	 */
 	public function addMenu_OptionFunctionalityCheck_OptionWorking()
 	{
