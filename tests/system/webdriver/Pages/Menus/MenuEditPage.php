@@ -16,7 +16,7 @@ use SeleniumClient\WebElement;
 /**
  * Class for the back-end control panel screen.
  *
- * @since  Joomla 3
+ * @since  Joomla 3.0
  */
 class MenuEditPage extends AdminEditPage
 {
