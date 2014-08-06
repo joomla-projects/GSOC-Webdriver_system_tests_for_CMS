@@ -24,7 +24,7 @@ class MenuManager0001Test extends JoomlaWebdriverTestCase
 	 *
 	 * @var MenuManagerPage
 	 */
-	protected $menuManagerPage = null; /* Global configuration page*/
+	protected $menuManagerPage = null;
 
 	/**
 	 * Login to back end and navigate to menu item manager.
