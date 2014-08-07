@@ -10,10 +10,8 @@ use SeleniumClient\DesiredCapabilities;
 
 /**
  * This class tests the Module Manager: Add / Edit Module Screen
+ * @author Mark
  *
- * @package     Joomla.Test
- * @subpackage  Webdriver
- * @since       3.0
  */
 class ModuleManager0001Test extends JoomlaWebdriverTestCase
 {
@@ -21,15 +19,8 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 	 *
 	 * @var ModuleManagerPage
 	 */
-	protected $moduleManagerPage = null;
+	protected $moduleManagerPage = null; // Global configuration page
 
-	/**
-	 * Login to back end and navigate to menu Tags.
-	 *
-	 * @return void
-	 *
-	 * @since   3.0
-	 */
 	public function setUp()
 	{
 		parent::setUp();
@@ -38,13 +29,6 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$this->moduleManagerPage = $cpPage->clickMenu('Module Manager', 'ModuleManagerPage');
 	}
 
-	/**
-	 * Logout and close test.
-	 *
-	 * @return void
-	 *
-	 * @since   3.0
-	 */
 	public function tearDown()
 	{
 		$this->doAdminLogout();
@@ -52,10 +36,6 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
-	 * check tag edit page
-	 *
-	 * @return void
-	 *
 	 * @test
 	 */
 	public function constructor_OpenEditScreen_ModuleEditOpened()
@@ -69,10 +49,6 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
-	 * check tab Ids
-	 *
-	 * @return void
-	 *
 	 * @test
 	 */
 	public function getTabIds_ScreenDisplayed_EqualExpected()
@@ -81,29 +57,25 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$this->driver->waitForElementUntilIsPresent(By::xPath("//a[contains(., 'Articles Categories')]"))->click();
 		$moduleEditPage = $this->getPageObject('ModuleEditPage');
 		$textArray = $moduleEditPage->getTabIds();
-		$this->assertLessThanOrEqual($moduleEditPage->tabs, $textArray, 'Tab labels should match expected values.');
+		$this->assertEquals($moduleEditPage->tabs, $textArray, 'Tab labels should match expected values.');
 		$moduleEditPage->clickButton('toolbar-cancel');
 		$this->moduleManagerPage = $this->getPageObject('ModuleManagerPage');
 	}
 
 	/**
-	 * check available module types
-	 *
-	 * @return void
-	 *
 	 * @test
 	 */
 	public function getModuleTypes_GetsTypes_EqualsExpected()
 	{
 		$actualModuleTypes = $this->moduleManagerPage->getModuleTypes();
+// 		foreach ($actualModuleTypes as $type)
+// 		{
+// 			echo "array('client' => '" . $type['client'] . "', 'name' => '" . $type['name'] . "'),\n";
+// 		}
 		$this->assertEquals($this->moduleManagerPage->moduleTypes, $actualModuleTypes, 'Module types should equal expected');
 	}
 
 	/**
-	 * check all input fields
-	 *
-	 * @return void
-	 *
 	 * @test
 	 */
 	public function getAllInputFields_ScreenDisplayed_EqualExpected()
@@ -111,6 +83,10 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$this->moduleManagerPage->clickButton('toolbar-new');
 		$this->driver->waitForElementUntilIsPresent(By::xPath("//a[contains(., 'Articles Categories')]"))->click();
 		$moduleEditPage = $this->getPageObject('ModuleEditPage');
+
+		// Option to print actual element array
+		/* @var $moduleEditPage ModuleEditPage */
+ 	 	//$moduleEditPage->printFieldArray($moduleEditPage->getAllInputFields($moduleEditPage->tabs));
 
 		$testElements = $moduleEditPage->getAllInputFields($moduleEditPage->tabs);
 		$actualFields = $this->getActualFieldsFromElements($testElements);
@@ -120,10 +96,6 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
-	 * add module with default values
-	 *
-	 * @return void
-	 *
 	 * @test
 	 */
 	public function addModule_WithFieldDefaults_ModuleAdded()
@@ -139,10 +111,6 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
-	 * add module with given values
-	 *
-	 * @return void
-	 *
 	 * @test
 	 */
 	public function addModule_WithGivenFields_ModuleAdded()
@@ -171,10 +139,6 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
-	 * edit the value of the input fields in the module
-	 *
-	 * @return void
-	 *
 	 * @test
 	 */
 	public function editModule_ChangeFields_FieldsChanged()
@@ -210,10 +174,6 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
-	 * change the state of the module and verufy
-	 *
-	 * @return void
-	 *
 	 * @test
 	 */
 	public function changeModuleState_ChangeEnabledUsingToolbar_EnabledChanged()
@@ -226,4 +186,5 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 		$this->assertEquals('unpublished', $state, 'State should be unpublished');
 		$this->moduleManagerPage->trashAndDelete('Test Module');
 	}
+
 }
