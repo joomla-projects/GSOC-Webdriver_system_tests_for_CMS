@@ -65,7 +65,7 @@ class SiteContentFeaturedPage extends SitePage
 	 */
 	public function getContactTitles()
 	{
-		$arrayElement = $this->driver->findElements(By::xPath("//a//span[contains(text(), '')]"));
+		$arrayElement = $this->driver->findElements(By::xPath("//a[contains(text(), '')]"));
 		$arrayTitles = array();
 
 		for ($i = 0;$i < count($arrayElement);$i++)
