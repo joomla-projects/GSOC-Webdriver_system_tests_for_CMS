@@ -44,14 +44,14 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase
 		parent::tearDown();
 	}
 
-    /**
-     * creates a menu item and check its existence on site page
-     *
-     * @return void
-     * 
-     * @test
-     */
-    public function addMenuItem_FrontEndCheck_MenuAdded()
+	/**
+     	 * creates a menu item and check its existence on site page
+         *
+         * @return void
+         * 
+         * @test
+         */
+	public function addMenuItem_FrontEndCheck_MenuAdded()
 	{
 		$cfg = new SeleniumConfig;
 		$MenuItemsManager = 'administrator/index.php?option=com_menus&view=items';
@@ -75,7 +75,7 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase
 		$this->assertFalse($this->menuItemsManagerPage->getRowNumber('Test Menu Item'), 'Test menu should not be present');
 	}
 
-    /**
+    	/**
 	 * create menu item of type single article and verifying its existence on front end
 	 *
 	 * @return void
@@ -146,14 +146,14 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase
 		$this->assertFalse($this->menuItemsManagerPage->getRowNumber($title), 'Test menu should not be present');
 	}
 
-    /**
-     * create menu item of type category blog and verifying its existence on front end
-     *
-     * @return void
-     * 
-     * @test
-     */
-    public function addMenu_CategoryBlog_MenuAdded()
+	/**
+         * create menu item of type category blog and verifying its existence on front end
+         *
+         * @return void
+         * 
+         * @test
+         */
+	public function addMenu_CategoryBlog_MenuAdded()
 	{
 		$cfg = new SeleniumConfig;
 		$categoryManager = 'administrator/index.php?option=com_categories&extension=com_content';
@@ -225,14 +225,14 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase
 		$this->assertFalse($this->menuItemsManagerPage->getRowNumber($title), 'Test menu should not be present');
 	}
 	
-    /**
-     * create menu item of type category list and verifying its existence on front end.
-     *
-     * @return void
-     * 
-     * @test
-     */
-    public function addMenu_CategoryList_MenuAdded()
+	/**
+         * create menu item of type category list and verifying its existence on front end.
+         *
+         * @return void
+         * 
+         * @test
+         */
+	public function addMenu_CategoryList_MenuAdded()
 	{
 		$cfg = new SeleniumConfig;
 		$categoryManager = 'administrator/index.php?option=com_categories&extension=com_content';
