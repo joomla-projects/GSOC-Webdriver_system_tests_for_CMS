@@ -51,7 +51,7 @@ script:
   - cd tests/system/webdriver/tests/
   - phpunit installation/InstallTest.php
   - phpunit components/CategoryManager0001Test.php
-  - phpunit contents/
+  - phpunit content/
   - phpunit menus/
   - phpunit extensions/ModuleManager0001Test.php
   - phpunit extensions/ModuleManager0002Test.php
