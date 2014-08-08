@@ -50,7 +50,6 @@ class MenuItemsManager0003Test extends JoomlaWebdriverTestCase
 	 * @return void
 	 *
 	 * @test
-	 *
 	 */
 	public function  addMenu_SingleContact_MenuAdded()
 	{
@@ -129,7 +128,6 @@ class MenuItemsManager0003Test extends JoomlaWebdriverTestCase
 	 * @return void
 	 *
 	 * @test
-	 *
 	 */
 	public function  addMenu_FeaturedContact_MenuAdded()
 	{
