@@ -50,13 +50,11 @@ script:
   - mv tests/system/servers/travis.configdef.php tests/system/servers/configdef.php # Create travis system tests config file
   - cd tests/system/webdriver/tests/
   - phpunit installation/InstallTest.php
-  - phpunit components/
+  - phpunit components/CategoryManager0001Test.php
   - phpunit content/
-  - phpunit control_panel/
-  - phpunit extensions/
   - phpunit menus/
-  - phpunit users/
-  - phpunit services/
+  - phpunit extensions/ModuleManager0001Test.php
+  - phpunit extensions/ModuleManager0002Test.php
   
 branches:
   except:
