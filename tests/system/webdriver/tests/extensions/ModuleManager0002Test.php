@@ -111,9 +111,9 @@ class ModuleManager0002Test extends JoomlaWebdriverTestCase
 		$this->driver->get($cfg->host . $cfg->path . $categoryManager);
 		$this->categoryManagerPage = $this->getPageObject('CategoryManagerPage');
 		$this->categoryManagerPage->trashAndDelete($categoryName1);
-		$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName), 'Test Category should not be present');
+		$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName1), 'Test Category should not be present');
 		$this->categoryManagerPage->trashAndDelete($categoryName2);
-		$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName), 'Test Category should not be present');
+		$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName2), 'Test Category should not be present');
 		$this->categoryManagerPage->trashAndDelete($categoryName);
 		$this->assertFalse($this->categoryManagerPage->getRowNumber($categoryName), 'Test Category should not be present');
 
