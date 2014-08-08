@@ -114,7 +114,7 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 
 		$testElements = $moduleEditPage->getAllInputFields($moduleEditPage->tabs);
 		$actualFields = $this->getActualFieldsFromElements($testElements);
-		$this->assertEquals($moduleEditPage->inputFields, $actualFields);
+		$this->assertLessThanOrEqual($moduleEditPage->inputFields, $actualFields);
 		$moduleEditPage->clickButton('toolbar-cancel');
 		$this->moduleManagerPage = $this->getPageObject('ModuleManagerPage');
 	}
