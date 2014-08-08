@@ -47,6 +47,7 @@ class UserEditPage extends AdminEditPage
 			array('label' => 'Registration Date', 'id' => 'jform_registerDate', 'type' => 'input', 'tab' => 'details'),
 			array('label' => 'Last Visit Date', 'id' => 'jform_lastvisitDate', 'type' => 'input', 'tab' => 'details'),
 			array('label' => 'Last Reset Date', 'id' => 'jform_lastResetTime', 'type' => 'input', 'tab' => 'details'),
+			array('label' => 'Require Password Reset', 'id' => 'jform_requireReset', 'type' => 'fieldset', 'tab' => 'details'),
 			array('label' => 'Password Reset Count', 'id' => 'jform_resetCount', 'type' => 'input', 'tab' => 'details'),
 			array('label' => 'Receive System emails', 'id' => 'jform_sendEmail', 'type' => 'fieldset', 'tab' => 'details'),
 			array('label' => 'Block this User', 'id' => 'jform_block', 'type' => 'fieldset', 'tab' => 'details'),
