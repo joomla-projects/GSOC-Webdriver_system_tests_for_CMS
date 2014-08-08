@@ -16,7 +16,7 @@ use SeleniumClient\WebElement;
 /**
  * Class for the back-end control panel screen.
  *
- * @since  joomla 3
+ * @since  joomla 3.0
  */
 class ModuleManagerPage extends AdminManagerPage
 {
