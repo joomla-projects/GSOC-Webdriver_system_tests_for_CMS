@@ -162,7 +162,7 @@ class LanguageManager0001Test extends JoomlaWebdriverTestCase
 		$this->languageManagerPage->addLanguage($langName, $lang_title_native, $url_code, $image_prefix, $language_tag);
 		$message = $this->languageManagerPage->getAlertMessage();
 		$this->assertTrue(strpos($message, 'Content Language successfully saved') >= 0, 'Content Language save should return success');
-		$this->assertGreaterThanOrEqual(1, $this->languageManagerPage->getRowNumber($langName), 'Test lang should be in row 2');
+		$this->assertGreaterThanOrEqual(1, $this->languageManagerPage->getRowNumber($langName), 'Test lang should be present');
 		$values = $this->languageManagerPage->getFieldValues('LanguageEditPage', $langName, array('Title', 'Title Native'));
 		$this->assertEquals(array($langName, $lang_title_native), $values, 'Actual name, native name should match expected');
 		$this->languageManagerPage->trashAndDelete($langName);
