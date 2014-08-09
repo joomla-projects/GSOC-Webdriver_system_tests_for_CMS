@@ -93,7 +93,7 @@ class LanguageManager0002Test extends JoomlaWebdriverTestCase
 		$test = $this->languageManagerPage->setFilter('filter_published', 'Unpublished');
 		$this->assertFalse($this->languageManagerPage->getRowNumber($langName), 'Lang should not show');
 		$test = $this->languageManagerPage->setFilter('filter_published', 'Published');
-		$this->assertEquals(2, $this->languageManagerPage->getRowNumber($langName), 'Lang should be in row 2');
+		$this->assertGreaterThanOrEqual(1, $this->languageManagerPage->getRowNumber($langName), 'Lang should be present');
 		$this->languageManagerPage->trashAndDelete($langName);
 		$this->assertFalse($this->languageManagerPage->getRowNumber($langName), 'Lang should not be present');
 	}
