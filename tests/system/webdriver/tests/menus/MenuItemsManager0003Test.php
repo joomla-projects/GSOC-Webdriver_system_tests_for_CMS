@@ -104,7 +104,7 @@ class MenuItemsManager0003Test extends JoomlaWebdriverTestCase
 		$this->siteHomePage = $this->getPageObject('SiteContentFeaturedPage');
 
 		$this->siteHomePage->itemClick($title);
-		$this->siteHomePage->itemExist($contactName, 'h2');
+		$this->siteHomePage->itemExist($contactName, 'h2//span');
 
 		/*delete the test elements*/
 		$this->doAdminLogin();
@@ -278,10 +278,10 @@ class MenuItemsManager0003Test extends JoomlaWebdriverTestCase
 		$this->assertTrue($this->siteHomePage->itemExist($categoryName1, 'a'));
 		$this->assertTrue($this->siteHomePage->itemExist($categoryName2, 'a'));
 		$this->siteHomePage->itemClick($categoryName1);
-		$this->assertTrue($this->siteHomePage->itemExist($contactName1, 'h2'));
-		$this->driver->back();
+		$this->assertTrue($this->siteHomePage->itemExist($contactName1, 'a'));
+		$this->siteHomePage->itemClick($title);
 		$this->siteHomePage->itemClick($categoryName2);
-		$this->assertTrue($this->siteHomePage->itemExist($contactName2, 'h2'));
+		$this->assertTrue($this->siteHomePage->itemExist($contactName2, 'a'));
 
 		/*delete all the test elements*/
 
