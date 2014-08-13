@@ -44,12 +44,6 @@ before_script:
   - sleep 20
   
 
-  # Disable set_time_limit
-  - sed -ri 's/max_execution_time\s*=\s*[0-9]+/max_execution_time = 120/g' `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
-  # - echo "disable_functions = set_time_limit" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
-  
-
-
 script:
   - phpunit --configuration travisci-phpunit.xml
   - mv tests/system/servers/travis.configdef.php tests/system/servers/configdef.php # Create travis system tests config file
