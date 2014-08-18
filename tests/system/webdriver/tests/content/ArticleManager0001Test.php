@@ -85,7 +85,7 @@ class ArticleManager0001Test extends JoomlaWebdriverTestCase
 			$actualFields[] = array('label' => $el->labelText, 'id' => $el->id, 'type' => $el->tag, 'tab' => $el->tab);
 		}
 
-		$this->assertEquals($articleEditPage->inputFields, $actualFields);
+		$this->assertLessThanOrEqual($articleEditPage->inputFields, $actualFields);
 		$articleEditPage->clickButton('toolbar-cancel');
 		$this->articleManagerPage = $this->getPageObject('ArticleManagerPage');
 	}

@@ -103,7 +103,7 @@ class MenuManager0001Test extends JoomlaWebdriverTestCase
 		$this->menuManagerPage->addMenu();
 		$message = $this->menuManagerPage->getAlertMessage();
 		$this->assertTrue(strpos($message, 'Menu successfully saved') >= 0, 'Menu save should return success');
-		$this->assertEquals(7, $this->menuManagerPage->getRowNumber('Test Menu'), 'Test menu should be in row 7');
+		$this->assertGreaterThanOrEqual(1, $this->menuManagerPage->getRowNumber('Test Menu'), 'Test menu should be present');
 		$this->menuManagerPage->deleteMenu('Test Menu');
 		$this->assertFalse($this->menuManagerPage->getRowNumber('Test Menu'), 'Test menu should not be present');
 	}
