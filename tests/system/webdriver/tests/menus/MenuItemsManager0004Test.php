@@ -113,26 +113,14 @@ class MenuItemsManager0004Test extends JoomlaWebdriverTestCase
 	{
 		$this->doAdminLogin();
 		$cfg = new seleniumconfig;
-
-		/*add test news feed*/
-
-		$feedManager = 'administrator/index.php?option=com_newsfeeds';
-		$this->driver->get($cfg->host . $cfg->path . $feedManager);
-		$this->newsFeedManagerPage = $this->getPageObject('NewsFeedManagerPage');
 		$salt = rand();
-		$feedName = 'Test_Feed' . $salt;
-		$this->assertFalse($this->newsFeedManagerPage->getRowNumber($feedName), 'Test Feed should not be present');
-		$this->newsFeedManagerPage->addFeed($feedName);
-		$message = $this->newsFeedManagerPage->getAlertMessage();
-		$this->assertTrue(strpos($message, 'News feed successfully saved') >= 0, 'Feed save should return success');
-
-		/* add menu item of type single newsfeed */
 
 		$menuItemManager = 'administrator/index.php?option=com_menus&view=items';
 		$this->driver->get($cfg->host . $cfg->path . $menuItemManager);
 		$title = 'Menu Item' . $salt;
 		$menuType = 'Single News Feed ';
 		$menuLocation = 'Main Menu';
+		$feedName = "Joomla! Connect";
 		$this->menuItemsManagerPage = $this->getPageObject('MenuItemsManagerPage');
 		$this->menuItemsManagerPage->setFilter('Menu', $menuLocation);
 		$this->assertFalse($this->menuItemsManagerPage->getRowNumber($title), 'Test menu should not be present');
@@ -149,13 +137,6 @@ class MenuItemsManager0004Test extends JoomlaWebdriverTestCase
 
 		$this->siteHomePage->itemClick($title);
 		$this->assertTrue($this->siteHomePage->itemExist($feedName, 'a'), 'News feed should be present');
-
-		/*delete the test elements*/
-
-		$this->doAdminLogin();
-		$this->driver->get($cfg->host . $cfg->path . $feedManager);
-		$this->newsFeedManagerPage->trashAndDelete($feedName);
-		$this->assertFalse($this->newsFeedManagerPage->getRowNumber($feedName), 'Test feed should not be present');
 
 		$this->driver->get($cfg->host . $cfg->path . $menuItemManager);
 		$this->menuItemsManagerPage->setFilter('Menu', 'Main Menu');
