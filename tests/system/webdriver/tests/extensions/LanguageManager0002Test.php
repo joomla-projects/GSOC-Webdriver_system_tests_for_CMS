@@ -85,7 +85,7 @@ class LanguageManager0002Test extends JoomlaWebdriverTestCase
 	public function setFilter_SetFilterValues_ShouldExecuteFilter()
 	{
 		$salt = rand();
-		$langName = 'Test Filter' . $salt;
+		$langName = 'Test Lang' . $salt;
 		$this->languageManagerPage = $this->getPageObject('LanguageManagerPage');
 		$this->languageManagerPage->addLanguage($langName);
 		$message = $this->languageManagerPage->getAlertMessage();
@@ -109,8 +109,8 @@ class LanguageManager0002Test extends JoomlaWebdriverTestCase
 	{
 		$salt = rand();
 		/*Other than the Default Value */
-		$langName_1 = 'Test Filter 1';
-		$langName_2 = 'Test Filter 2';
+		$langName_1 = 'Test Lang 1';
+		$langName_2 = 'Test Lang 2';
 		$lang_title_native = 'Sample2' . $salt;
 		$url_code = 'Sample2' . $salt;
 		$image_prefix = 'af';
@@ -133,7 +133,7 @@ class LanguageManager0002Test extends JoomlaWebdriverTestCase
 
 		$test = $this->languageManagerPage->setFilter('filter_published', 'Unpublished');
 		$this->assertFalse($this->languageManagerPage->getRowNumber($langName_1), 'Lang should not show');
-		$this->assertEquals(1, $this->languageManagerPage->getRowNumber($langName_2), 'Lang should be in row 1');
+		$this->assertGreaterThanOrEqual(1, $this->languageManagerPage->getRowNumber($langName_2), 'Lang should be in row 1');
 
 		$test = $this->languageManagerPage->setFilter('filter_published', 'Published');
 		$this->assertFalse($this->languageManagerPage->getRowNumber($langName_2), 'Lang should not show');
