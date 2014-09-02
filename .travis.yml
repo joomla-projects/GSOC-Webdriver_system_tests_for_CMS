@@ -3,54 +3,22 @@ language: php
 php:
   - 5.3
   - 5.4
+  - 5.5
+  - 5.6
 
 before_script:
   - composer self-update
-  - pyrus channel-discover pear.phpunit.de
-  - pyrus channel-discover pear.symfony.com
-  - pyrus install --force phpunit/DbUnit
+  - pyrus install -f pear/PHP_CodeSniffer-1.5.4
   - phpenv rehash
   - mysql -e 'create database joomla_ut;'
   - mysql joomla_ut < tests/unit/suites/database/stubs/mysql.sql
   - psql -c 'create database joomla_ut;' -U postgres
   - psql -d joomla_ut -a -f tests/unit/suites/database/stubs/postgresql.sql
-  
-
-  # Install Apache
-  - sudo apt-get update > /dev/null
-  - sudo apt-get install -y --force-yes apache2 libapache2-mod-php5 php5-curl php5-mysql php5-intl
-  - ls
-  - pwd
-  - sudo chmod 777 -R /home/travis/build/joomla-projects/GSOC-Webdriver_system_tests_for_CMS
-  - sudo ln -s /home/travis/build/joomla-projects/GSOC-Webdriver_system_tests_for_CMS/ /var/www/joomla-cms
-  - sudo sed -i -e "s,AllowOverride[ ]None,AllowOverride All,g" /etc/apache2/sites-available/default
-  - sudo /etc/init.d/apache2 restart
-
-  # Test apache
-  - "curl http://localhost/"
-  - "curl http://localhost/joomla-cms/installation/index.php"
-
-  # XVFB
-  - "export DISPLAY=:99.0"
-  - "Xvfb :99.0 -extension RANDR > /dev/null &"
-
-  # Window manager
-  - "sudo apt-get install fluxbox -y --force-yes"
-  - "fluxbox &"
-
-  # Selenium server
-  - "wget http://selenium.googlecode.com/files/selenium-server-standalone-2.39.0.jar"
-  - "java -jar selenium-server-standalone-2.39.0.jar > /dev/null 2>/dev/null &"
-  - sleep 20
-  
-  
 
 script:
   - phpunit --configuration travisci-phpunit.xml
-  - mv tests/system/servers/travis.configdef.php tests/system/servers/configdef.php # Create travis system tests config file
-  - cd tests/system/webdriver/tests/
-  - phpunit installation/InstallTest.php
-  
+  - phpcs --report=full --extensions=php -p --standard=build/phpcs/Joomla .
+
 branches:
   except:
     - 2.5.x
