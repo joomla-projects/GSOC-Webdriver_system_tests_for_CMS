@@ -33,9 +33,9 @@ class TemplateFrontEnd0002Test extends JoomlaWebdriverTestCase
 	/**
 	 * Login and start test.
 	 *
-	 * @since   3.2
-	 *
 	 * @return void
+	 *
+	 * @since   3.2
 	 */
 	public function setUp()
 	{
