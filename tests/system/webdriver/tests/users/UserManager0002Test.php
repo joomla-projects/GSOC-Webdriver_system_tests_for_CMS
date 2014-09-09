@@ -39,7 +39,7 @@ class UserManager0002Test extends JoomlaWebdriverTestCase
 	 *
 	 * @return void
 	 *
-	 * @test
+	 * @since   3.0
 	 */
 	public function setUp()
 	{
