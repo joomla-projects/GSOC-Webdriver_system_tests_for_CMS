@@ -38,7 +38,7 @@ class LevelManager0001Test extends JoomlaWebdriverTestCase
 	 *
 	 * @return void
 	 *
-	 * @test
+	 * @since   3.0
 	 */
 	public function setUp()
 	{
