@@ -28,7 +28,7 @@ class ModuleEditPage extends AdminEditPage
 	 * Array of
 	 * @var array expected id values for tab div elements
 	 */
-	public $tabs = array('general', 'assignment', 'permissions', 'attrib-advanced');
+	public $tabs = array('general', 'assignment', 'attrib-advanced');
 
 	/**
 	 * Array of groups for this page. A group is a collapsable slider inside a tab.
