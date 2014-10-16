@@ -46,7 +46,7 @@ class ContactEditPage extends AdminEditPage
 	 * @var    array
 	 * @since  3.2
 	 */
-	public $tabs = array('details', 'misc', 'publishing', 'attrib-display', 'attrib-email');
+	public $tabs = array('details', 'misc', 'publishing', 'attrib-jmetadata');
 
 	/**
 	 * Array of all the field Details of the Edit page, along with the ID and tab value they are present on
@@ -55,7 +55,7 @@ class ContactEditPage extends AdminEditPage
 	 * @since 3.2
 	 */
 	public $inputFields = array (
-						array('label' => 'Name', 'id' => 'jform_name', 'type' => 'input', 'tab' => 'header'),
+			array('label' => 'Name', 'id' => 'jform_name', 'type' => 'input', 'tab' => 'header'),
 			array('label' => 'Alias', 'id' => 'jform_alias', 'type' => 'input', 'tab' => 'header'),
 			array('label' => 'Linked User', 'id' => 'jform_user_id', 'type' => 'input', 'tab' => 'details'),
 			array('label' => 'Image', 'id' => 'jform_image', 'type' => 'input', 'tab' => 'details'),
@@ -93,49 +93,6 @@ class ContactEditPage extends AdminEditPage
 			array('label' => 'ID', 'id' => 'jform_id', 'type' => 'input', 'tab' => 'publishing'),
 			array('label' => 'Meta Description', 'id' => 'jform_metadesc', 'type' => 'textarea', 'tab' => 'publishing'),
 			array('label' => 'Meta Keywords', 'id' => 'jform_metakey', 'type' => 'textarea', 'tab' => 'publishing'),
-			array('label' => 'Robots', 'id' => 'jform_metadata_robots', 'type' => 'select', 'tab' => 'publishing'),
-			array('label' => 'Rights', 'id' => 'jform_metadata_rights', 'type' => 'input', 'tab' => 'publishing'),
-			array('label' => 'Show Category', 'id' => 'jform_params_show_contact_category', 'type' => 'select', 'tab' => 'attrib-display'),
-			array('label' => 'Show Contact List', 'id' => 'jform_params_show_contact_list', 'type' => 'select', 'tab' => 'attrib-display'),
-			array('label' => 'Display format', 'id' => 'jform_params_presentation_style', 'type' => 'select', 'tab' => 'attrib-display'),
-			array('label' => 'Show Tags', 'id' => 'jform_params_show_tags', 'type' => 'select', 'tab' => 'attrib-display'),
-			array('label' => 'Name', 'id' => 'jform_params_show_name', 'type' => 'select', 'tab' => 'attrib-display'),
-			array('label' => 'Contact\'s Position', 'id' => 'jform_params_show_position', 'type' => 'select', 'tab' => 'attrib-display'),
-			array('label' => 'Email', 'id' => 'jform_params_show_email', 'type' => 'select', 'tab' => 'attrib-display'),
-			array('label' => 'Street Address', 'id' => 'jform_params_show_street_address', 'type' => 'select', 'tab' => 'attrib-display'),
-			array('label' => 'City or Suburb', 'id' => 'jform_params_show_suburb', 'type' => 'select', 'tab' => 'attrib-display'),
-			array('label' => 'State or County', 'id' => 'jform_params_show_state', 'type' => 'select', 'tab' => 'attrib-display'),
-			array('label' => 'Postal Code', 'id' => 'jform_params_show_postcode', 'type' => 'select', 'tab' => 'attrib-display'),
-			array('label' => 'Country', 'id' => 'jform_params_show_country', 'type' => 'select', 'tab' => 'attrib-display'),
-			array('label' => 'Telephone', 'id' => 'jform_params_show_telephone', 'type' => 'select', 'tab' => 'attrib-display'),
-			array('label' => 'Mobile phone', 'id' => 'jform_params_show_mobile', 'type' => 'select', 'tab' => 'attrib-display'),
-			array('label' => 'Fax', 'id' => 'jform_params_show_fax', 'type' => 'select', 'tab' => 'attrib-display'),
-			array('label' => 'Webpage', 'id' => 'jform_params_show_webpage', 'type' => 'select', 'tab' => 'attrib-display'),
-			array('label' => 'Misc. Information', 'id' => 'jform_params_show_misc', 'type' => 'select', 'tab' => 'attrib-display'),
-			array('label' => 'Image', 'id' => 'jform_params_show_image', 'type' => 'select', 'tab' => 'attrib-display'),
-			array('label' => 'vCard', 'id' => 'jform_params_allow_vcard', 'type' => 'select', 'tab' => 'attrib-display'),
-			array('label' => 'Show User Articles', 'id' => 'jform_params_show_articles', 'type' => 'select', 'tab' => 'attrib-display'),
-			array('label' => 'Show Profile', 'id' => 'jform_params_show_profile', 'type' => 'select', 'tab' => 'attrib-display'),
-			array('label' => 'Show Links', 'id' => 'jform_params_show_links', 'type' => 'select', 'tab' => 'attrib-display'),
-			array('label' => 'Link A Label', 'id' => 'jform_params_linka_name', 'type' => 'input', 'tab' => 'attrib-display'),
-			array('label' => 'Link A URL', 'id' => 'jform_params_linka', 'type' => 'input', 'tab' => 'attrib-display'),
-			array('label' => 'Link B Label', 'id' => 'jform_params_linkb_name', 'type' => 'input', 'tab' => 'attrib-display'),
-			array('label' => 'Link B URL', 'id' => 'jform_params_linkb', 'type' => 'input', 'tab' => 'attrib-display'),
-			array('label' => 'Link C Label', 'id' => 'jform_params_linkc_name', 'type' => 'input', 'tab' => 'attrib-display'),
-			array('label' => 'Link C URL', 'id' => 'jform_params_linkc', 'type' => 'input', 'tab' => 'attrib-display'),
-			array('label' => 'Link D Label', 'id' => 'jform_params_linkd_name', 'type' => 'input', 'tab' => 'attrib-display'),
-			array('label' => 'Link D URL', 'id' => 'jform_params_linkd', 'type' => 'input', 'tab' => 'attrib-display'),
-			array('label' => 'Link E Label', 'id' => 'jform_params_linke_name', 'type' => 'input', 'tab' => 'attrib-display'),
-			array('label' => 'Link E URL', 'id' => 'jform_params_linke', 'type' => 'input', 'tab' => 'attrib-display'),
-			array('label' => 'Alternative Layout', 'id' => 'jform_params_contact_layout', 'type' => 'select', 'tab' => 'attrib-display'),
-			array('label' => 'Show Contact Form', 'id' => 'jform_params_show_email_form', 'type' => 'select', 'tab' => 'attrib-email'),
-			array('label' => 'Send Copy to Submitter', 'id' => 'jform_params_show_email_copy', 'type' => 'select', 'tab' => 'attrib-email'),
-			array('label' => 'Banned Email', 'id' => 'jform_params_banned_email', 'type' => 'textarea', 'tab' => 'attrib-email'),
-			array('label' => 'Banned Subject', 'id' => 'jform_params_banned_subject', 'type' => 'textarea', 'tab' => 'attrib-email'),
-			array('label' => 'Banned Text', 'id' => 'jform_params_banned_text', 'type' => 'textarea', 'tab' => 'attrib-email'),
-			array('label' => 'Session Check', 'id' => 'jform_params_validate_session', 'type' => 'select', 'tab' => 'attrib-email'),
-			array('label' => 'Custom Reply', 'id' => 'jform_params_custom_reply', 'type' => 'select', 'tab' => 'attrib-email'),
-			array('label' => 'Contact Redirect', 'id' => 'jform_params_redirect', 'type' => 'input', 'tab' => 'attrib-email'),
 			);
 
 }
