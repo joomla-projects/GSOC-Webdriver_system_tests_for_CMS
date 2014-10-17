@@ -90,7 +90,7 @@ class NewsFeedEditPage extends AdminEditPage
 		array('label' => 'Number of Articles', 'id' => 'jform_numarticles', 'type' => 'input', 'tab' => 'attrib-jbasic'),
 		array('label' => 'Cache Time', 'id' => 'jform_cache_time', 'type' => 'input', 'tab' => 'attrib-jbasic'),
 		array('label' => 'Language Direction', 'id' => 'jform_rtl', 'type' => 'select', 'tab' => 'attrib-jbasic'),
-		array('label' => 'Feed image', 'id' => 'jform_params_show_feed_image', 'type' => 'select', 'tab' => 'attrib-jbasic'),
+		array('label' => 'Feed Image', 'id' => 'jform_params_show_feed_image', 'type' => 'select', 'tab' => 'attrib-jbasic'),
 		array('label' => 'Feed Description', 'id' => 'jform_params_show_feed_description', 'type' => 'select', 'tab' => 'attrib-jbasic'),
 		array('label' => 'Feed Content', 'id' => 'jform_params_show_item_description', 'type' => 'select', 'tab' => 'attrib-jbasic'),
 		array('label' => 'Characters Count', 'id' => 'jform_params_feed_character_count', 'type' => 'input', 'tab' => 'attrib-jbasic'),
