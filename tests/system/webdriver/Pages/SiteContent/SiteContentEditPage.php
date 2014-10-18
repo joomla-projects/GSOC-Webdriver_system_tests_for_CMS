@@ -45,7 +45,7 @@ class SiteContentEditPage extends SitePage
 	 * @var    string
 	 * @since  3.2
 	 */
-	protected $url = '/index.php/component/content/?view=form&layout=edit&a_id=';
+	protected $url = '?view=form&layout=edit&a_id=';
 
 	/**
 	 * Function which changes the articles texts and returns back to the siteContentFeaturedPage after saving the changes
