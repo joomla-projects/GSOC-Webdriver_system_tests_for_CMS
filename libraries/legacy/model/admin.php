@@ -9,12 +9,12 @@
 
 defined('JPATH_PLATFORM') or die;
 
+use Joomla\Registry\Registry;
+
 /**
  * Prototype admin model.
  *
- * @package     Joomla.Legacy
- * @subpackage  Model
- * @since       12.2
+ * @since  12.2
  */
 abstract class JModelAdmin extends JModelForm
 {
@@ -380,6 +380,16 @@ abstract class JModelAdmin extends JModelForm
 
 			// Reset the ID because we are making a copy
 			$this->table->id = 0;
+
+			// Unpublish because we are making a copy
+			if (isset($this->table->published))
+			{
+				$this->table->published = 0;
+			}
+			elseif (isset($this->table->state))
+			{
+				$this->table->state = 0;
+			}
 
 			// New category ID
 			$this->table->catid = $categoryId;
@@ -854,7 +864,7 @@ abstract class JModelAdmin extends JModelForm
 
 		if (property_exists($item, 'params'))
 		{
-			$registry = new JRegistry;
+			$registry = new Registry;
 			$registry->loadString($item->params);
 			$item->params = $registry->toArray();
 		}
