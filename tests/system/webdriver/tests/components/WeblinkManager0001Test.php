@@ -64,7 +64,7 @@ class WeblinkManager0001Test extends JoomlaWebdriverTestCase
 	 *
 	 * @return void
 	 *
-	 * @test
+	 *
 	 */
 	public function getAllInputFields_ScreenDisplayed_EqualExpected()
 	{
@@ -86,7 +86,7 @@ class WeblinkManager0001Test extends JoomlaWebdriverTestCase
 	 *
 	 * @return void
 	 *
-	 * @test
+	 *
 	 */
 	public function constructor_OpenEditScreen_WeblinkEditOpened()
 	{
@@ -101,7 +101,7 @@ class WeblinkManager0001Test extends JoomlaWebdriverTestCase
 	 *
 	 * @return void
 	 *
-	 * @test
+	 *
 	 */
 	public function getTabIds_ScreenDisplayed_EqualExpected()
 	{
@@ -118,7 +118,7 @@ class WeblinkManager0001Test extends JoomlaWebdriverTestCase
 	 *
 	 * @return void
 	 *
-	 * @test
+	 *
 	 */
 	public function addWeblink_WithFieldDefaults_WeblinkAdded()
 	{
@@ -139,7 +139,7 @@ class WeblinkManager0001Test extends JoomlaWebdriverTestCase
 	 *
 	 * @return void
 	 *
-	 * @test
+	 *
 	 */
 	public function addWeblink_WithGivenFields_WeblinkAdded()
 	{
@@ -173,7 +173,7 @@ class WeblinkManager0001Test extends JoomlaWebdriverTestCase
 	 *
 	 * @return void
 	 *
-	 * @test
+	 *
 	 */
 	public function editWeblink_ChangeFields_FieldsChanged()
 	{
@@ -192,7 +192,7 @@ class WeblinkManager0001Test extends JoomlaWebdriverTestCase
 	 *
 	 * @return void
 	 *
-	 * @test
+	 *
 	 */
 	public function changeWeblinkState_ChangeEnabledUsingToolbar_EnabledChanged()
 	{
