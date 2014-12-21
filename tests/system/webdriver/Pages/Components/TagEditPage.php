@@ -46,7 +46,7 @@ class TagEditPage extends AdminEditPage
 	 * @var    array
 	 * @since  3.0
 	 */
-	public $tabs = array('details', 'publishing', 'attrib-basic', 'attrib-images');
+	public $tabs = array('details', 'publishing', 'attrib-basic', 'images');
 
 	/**
 	 * Array of all the field Details of the Edit page, along with the ID and tab value they are present on
@@ -77,14 +77,14 @@ class TagEditPage extends AdminEditPage
 			array('label' => 'Robots', 'id' => 'jform_metadata_robots', 'type' => 'select', 'tab' => 'publishing'),
 			array('label' => 'Alternative Layout', 'id' => 'jform_params_tag_layout', 'type' => 'select', 'tab' => 'attrib-basic'),
 			array('label' => 'CSS Class for tag link', 'id' => 'jform_params_tag_link_class', 'type' => 'input', 'tab' => 'attrib-basic'),
-			array('label' => 'Teaser image', 'id' => 'jform_params_image_intro', 'type' => 'input', 'tab' => 'attrib-images'),
-			array('label' => 'Float', 'id' => 'jform_params_float_intro', 'type' => 'select', 'tab' => 'attrib-images'),
-			array('label' => 'Alt', 'id' => 'jform_params_image_intro_alt', 'type' => 'input', 'tab' => 'attrib-images'),
-			array('label' => 'Caption', 'id' => 'jform_params_image_intro_caption', 'type' => 'input', 'tab' => 'attrib-images'),
-			array('label' => 'Full image', 'id' => 'jform_params_image_fulltext', 'type' => 'input', 'tab' => 'attrib-images'),
-			array('label' => 'Float', 'id' => 'jform_params_float_fulltext', 'type' => 'select', 'tab' => 'attrib-images'),
-			array('label' => 'Alt', 'id' => 'jform_params_image_fulltext_alt', 'type' => 'input', 'tab' => 'attrib-images'),
-			array('label' => 'Caption', 'id' => 'jform_params_image_fulltext_caption', 'type' => 'input', 'tab' => 'attrib-images'),
+			array('label' => 'Teaser image', 'id' => 'jform_images_image_intro', 'type' => 'input', 'tab' => 'images'),
+			array('label' => 'Float', 'id' => 'jform_images_float_intro', 'type' => 'select', 'tab' => 'images'),
+			array('label' => 'Alt', 'id' => 'jform_images_image_intro_alt', 'type' => 'input', 'tab' => 'images'),
+			array('label' => 'Caption', 'id' => 'jform_images_image_intro_caption', 'type' => 'input', 'tab' => 'images'),
+			array('label' => 'Full image', 'id' => 'jform_images_image_fulltext', 'type' => 'input', 'tab' => 'images'),
+			array('label' => 'Float', 'id' => 'jform_images_float_fulltext', 'type' => 'select', 'tab' => 'images'),
+			array('label' => 'Alt', 'id' => 'jform_images_image_fulltext_alt', 'type' => 'input', 'tab' => 'images'),
+			array('label' => 'Caption', 'id' => 'jform_images_image_fulltext_caption', 'type' => 'input', 'tab' => 'images'),
 			);
 
 }
