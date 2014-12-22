@@ -76,7 +76,6 @@ class ModuleManagerPage extends AdminManagerPage
 			array('client' => 'site', 'name' => 'Smart Search Module'),
 			array('client' => 'site', 'name' => 'Statistics'),
 			array('client' => 'site', 'name' => 'Syndication Feeds'),
-			array('client' => 'site', 'name' => 'Weblinks'),
 			array('client' => 'site', 'name' => 'Who\'s Online'),
 			array('client' => 'site', 'name' => 'Wrapper'),
 			array('client' => 'administrator', 'name' => 'Admin sub-Menu'),
