@@ -94,6 +94,7 @@ class GlobalConfigurationPage extends AdminEditPage
 			array('label' => 'Mailer', 'id' => 'jform_mailer', 'type' => 'select', 'tab' => 'page-server'),
 			array('label' => 'From email', 'id' => 'jform_mailfrom', 'type' => 'input', 'tab' => 'page-server'),
 			array('label' => 'From Name', 'id' => 'jform_fromname', 'type' => 'input', 'tab' => 'page-server'),
+			array('label' => 'Disable Mass Mail', 'id' => 'jform_massmailoff', 'type' => 'fieldset', 'tab' => 'page-server')
 			);
 
 	public $permissions = array('core.login.site', 'core.login.admin', 'core.login.offline', 'core.admin', 'core.manage', 'core.create', 'core.delete', 'core.edit', 'core.edit.state', 'core.edit.own');
