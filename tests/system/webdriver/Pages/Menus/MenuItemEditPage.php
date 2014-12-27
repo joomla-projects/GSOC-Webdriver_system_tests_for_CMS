@@ -139,9 +139,6 @@ class MenuItemEditPage extends AdminEditPage
 					array('group' => 'Users Manager', 'type' => 'Registration Form ' ),
 					array('group' => 'Users Manager', 'type' => 'User Profile ' ),
 					array('group' => 'Users Manager', 'type' => 'Username Reminder Request ' ),
-					array('group' => 'Weblinks', 'type' => 'List All Web Link Categories ' ),
-					array('group' => 'Weblinks', 'type' => 'List Web Links in a Category ' ),
-					array('group' => 'Weblinks', 'type' => 'Submit a Web Link ' ),
 					array('group' => 'Wrapper', 'type' => 'Iframe Wrapper ' ),
 			);
 
