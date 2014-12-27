@@ -64,7 +64,7 @@ class WeblinkManager0002Test extends JoomlaWebdriverTestCase
 	 *
 	 * @return void
 	 *
-	 * @test
+	 * 
 	 */
 	public function getFilters_GetListOfFilters_ShouldMatchExpected()
 	{
@@ -78,7 +78,7 @@ class WeblinkManager0002Test extends JoomlaWebdriverTestCase
 	 *
 	 * @return void
 	 *
-	 * @test
+	 * 
 	 */
 	public function setFilter_SetFilterValues_ShouldExecuteFilter()
 	{
@@ -101,7 +101,7 @@ class WeblinkManager0002Test extends JoomlaWebdriverTestCase
 	 *
 	 * @return void
 	 *
-	 * @test
+	 * 
 	 */
 	public function setFilter_TestFilters_ShouldFilterWeblinks()
 	{
