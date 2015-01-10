@@ -85,7 +85,6 @@ class CategoryEditPage extends AdminEditPage
 			array('label' => 'Robots', 'id' => 'jform_metadata_robots', 'type' => 'select', 'tab' => 'publishing'),
 			array('label' => 'Alternative Layout', 'id' => 'jform_params_category_layout', 'type' => 'select', 'tab' => 'attrib-basic'),
 			array('label' => 'Image', 'id' => 'jform_params_image', 'type' => 'input', 'tab' => 'attrib-basic'),
+			array('label' => 'Alt Text', 'id' => 'jform_params_image_alt', 'type' => 'input', 'tab' => 'attrib-basic'),
 			);
-
-
 }
