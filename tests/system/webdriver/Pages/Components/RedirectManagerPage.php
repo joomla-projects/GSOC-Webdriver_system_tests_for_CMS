@@ -142,7 +142,8 @@ class RedirectManagerPage extends AdminManagerPage
 	public function changeRedirectState($src, $state = 'published')
 	{
 		$this->searchFor($src);
-		$this->checkAll();
+		$rowNumber = $this->getRowNumber($src) - 1;
+		$this->driver->findElement(By::xPath("//input[@id='cb" . $rowNumber ."']"))->click();
 		if (strtolower($state) == 'published')
 		{
 			$this->clickButton('toolbar-publish');
