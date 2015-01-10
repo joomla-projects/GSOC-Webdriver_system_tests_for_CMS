@@ -45,12 +45,12 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
-     	 * creates a menu item and check its existence on site page
-         *
-         * @return void
-         * 
-         * @test
-         */
+     * creates a menu item and check its existence on site page
+     *
+	 * @return void
+	 *
+	 * @test
+	 */
 	public function addMenuItem_FrontEndCheck_MenuAdded()
 	{
 		$cfg = new SeleniumConfig;
@@ -75,7 +75,7 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase
 		$this->assertFalse($this->menuItemsManagerPage->getRowNumber('Test Menu Item'), 'Test menu should not be present');
 	}
 
-    	/**
+	/**
 	 * create menu item of type single article and verifying its existence on front end
 	 *
 	 * @return void
@@ -146,12 +146,12 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase
 	}
 
 	/**
-         * create menu item of type category blog and verifying its existence on front end
-         *
-         * @return void
-         * 
-         * @test
-         */
+	 * create menu item of type category blog and verifying its existence on front end
+	 *
+	 * @return void
+	 *
+	 * @test
+	 */
 	public function addMenu_CategoryBlog_MenuAdded()
 	{
 		$cfg = new SeleniumConfig;
@@ -185,7 +185,7 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase
 		$this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
 
 		$title = 'Menu Item' . $salt;
-		$menuType = 'Category Blog ';
+		$menuType = 'Category Blog';
 		$menuLocation = 'Main Menu';
 		$metaDescription = 'Test menu item for web driver test.';
 		$this->menuItemsManagerPage = $this->getPageObject('MenuItemsManagerPage');
@@ -225,12 +225,12 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase
 	}
 	
 	/**
-         * create menu item of type category list and verifying its existence on front end.
-         *
-         * @return void
-         * 
-         * @test
-         */
+	 * create menu item of type category list and verifying its existence on front end.
+	 *
+	 * @return void
+	 *
+	 * @test
+	 */
 	public function addMenu_CategoryList_MenuAdded()
 	{
 		$cfg = new SeleniumConfig;
