@@ -391,9 +391,9 @@ class ModuleManager0002Test extends JoomlaWebdriverTestCase
 		$this->assertTrue($this->siteHomePage->itemExist($menuTitle1, 'a'));
 		$this->assertTrue($this->siteHomePage->itemExist($menuTitle2, 'a'));
 		$this->siteHomePage->itemClick($menuTitle1);
-		$this->assertTrue($this->siteHomePage->itemExist($articleName1, 'a'));
+		$this->assertTrue($this->siteHomePage->itemExist($articleName1, 'h2'));
 		$this->siteHomePage->itemClick($menuTitle2);
-		$this->assertTrue($this->siteHomePage->itemExist($articleName2, 'a'));
+		$this->assertTrue($this->siteHomePage->itemExist($articleName2, 'h2'));
 
 		$this->doAdminLogin();
 		$this->driver->get($cfg->host . $cfg->path . $articleManager);
