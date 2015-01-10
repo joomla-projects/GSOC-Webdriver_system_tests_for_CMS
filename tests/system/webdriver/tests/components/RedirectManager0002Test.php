@@ -90,7 +90,7 @@ class RedirectManager0002Test extends JoomlaWebdriverTestCase
 		$test = $this->redirectManagerPage->setFilter('filter_state', 'Disabled');
 		$this->assertFalse($this->redirectManagerPage->getRowNumber($srcName), 'Redirect should not show');
 		$test = $this->redirectManagerPage->setFilter('filter_state', 'Enabled');
-		$this->assertEquals(1, $this->redirectManagerPage->getRowNumber($srcName), 'Redirect should be in row 1');
+		$this->assertGreaterThanOrEqual(1, $this->redirectManagerPage->getRowNumber($srcName), 'Redirect should be in row 1');
 		$this->redirectManagerPage->trashAndDelete($srcName);
 		$this->assertFalse($this->redirectManagerPage->getRowNumber($srcName), 'Redirect should not be present');
 	}
@@ -104,8 +104,9 @@ class RedirectManager0002Test extends JoomlaWebdriverTestCase
 	 */
 	public function setFilter_TestFilters_ShouldFilterRedirect()
 	{
-		$srcName_1 = 'administrator/index.php/dummysrc1';
-		$srcName_2 = 'administrator/index.php/dummysrc2';
+		$salt = rand();
+		$srcName_1 = 'administrator/index.php/dummysrc1' . $salt;
+		$srcName_2 = 'administrator/index.php/dummysrc2' . $salt;
 
 		$this->redirectManagerPage->addRedirect($srcName_1);
 		$message = $this->redirectManagerPage->getAlertMessage();
@@ -122,11 +123,11 @@ class RedirectManager0002Test extends JoomlaWebdriverTestCase
 
 		$test = $this->redirectManagerPage->setFilter('filter_state', 'Disabled');
 		$this->assertFalse($this->redirectManagerPage->getRowNumber($srcName_1), 'Redirect should not show');
-		$this->assertEquals(1, $this->redirectManagerPage->getRowNumber($srcName_2), 'Redirect should be in row 1');
+		$this->assertGreaterThanOrEqual(1, $this->redirectManagerPage->getRowNumber($srcName_2), 'Redirect should be in row 1');
 
 		$test = $this->redirectManagerPage->setFilter('filter_state', 'Enabled');
 		$this->assertFalse($this->redirectManagerPage->getRowNumber($srcName_2), 'Redirect should not show');
-		$this->assertEquals(1, $this->redirectManagerPage->getRowNumber($srcName_1), 'Redirect should be in row 1');
+		$this->assertGreaterThanOrEqual(1, $this->redirectManagerPage->getRowNumber($srcName_1), 'Redirect should be in row 1');
 
 		$this->redirectManagerPage->setFilter('Select Status', 'Select Status');
 		$this->redirectManagerPage->trashAndDelete($srcName_1);
@@ -143,8 +144,9 @@ class RedirectManager0002Test extends JoomlaWebdriverTestCase
 
 	public function setFilter_TestFilters_ShouldFilterTags2()
 	{
-		$srcName_1 = 'administrator/index.php/dummysrc1';
-		$srcName_2 = 'administrator/index.php/dummysrc2';
+		$salt = rand();
+		$srcName_1 = 'administrator/index.php/dummysrc1' . $salt;
+		$srcName_2 = 'administrator/index.php/dummysrc2' . $salt;
 
 		$this->redirectManagerPage->addRedirect($srcName_1);
 		$message = $this->redirectManagerPage->getAlertMessage();
