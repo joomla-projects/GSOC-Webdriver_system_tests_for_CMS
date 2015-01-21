@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Language
  *
- * @copyright   Copyright (C) 2005 - 2014 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -577,20 +577,18 @@ class JLanguage
 	/**
 	 * Returns an upper limit integer for length of search words
 	 *
-	 * @return  integer  The upper limit integer for length of search words (20 if no value was set for a specific language).
+	 * @return  integer  The upper limit integer for length of search words (200 if no value was set or if default value is < 200).
 	 *
 	 * @since   11.1
 	 */
 	public function getUpperLimitSearchWord()
 	{
-		if ($this->upperLimitSearchWordCallback !== null)
+		if ($this->upperLimitSearchWordCallback !== null && call_user_func($this->upperLimitSearchWordCallback) > 200)
 		{
 			return call_user_func($this->upperLimitSearchWordCallback);
 		}
-		else
-		{
-			return 20;
-		}
+
+		return 200;
 	}
 
 	/**
