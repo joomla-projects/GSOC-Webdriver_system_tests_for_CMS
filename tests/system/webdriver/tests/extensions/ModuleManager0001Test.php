@@ -61,7 +61,7 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 	public function constructor_OpenEditScreen_ModuleEditOpened()
 	{
 		$this->moduleManagerPage->clickButton('new');
-		$this->driver->waitForElementUntilIsPresent(By::xPath("//a[contains(., 'Articles Categories')]"))->click();
+		$this->driver->waitForElementUntilIsPresent(By::xPath("//a[contains(., 'Articles - Categories')]"))->click();
 		/* @var $moduleEditPage ModuleEditPage */
 		$moduleEditPage = $this->getPageObject('ModuleEditPage');
 		$moduleEditPage->clickButton('cancel');
@@ -78,7 +78,7 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 	public function getTabIds_ScreenDisplayed_EqualExpected()
 	{
 		$this->moduleManagerPage->clickButton('toolbar-new');
-		$this->driver->waitForElementUntilIsPresent(By::xPath("//a[contains(., 'Articles Categories')]"))->click();
+		$this->driver->waitForElementUntilIsPresent(By::xPath("//a[contains(., 'Articles - Categories')]"))->click();
 		$moduleEditPage = $this->getPageObject('ModuleEditPage');
 		$textArray = $moduleEditPage->getTabIds();
 		$this->assertEquals($moduleEditPage->tabs, $textArray, 'Tab labels should match expected values.');
@@ -109,7 +109,7 @@ class ModuleManager0001Test extends JoomlaWebdriverTestCase
 	public function getAllInputFields_ScreenDisplayed_EqualExpected()
 	{
 		$this->moduleManagerPage->clickButton('toolbar-new');
-		$this->driver->waitForElementUntilIsPresent(By::xPath("//a[contains(., 'Articles Categories')]"))->click();
+		$this->driver->waitForElementUntilIsPresent(By::xPath("//a[contains(., 'Articles - Categories')]"))->click();
 		$moduleEditPage = $this->getPageObject('ModuleEditPage');
 
 		$testElements = $moduleEditPage->getAllInputFields($moduleEditPage->tabs);
