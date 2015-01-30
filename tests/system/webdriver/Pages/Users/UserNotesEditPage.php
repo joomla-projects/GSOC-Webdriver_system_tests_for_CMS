@@ -31,10 +31,10 @@ class UserNotesEditPage extends AdminEditPage
 	 */
 	public $inputFields = array (
 			array('label' => 'Subject', 'id' => 'jform_subject', 'type' => 'input', 'tab' => 'header'),
-			array('label' => 'User ID', 'id' => 'jform_user_id', 'type' => 'input', 'tab' => 'header'),
+			array('label' => 'User', 'id' => 'jform_user_id', 'type' => 'input', 'tab' => 'header'),
 			array('label' => 'Category', 'id' => 'jform_catid', 'type' => 'select', 'tab' => 'header'),
 			array('label' => 'Status', 'id' => 'jform_state', 'type' => 'select', 'tab' => 'header'),
-			array('label' => 'Review time', 'id' => 'jform_review_time', 'type' => 'input', 'tab' => 'header'),
+			array('label' => 'Review Date', 'id' => 'jform_review_time', 'type' => 'input', 'tab' => 'header'),
 			array('label' => 'Version Note', 'id' => 'jform_version_note', 'type' => 'input', 'tab' => 'header'),
 			array('label' => 'Note', 'id' => 'jform_body', 'type' => 'textarea', 'tab' => 'header'),
 	);
