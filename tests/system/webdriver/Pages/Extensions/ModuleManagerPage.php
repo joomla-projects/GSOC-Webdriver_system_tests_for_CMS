@@ -53,37 +53,37 @@ class ModuleManagerPage extends AdminManagerPage
 			);
 
 	public $moduleTypes = array(
-			array('client' => 'site', 'name' => 'Archived Articles'),
+			array('client' => 'site', 'name' => 'Articles - Archived'),
+			array('client' => 'site', 'name' => 'Articles - Categories'),
+			array('client' => 'site', 'name' => 'Articles - Category'),
+			array('client' => 'site', 'name' => 'Articles - Latest'),
+			array('client' => 'site', 'name' => 'Articles - Most Read'),
 			array('client' => 'site', 'name' => 'Articles - Newsflash'),
-			array('client' => 'site', 'name' => 'Articles - Related Articles'),
-			array('client' => 'site', 'name' => 'Articles Categories'),
-			array('client' => 'site', 'name' => 'Articles Category'),
+			array('client' => 'site', 'name' => 'Articles - Related'),
 			array('client' => 'site', 'name' => 'Banners'),
 			array('client' => 'site', 'name' => 'Breadcrumbs'),
 			array('client' => 'site', 'name' => 'Custom HTML'),
 			array('client' => 'site', 'name' => 'Feed Display'),
 			array('client' => 'site', 'name' => 'Footer'),
 			array('client' => 'site', 'name' => 'Language Switcher'),
-			array('client' => 'site', 'name' => 'Latest News'),
 			array('client' => 'site', 'name' => 'Latest Users'),
 			array('client' => 'site', 'name' => 'Login'),
 			array('client' => 'site', 'name' => 'Menu'),
-			array('client' => 'site', 'name' => 'Most Read Content'),
-			array('client' => 'site', 'name' => 'Popular Tags'),
 			array('client' => 'site', 'name' => 'Random Image'),
 			array('client' => 'site', 'name' => 'Search'),
-			array('client' => 'site', 'name' => 'Similar Tags'),
-			array('client' => 'site', 'name' => 'Smart Search Module'),
+			array('client' => 'site', 'name' => 'Smart Search'),
 			array('client' => 'site', 'name' => 'Statistics'),
 			array('client' => 'site', 'name' => 'Syndication Feeds'),
+			array('client' => 'site', 'name' => 'Tags - Popular'),
+			array('client' => 'site', 'name' => 'Tags - Similar'),
 			array('client' => 'site', 'name' => 'Who\'s Online'),
 			array('client' => 'site', 'name' => 'Wrapper'),
 			array('client' => 'administrator', 'name' => 'Admin sub-Menu'),
 			array('client' => 'administrator', 'name' => 'Administrator Menu'),
+			array('client' => 'administrator', 'name' => 'Articles - Latest'),
 			array('client' => 'administrator', 'name' => 'Custom HTML'),
 			array('client' => 'administrator', 'name' => 'Feed Display'),
 			array('client' => 'administrator', 'name' => 'Joomla! Version Information'),
-			array('client' => 'administrator', 'name' => 'Latest News'),
 			array('client' => 'administrator', 'name' => 'Logged-in Users'),
 			array('client' => 'administrator', 'name' => 'Login Form'),
 			array('client' => 'administrator', 'name' => 'Multilingual Status'),
@@ -105,7 +105,7 @@ class ModuleManagerPage extends AdminManagerPage
 	 *
 	 * @return void
 	 */
-	public function addModule($title = 'Test Module', $client = 'Site', $type = 'Archived Articles', $otherFields = null)
+	public function addModule($title = 'Test Module', $client = 'Site', $type = 'Articles - Archived', $otherFields = null)
 	{
 		$this->setFilter('filter_client_id', $client);
 		$this->clickButton('toolbar-new');
