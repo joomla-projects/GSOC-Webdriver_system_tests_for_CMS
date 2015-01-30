@@ -64,7 +64,7 @@ class BannerEditPage extends AdminEditPage
 			array('label' => 'Description', 'id' => 'jform_description', 'type' => 'textarea', 'tab' => 'details'),
 			array('label' => 'Category', 'id' => 'jform_catid', 'type' => 'select', 'tab' => 'details'),
 			array('label' => 'Status', 'id' => 'jform_state', 'type' => 'select', 'tab' => 'details'),
-			array('label' => 'Sticky', 'id' => 'jform_sticky', 'type' => 'fieldset', 'tab' => 'details'),
+			array('label' => 'Pinned', 'id' => 'jform_sticky', 'type' => 'fieldset', 'tab' => 'details'),
 			array('label' => 'Language', 'id' => 'jform_language', 'type' => 'select', 'tab' => 'details'),
 			array('label' => 'Version Note', 'id' => 'jform_version_note', 'type' => 'input', 'tab' => 'details'),
 			array('label' => 'Max. Impressions', 'id' => 'jform_imptotal', 'type' => 'input', 'tab' => 'otherparams'),
