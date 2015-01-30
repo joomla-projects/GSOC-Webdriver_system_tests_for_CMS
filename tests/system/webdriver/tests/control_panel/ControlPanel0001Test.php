@@ -70,7 +70,7 @@ class ControlPanel0001Test extends JoomlaWebdriverTestCase
 
 		foreach ($cpPage->allMenuLinks as $menuText => $link)
 		{
-			$link = (substr($link, 0, 7) == 'http://') ? $link : $this->cfg->host . $this->cfg->path . $link;
+			$link = (substr($link, 0, 7) == 'http://' || substr($link, 0, 8) == 'https://' ) ? $link : $this->cfg->host . $this->cfg->path . $link;
 			$this->assertTrue(strpos($actualLinks, $link) !== false, "Expected link $link should be in on the page.");
 		}
 
