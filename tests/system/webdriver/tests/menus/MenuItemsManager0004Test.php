@@ -67,7 +67,7 @@ class MenuItemsManager0004Test extends JoomlaWebdriverTestCase
 		$menuItemManager = 'administrator/index.php?option=com_menus&view=items';
 		$this->driver->get($cfg->host . $cfg->path . $menuItemManager);
 		$title = 'Menu Item' . $salt;
-		$menuType = 'List of all tags ';
+		$menuType = 'List of all tags';
 		$menuLocation = 'Main Menu';
 		$this->menuItemsManagerPage = $this->getPageObject('MenuItemsManagerPage');
 		$this->menuItemsManagerPage->setFilter('Menu', $menuLocation);
@@ -118,7 +118,7 @@ class MenuItemsManager0004Test extends JoomlaWebdriverTestCase
 		$menuItemManager = 'administrator/index.php?option=com_menus&view=items';
 		$this->driver->get($cfg->host . $cfg->path . $menuItemManager);
 		$title = 'Menu Item' . $salt;
-		$menuType = 'Single News Feed ';
+		$menuType = 'Single News Feed';
 		$menuLocation = 'Main Menu';
 		$feedName = "Joomla! Connect";
 		$this->menuItemsManagerPage = $this->getPageObject('MenuItemsManagerPage');
@@ -186,7 +186,7 @@ class MenuItemsManager0004Test extends JoomlaWebdriverTestCase
 
 		$this->driver->get($cfg->host . $cfg->path . $menuItemManager);
 		$title = 'Menu Item' . $salt;
-		$menuType = 'List All News Feed Categories ';
+		$menuType = 'List All News Feed Categories';
 		$menuLocation = 'Main Menu';
 		$this->menuItemsManagerPage = $this->getPageObject('MenuItemsManagerPage');
 		$this->menuItemsManagerPage->setFilter('Menu', $menuLocation);
@@ -267,7 +267,7 @@ class MenuItemsManager0004Test extends JoomlaWebdriverTestCase
 
 		$this->driver->get($cfg->host . $cfg->path . $menuItemManager);
 		$title = 'Menu Item' . $salt;
-		$menuType = 'List News Feeds in a Category ';
+		$menuType = 'List News Feeds in a Category';
 		$menuLocation = 'Main Menu';
 		$this->menuItemsManagerPage = $this->getPageObject('MenuItemsManagerPage');
 		$this->menuItemsManagerPage->setFilter('Menu', $menuLocation);

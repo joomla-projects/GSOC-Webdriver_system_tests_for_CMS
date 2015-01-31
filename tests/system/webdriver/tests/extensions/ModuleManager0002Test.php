@@ -88,7 +88,7 @@ class ModuleManager0002Test extends JoomlaWebdriverTestCase
 
 		$title = 'Module test ' . $salt;
 		$client = 'Site';
-		$type = 'Articles Categories';
+		$type = 'Articles - Categories';
 		$position = 'position-3';
 		$suffix = 'mySuffix';
 		$otherFields = array('Position' => $position, 'Module Class Suffix' => $suffix, 'Parent Category' => $categoryName);
@@ -183,7 +183,7 @@ class ModuleManager0002Test extends JoomlaWebdriverTestCase
 		$this->moduleManagerPage = $cpPage->clickMenu('Module Manager', 'ModuleManagerPage');
 		$title = 'Module test ' . $salt;
 		$client = 'Site';
-		$type = 'Articles Categories';
+		$type = 'Articles - Categories';
 		$position = 'position-3';
 		$suffix = 'mySuffix';
 		$otherFields = array('Position' => $position, 'Module Class Suffix' => $suffix, 'Parent Category' => $categoryName);

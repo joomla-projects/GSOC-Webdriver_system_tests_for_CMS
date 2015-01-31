@@ -259,7 +259,7 @@ class MenuItemsManager0003Test extends JoomlaWebdriverTestCase
 		$this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
 
 		$title = 'Menu Item' . $salt;
-		$menuType = 'List All Contact Categories ';
+		$menuType = 'List All Contact Categories';
 		$menuLocation = 'Main Menu';
 		$metaDescription = 'Test menu item for web driver test.';
 		$this->menuItemsManagerPage = $this->getPageObject('MenuItemsManagerPage');
@@ -341,7 +341,7 @@ class MenuItemsManager0003Test extends JoomlaWebdriverTestCase
 		$this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
 		$title = 'Menu_Item_testing' . $salt;
 		$menuLocation = 'Main Menu';
-		$menuType = 'List Contacts in a Category ';
+		$menuType = 'List Contacts in a Category';
 		$this->menuItemsManagerPage = $this->getPageObject('MenuItemsManagerPage');
 		$this->menuItemsManagerPage->setFilter('Menu', $menuLocation);
 		$this->assertFalse($this->menuItemsManagerPage->getRowNumber($title), 'Test menu should not be present');

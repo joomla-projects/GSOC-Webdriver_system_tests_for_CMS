@@ -131,7 +131,7 @@ class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 		$note = 'This is a test note.';
 		$this->assertFalse($this->userNotesManagerPage->getRowNumber($userNotesName), 'Test User Notes should not be present');
 
-		$this->userNotesManagerPage->addUserNotes($userNotesName, 'Super User', array('Category' => $category, 'Status' => $status, 'Review time' => $reviewTime, 'Note' => $note));
+		$this->userNotesManagerPage->addUserNotes($userNotesName, 'Super User', array('Category' => $category, 'Status' => $status, 'Review Date' => $reviewTime, 'Note' => $note));
 		$message = $this->userNotesManagerPage->getAlertMessage();
 		$this->assertTrue(strlen($message) > 0);
 		$this->assertTrue(strpos($message, 'UserNotes successfully saved') >= 0, 'User Notes save should return success');
@@ -169,12 +169,15 @@ class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 		$reviewTime = '2012-12-31';
 		$note = 'This is a user note with custom fields.';
 		$this->assertFalse($this->userNotesManagerPage->getRowNumber($userNotesName), 'Test userNotes should not be present');
-		$this->userNotesManagerPage->addUserNotes($userNotesName, 'Super User', array('Category' => $category, 'Status' => $status, 'Review time' => $reviewTime, 'Note' => $note));
+		$this->userNotesManagerPage->addUserNotes($userNotesName, 'Super User', array('Category' => $category, 'Status' => $status, 'Review Date' => $reviewTime, 'Note' => $note));
 
 		/* @var $userManagerPage UserManagerPage */
 		$userManagerPage = $this->userNotesManagerPage->clickMenu('User Manager', 'UserManagerPage');
 		$userName = 'Test User ' . $salt;
-		$userManagerPage->addUser($userName);
+		$userNameLogin = 'test' .rand(9, 99);
+		$userNamePassword = 'password1';
+		$userNameEmail = $userNameLogin . '@test.com';
+		$userManagerPage->addUser($userName, $userNameLogin, $userNamePassword, $userNameEmail);
 		$this->userNotesManagerPage = $userManagerPage->clickMenu('User Notes', 'UserNotesManagerPage');
 
 		$newNotesName = 'NewUserNotes' . $salt;
@@ -182,7 +185,7 @@ class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 		$newStatus = 'Unpublished';
 		$newReviewTime = '2012-12-30';
 		$newNote = 'This is a modified note';
-		$this->userNotesManagerPage->editUserNotes($userNotesName, array('Subject' => $newNotesName, 'ID' => $newUserName, 'Status' => $newStatus, 'Review time' => $newReviewTime, 'Note' => $newNote));
+		$this->userNotesManagerPage->editUserNotes($userNotesName, array('Subject' => $newNotesName, 'ID' => $newUserName, 'Status' => $newStatus, 'Review Date' => $newReviewTime, 'Note' => $newNote));
 
 		$message = $this->userNotesManagerPage->getAlertMessage();
 		$this->assertTrue(strlen($message) > 0);
@@ -195,7 +198,7 @@ class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 		$actualStatus = $userEditPage->getFieldValue('Status');
 		$actualId = $userEditPage->getFieldValue('ID');
 		$actualNote = $userEditPage->getFieldValue('Note');
-		$actualReviewTime = $userEditPage->getFieldValue('Review time');
+		$actualReviewTime = $userEditPage->getFieldValue('Review Date');
 		$this->assertEquals($newStatus, $actualStatus, 'Status should be set to new value');
 		$this->assertEquals($newUserName, $actualId, 'User name should be set to new value');
 		$this->assertContains($newNote, $actualNote, 'Note should be set to new value');
@@ -225,14 +228,20 @@ class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 		$status = 'Published';
 		$reviewTime = '2014-01-01';
 		$note = 'This is a user note with custom fields.';
-		$this->userNotesManagerPage->addUserNotes($superUserNotesName, 'Super User', array('Category' => $category, 'Status' => $status, 'Review time' => $reviewTime, 'Note' => $note));
+		$this->userNotesManagerPage->addUserNotes($superUserNotesName, 'Super User', array('Category' => $category, 'Status' => $status, 'Review Date' => $reviewTime, 'Note' => $note));
 
 		/* @var $userManagerPage UserManagerPage */
 		$userManagerPage = $this->userNotesManagerPage->clickMenu('User Manager', 'UserManagerPage');
 		$userName1 = '1 Test User';
-		$userManagerPage->addUser($userName1);
+		$userName1Login = 'test1' .rand(9, 99);
+		$userName1Password = 'password1';
+		$userName1Email = $userName1Login . '@test.com';
+		$userManagerPage->addUser($userName1, $userName1Login, $userName1Password, $userName1Email);
 		$userName2 = 'Test User 2';
-		$userManagerPage->addUser($userName2, 'test2', 'password2', 'test2@test.com');
+		$userName2Login = 'test2' .rand(9, 99);
+		$userName2Password = 'password2';
+		$userName2Email = $userName2Login . '@test.com';
+		$userManagerPage->addUser($userName2, $userName2Login, $userName2Password, $userName2Email);
 
 		/* @var $userEditPage UserEditPage */
 		$this->userNotesManagerPage = $userManagerPage->clickMenu('User Notes', 'UserNotesManagerPage');
@@ -240,13 +249,13 @@ class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 		$user1Status = 'Unpublished';
 		$user1ReviewTime = '2012-12-30';
 		$user1Note = 'This is another user note with custom fields.';
-		$this->userNotesManagerPage->addUserNotes($user1NotesName, $userName1, array('Category' => $category, 'Status' => $user1Status, 'Review time' => $user1ReviewTime, 'Note' => $user1Note));
+		$this->userNotesManagerPage->addUserNotes($user1NotesName, $userName1, array('Category' => $category, 'Status' => $user1Status, 'Review Date' => $user1ReviewTime, 'Note' => $user1Note));
 
 		$user2NotesName = 'UserNotes A';
 		$user2Status = 'Published';
 		$user2ReviewTime = '2012-12-31';
 		$user2Note = 'This is another user note with custom fields.';
-		$this->userNotesManagerPage->addUserNotes($user2NotesName, $userName2, array('Category' => $category, 'Status' => $user2Status, 'Review time' => $user2ReviewTime, 'Note' => $user2Note));
+		$this->userNotesManagerPage->addUserNotes($user2NotesName, $userName2, array('Category' => $category, 'Status' => $user2Status, 'Review Date' => $user2ReviewTime, 'Note' => $user2Note));
 
 		$orderings = array('User', 'Subject', 'Category', 'Status', 'Review date', 'ID');
 		$rows = array('1 Test User', 'Super User', 'Test User 2');
