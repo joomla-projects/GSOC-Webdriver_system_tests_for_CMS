@@ -57,22 +57,23 @@ class MenuItemsManager0002Test extends JoomlaWebdriverTestCase
 		$MenuItemsManager = 'administrator/index.php?option=com_menus&view=items';
 		$this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
 		$this->menuItemsManagerPage = $this->getPageObject('MenuItemsManagerPage');
-		$this->assertFalse($this->menuItemsManagerPage->getRowNumber('Test Menu Item'), 'Test menu should not be present');
-		$this->menuItemsManagerPage->addMenuItem();
+		$menuTitle = 'Test Menu Item' .rand(9, 999);
+		$this->assertFalse($this->menuItemsManagerPage->getRowNumber($menuTitle), 'Test menu should not be present');
+		$this->menuItemsManagerPage->addMenuItem($menuTitle);
 		$message = $this->menuItemsManagerPage->getAlertMessage();
 		$this->assertTrue(strpos($message, 'Menu successfully saved') >= 0, 'Menu save should return success');
 		
 		$homePageUrl = 'index.php';
 		$this->driver->get($cfg->host . $cfg->path . $homePageUrl);
 		$this->siteHomePage = $this->getPageObject('SiteContentFeaturedPage');
-		$this->assertTrue($this->siteHomePage->itemExist("Test Menu Item", 'a'), "Menu should be present in the front end");
+		$this->assertTrue($this->siteHomePage->itemExist($menuTitle, 'a'), "Menu should be present in the front end");
 
 		$this->doAdminLogin();
 		$this->driver->get($cfg->host . $cfg->path . $MenuItemsManager);
 		$this->menuItemsManagerPage = $this->getPageObject('MenuItemsManagerPage');
 		$this->menuItemsManagerPage->setFilter('Menu', 'Main Menu');
-		$this->menuItemsManagerPage->trashAndDelete('Test Menu Item');
-		$this->assertFalse($this->menuItemsManagerPage->getRowNumber('Test Menu Item'), 'Test menu should not be present');
+		$this->menuItemsManagerPage->trashAndDelete($menuTitle);
+		$this->assertFalse($this->menuItemsManagerPage->getRowNumber($menuTitle), 'Test menu should not be present');
 	}
 
 	/**
