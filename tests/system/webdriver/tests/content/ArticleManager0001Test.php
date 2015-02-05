@@ -176,7 +176,7 @@ class ArticleManager0001Test extends JoomlaWebdriverTestCase
 	/**
 	 * change article state from published to unpublished
 	 *
-	 * @return viod
+	 * @return void
 	 *
 	 * @test
 	 */
