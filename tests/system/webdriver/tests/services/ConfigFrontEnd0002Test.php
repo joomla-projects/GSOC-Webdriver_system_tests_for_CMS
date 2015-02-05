@@ -76,8 +76,9 @@ class ConfigFrontEnd0002Test extends JoomlaWebdriverTestCase
 	 */
 	public function testChangeMetaDescription()
 	{
-		$this->siteHomePage->changeMetaDescription('JoomlaTestMetaDescription');
+		$newMetaDescription = 'JoomlaTestMetaDescription' . rand(1,100);
+		$this->siteHomePage->changeMetaDescription($newMetaDescription);
 
-		$this->assertNotEquals('JoomlaTestMetaDescription', $this->siteHomePage->getMetaDescription(), 'Site Meta Description has not changed');
+		$this->assertNotEquals($this->previousMetaDescription, $this->siteHomePage->getMetaDescription(), 'Site Meta Description has not changed');
 	}
 }
