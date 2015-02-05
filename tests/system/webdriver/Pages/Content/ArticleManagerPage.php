@@ -308,7 +308,6 @@ class ArticleManagerPage extends AdminManagerPage
 	 * change the Category Filter from Article Manager Page
 	 *
 	 * @param string $category Name of the Category to which the filter is to be set to
-	 * @param string $searchString to be entered in the filter to select the desired category
 	 *
 	 * @return void
 	 */
