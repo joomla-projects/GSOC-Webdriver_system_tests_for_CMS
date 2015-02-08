@@ -71,7 +71,7 @@ class NewsFeedEditPage extends AdminEditPage
 		array('label' => 'Caption', 'id' => 'jform_images_image_first_caption', 'type' => 'input', 'tab' => 'images'),
 		array('label' => 'Second Image', 'id' => 'jform_images_image_second', 'type' => 'input', 'tab' => 'images'),
 		array('label' => 'Image Float', 'id' => 'jform_images_float_second', 'type' => 'select', 'tab' => 'images'),
-		array('label' => 'Alt text', 'id' => 'jform_images_image_second_alt', 'type' => 'input', 'tab' => 'images'),
+		array('label' => 'Alt Text', 'id' => 'jform_images_image_second_alt', 'type' => 'input', 'tab' => 'images'),
 		array('label' => 'Caption', 'id' => 'jform_images_image_second_caption', 'type' => 'input', 'tab' => 'images'),
 		array('label' => 'Start Publishing', 'id' => 'jform_publish_up', 'type' => 'input', 'tab' => 'publishing'),
 		array('label' => 'Finish Publishing', 'id' => 'jform_publish_down', 'type' => 'input', 'tab' => 'publishing'),
