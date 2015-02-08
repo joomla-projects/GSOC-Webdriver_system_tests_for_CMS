@@ -78,7 +78,7 @@ class ModuleManagerPage extends AdminManagerPage
 			array('client' => 'site', 'name' => 'Tags - Similar'),
 			array('client' => 'site', 'name' => 'Who\'s Online'),
 			array('client' => 'site', 'name' => 'Wrapper'),
-			array('client' => 'administrator', 'name' => 'Admin sub-Menu'),
+			array('client' => 'administrator', 'name' => 'Admin Sub-Menu'),
 			array('client' => 'administrator', 'name' => 'Administrator Menu'),
 			array('client' => 'administrator', 'name' => 'Articles - Latest'),
 			array('client' => 'administrator', 'name' => 'Custom HTML'),
