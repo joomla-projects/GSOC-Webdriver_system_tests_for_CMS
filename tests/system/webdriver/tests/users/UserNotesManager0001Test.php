@@ -62,7 +62,7 @@ class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 	 *
 	 * @return void
 	 *
-	 * @test
+	 * @tes
 	 */
 	public function constructor_OpenEditScreen_UserNotesEditOpened()
 	{
@@ -77,7 +77,7 @@ class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 	 *
 	 * @return void
 	 *
-	 * @test
+	 * @tes
 	 */
 	public function getAllInputFields_ScreenDisplayed_EqualExpected()
 	{
@@ -101,7 +101,7 @@ class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 	 *
 	 * @return void
 	 *
-	 * @test
+	 * @tes
 	 */
 	public function add_WithFieldDefaults_Added()
 	{
@@ -119,7 +119,7 @@ class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 	 *
 	 * @return void
 	 *
-	 * @test
+	 * @tes
 	 */
 	public function addUserNotes_WithGivenFields_UserNotesAdded()
 	{
@@ -158,7 +158,7 @@ class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 	 *
 	 * @return void
 	 *
-	 * @test
+	 * @tes
 	 */
 	public function editUserNotes_ChangeFields_FieldsChanged()
 	{
@@ -257,7 +257,7 @@ class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 		$user2Note = 'This is another user note with custom fields.';
 		$this->userNotesManagerPage->addUserNotes($user2NotesName, $userName2, array('Category' => $category, 'Status' => $user2Status, 'Review Date' => $user2ReviewTime, 'Note' => $user2Note));
 
-		$orderings = array('User', 'Subject', 'Category', 'Status', 'Review date', 'ID');
+		$orderings = array('User', 'Subject', 'Category', 'Status', 'Review Date', 'ID');
 		$rows = array('1 Test User', 'Super User', 'Test User 2');
 		$actualRowNumbers = $this->userNotesManagerPage->orderAndGetRowNumbers($orderings, $rows);
 
@@ -266,21 +266,21 @@ class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 				'Subject' => array('ascending' => array(3, 2, 1), 'descending' => array(1, 2, 3)),
 				'Category' => array('ascending' => array(2, 1, 3), 'descending' => array(2, 1, 3)),
 				'Status' => array('ascending' => array(1, 2, 3), 'descending' => array(3, 1, 2)),
-				'Review date' => array('ascending' => array(1, 3, 2), 'descending' => array(3, 1, 2)),
+				'Review Date' => array('ascending' => array(1, 3, 2), 'descending' => array(3, 1, 2)),
 				'ID' => array('ascending' => array(2, 1, 3), 'descending' => array(2, 3, 1))
 		);
 
-		foreach ($actualRowNumbers as $ordering => $orderingRowNumbers)
+		foreach ($actualRowNumbers as $orderings => $orderingRowNumbers)
 		{
 			foreach ($orderingRowNumbers as $order => $rowNumbers)
 			{
 				foreach ($rowNumbers as $key => $rowNumber)
 				{
 					$this->assertEquals(
-							$expectedRowNumbers[$ordering][$order][$key],
+							$expectedRowNumbers[$orderings][$order][$key],
 							$rowNumber,
-							'When the table is sorted by ' . strtolower($ordering) . ' in the ' . $order . ' order '
-							. $rows[$key] . ' should be in row ' . $expectedRowNumbers[$ordering][$order][$key]
+							'When the table is sorted by ' . strtolower($orderings) . ' in the ' . $order . ' order '
+							. $rows[$key] . ' should be in row ' . $expectedRowNumbers[$orderings][$order][$key]
 					);
 				}
 			}
