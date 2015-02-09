@@ -270,17 +270,17 @@ class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 				'ID' => array('ascending' => array(2, 1, 3), 'descending' => array(2, 3, 1))
 		);
 
-		foreach ($actualRowNumbers as $orderings => $orderingRowNumbers)
+		foreach ($actualRowNumbers as $ordering => $orderingRowNumbers)
 		{
 			foreach ($orderingRowNumbers as $order => $rowNumbers)
 			{
 				foreach ($rowNumbers as $key => $rowNumber)
 				{
 					$this->assertEquals(
-							$expectedRowNumbers[$orderings][$order][$key],
+							$expectedRowNumbers[$ordering][$order][$key],
 							$rowNumber,
-							'When the table is sorted by ' . strtolower($orderings) . ' in the ' . $order . ' order '
-							. $rows[$key] . ' should be in row ' . $expectedRowNumbers[$orderings][$order][$key]
+							'When the table is sorted by ' . strtolower($ordering) . ' in the ' . $order . ' order '
+							. $rows[$key] . ' should be in row ' . $expectedRowNumbers[$ordering][$order][$key]
 					);
 				}
 			}
