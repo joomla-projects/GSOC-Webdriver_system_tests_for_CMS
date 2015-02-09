@@ -257,7 +257,7 @@ class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 		$user2Note = 'This is another user note with custom fields.';
 		$this->userNotesManagerPage->addUserNotes($user2NotesName, $userName2, array('Category' => $category, 'Status' => $user2Status, 'Review Date' => $user2ReviewTime, 'Note' => $user2Note));
 
-		$orderings = array('User', 'Subject', 'Category', 'Status', 'Review date', 'ID');
+		$orderings = array('User', 'Subject', 'Category', 'Status', 'Review Date', 'ID');
 		$rows = array('1 Test User', 'Super User', 'Test User 2');
 		$actualRowNumbers = $this->userNotesManagerPage->orderAndGetRowNumbers($orderings, $rows);
 
@@ -266,7 +266,7 @@ class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 				'Subject' => array('ascending' => array(3, 2, 1), 'descending' => array(1, 2, 3)),
 				'Category' => array('ascending' => array(2, 1, 3), 'descending' => array(2, 1, 3)),
 				'Status' => array('ascending' => array(1, 2, 3), 'descending' => array(3, 1, 2)),
-				'Review date' => array('ascending' => array(1, 3, 2), 'descending' => array(3, 1, 2)),
+				'Review Date' => array('ascending' => array(1, 3, 2), 'descending' => array(3, 1, 2)),
 				'ID' => array('ascending' => array(2, 1, 3), 'descending' => array(2, 3, 1))
 		);
 
