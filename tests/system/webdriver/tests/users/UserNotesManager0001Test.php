@@ -62,7 +62,7 @@ class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 	 *
 	 * @return void
 	 *
-	 * @tes
+	 * @test
 	 */
 	public function constructor_OpenEditScreen_UserNotesEditOpened()
 	{
@@ -77,7 +77,7 @@ class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 	 *
 	 * @return void
 	 *
-	 * @tes
+	 * @test
 	 */
 	public function getAllInputFields_ScreenDisplayed_EqualExpected()
 	{
@@ -101,7 +101,7 @@ class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 	 *
 	 * @return void
 	 *
-	 * @tes
+	 * @test
 	 */
 	public function add_WithFieldDefaults_Added()
 	{
@@ -119,7 +119,7 @@ class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 	 *
 	 * @return void
 	 *
-	 * @tes
+	 * @test
 	 */
 	public function addUserNotes_WithGivenFields_UserNotesAdded()
 	{
@@ -158,7 +158,7 @@ class UserNotesManager0001Test extends JoomlaWebdriverTestCase
 	 *
 	 * @return void
 	 *
-	 * @tes
+	 * @test
 	 */
 	public function editUserNotes_ChangeFields_FieldsChanged()
 	{
