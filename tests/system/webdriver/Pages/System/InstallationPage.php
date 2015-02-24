@@ -139,8 +139,9 @@ class InstallationPage extends AdminPage
 		$this->setField('Table Prefix', $cfg->db_prefix);
 
 		$this->driver->findElement(By::xPath("//label[@for='jform_db_old1']"))->click();
-		
-		$this->driver->findElement(By::xPath("//li[@id='summary']/a"))->click();
+		$this->driver->findElement(By::xPath(".//*[@id='ftp']/a"))->click();
+		$this->driver->waitForElementUntilIsPresent(By::xPath(".//*[@id='summary']/a"));	
+		$this->driver->findElement(By::xPath(".//*[@id='summary']/a"))->click();
 		$this->driver->waitForElementUntilIsPresent(By::xPath("//li[@id='summary'][@class='step active']"));
 
 
